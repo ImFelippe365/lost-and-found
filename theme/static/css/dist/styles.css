@@ -790,22 +790,6 @@ select {
   height: 100vh;
 }
 
-.w-full {
-  width: 100%;
-}
-
-.w-5 {
-  width: 1.25rem;
-}
-
-.w-9 {
-  width: 2.25rem;
-}
-
-.w-10 {
-  width: 2.5rem;
-}
-
 .border-collapse {
   border-collapse: collapse;
 }
@@ -859,11 +843,6 @@ select {
 
 .tracking-normal {
   letter-spacing: 0em;
-}
-
-.text-green-400 {
-  --tw-text-opacity: 1;
-  color: rgb(74 222 128 / var(--tw-text-opacity));
 }
 
 .text-white {
