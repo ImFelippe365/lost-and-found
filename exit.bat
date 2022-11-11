@@ -1,0 +1,1 @@
+cd env && cd Scripts && deactivate.bat && cd .. && cd ..
