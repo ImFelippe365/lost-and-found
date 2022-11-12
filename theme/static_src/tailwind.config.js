@@ -42,7 +42,25 @@ module.exports = {
         // '../../**/*.py'
     ],
     theme: {
-        extend: {},
+        fontFamily: {
+            'sans': 'IBM Plex Sans, sans-serif',
+        },
+        extend: {
+            colors: {
+                'primary': '#98EE6F',
+                'white': '#FFFFFF',
+                'light-gray': '#D9D9D9',
+                'gray': '#676767',
+                'black': '#3D3D3D',
+                'background-color': '#FAFAFA',
+                'contrast': '#4A9E68',
+                'shape': '#C1C1C1',
+                'success-color': '#58AE30',
+                'error-color': '#C92A2A',
+                'primary-transparent-color': 'rgba(152, 238, 111, 0.08)',
+                'error-transparent-color': 'rgba(201, 42, 42, 0.1)',
+            }
+        },
     },
     plugins: [
         /**

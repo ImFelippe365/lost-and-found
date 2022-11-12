@@ -7,23 +7,69 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Achados e perdidos</title>
+
     {% tailwind_preload_css %}
     {% tailwind_css %}
 </head>
 
-<body>
+{% load static %}
 
-    <aside>
+<body class="grid grid-cols-2">
+    <aside
+        class="bg-white border-r-light-gray border-solid border-r-2 h-[100vh] w-[320px] flex flex-col items-center py-12 px-6">
 
+        <section class="flex-1 w-full">
+            <img class="mb-2 mx-auto" src="{% static 'svg/logo.svg' %}" width="200" />
+            <hr class="w-full my-5 border-light-gray">
+            <li class="list-none">
+                <ul class=" bg-primary rounded-lg py-4 flex items-center px-6 gap-3 mb-2">
+                    <img class="w-7" src="{% static 'icon/carbon_report.svg' %}" />
+                    <a href="./../../pages/posts.html" class="font-bold text-gray text-base ">Postagens</a>
+                </ul>
+                <ul
+                    class=" bg-white rounded py-4 flex items-center px-6 gap-3 hover:bg-primary-transparent-color mb-2">
+                    <img class="w-7" src="{% static 'icon/carbon_checkmark-outline.svg' %}" />
+                    <a href="./../../pages/posts.html" class="font-bold text-gray text-base ">Itens entregues</a>
+                </ul>
+                <ul
+                    class=" bg-white rounded py-4 flex items-center px-6 gap-3 hover:bg-primary-transparent-color mb-2">
+                    <img class="w-7" src="{% static 'icon/carbon_close-outline.svg' %}" />
+                    <a href="./../../pages/posts.html" class="font-bold text-gray text-base ">Itens expirados</a>
+                </ul>
+                <hr class="border-light-gray my-5">
+                <ul
+                    class=" bg-white rounded py-4 flex items-center px-6 gap-3 hover:bg-primary-transparent-color">
+                    <img class="w-7" src="{% static 'icon/carbon_time.svg' %}" />
+                    <a href="./../../pages/posts.html" class="font-bold text-gray text-base ">Todos os registros</a>
+                </ul>
+            </li>
+        </section>
+        <section class="w-full">
+            <div class="bg-primary rounded-lg flex flex-row p-5 gap-3 items-center">
+                <img src="{% static 'image/user.png' %}" class="w-[58px]" />
+                <div class="flex flex-col text-gray">
+                    <strong>André Ferreira</strong>
+                    <label class="text-sm">Funcionário</label>
+                </div>
+            </div>
+            <hr class="my-6 border-light-gray">
+
+            <div >
+                <button class="w-full text-error-color font-bold flex items-center justify-center gap-3 hover:bg-error-transparent-color py-3 transition-all rounded-lg">
+                    <img class="w-7" src="{% static 'icon/carbon_logout.svg' %}" />
+                    Sair da conta
+                </button>
+            </div>
+        </section>
     </aside>
 
-    <main>
-        <h2>Postagens</h2>
+    <main class="flex flex-1 bg-white">
+        <h1 class="text-primary-color font-bold">
+            Hello world!
+        </h1>
 
-        <p></p>
     </main>
-    <h1 class="text-white rounded font-bold hover:text-pink-300 m-auto flex justify-center bg-green-500">Postagens</h1>
 </body>
 
 </html>
