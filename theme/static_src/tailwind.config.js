@@ -48,6 +48,7 @@ module.exports = {
         extend: {
             colors: {
                 'primary': '#98EE6F',
+                'primary-hover': '#98EE6F50',
                 'white': '#FFFFFF',
                 'light-gray': '#D9D9D9',
                 'gray': '#676767',
@@ -59,6 +60,9 @@ module.exports = {
                 'error-color': '#C92A2A',
                 'primary-transparent-color': 'rgba(152, 238, 111, 0.08)',
                 'error-transparent-color': 'rgba(201, 42, 42, 0.1)',
+            },
+            gridTemplateColumns: {
+                'view': '0fr 1fr;',
             }
         },
     },

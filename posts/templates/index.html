@@ -8,7 +8,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Achados e perdidos</title>
-
+    
+    
     {% tailwind_preload_css %}
     {% tailwind_css %}
 </head>
@@ -20,26 +21,25 @@
         class="bg-white border-r-light-gray border-solid border-r-2 h-[100vh] w-[320px] flex flex-col items-center py-12 px-6">
 
         <section class="flex-1 w-full">
-            <img class="mb-2 mx-auto" src="{% static 'svg/logo.svg' %}" width="200" />
+            <h1>
+                <img class="mb-2 mx-auto" src="{% static 'svg/logo.svg' %}" width="200" />
+            </h1>
             <hr class="w-full my-5 border-light-gray">
             <li class="list-none">
                 <ul class=" bg-primary rounded-lg py-4 flex items-center px-6 gap-3 mb-2">
                     <img class="w-7" src="{% static 'icon/carbon_report.svg' %}" />
                     <a href="./../../pages/posts.html" class="font-bold text-gray text-base ">Postagens</a>
                 </ul>
-                <ul
-                    class=" bg-white rounded py-4 flex items-center px-6 gap-3 hover:bg-primary-transparent-color mb-2">
+                <ul class=" bg-white rounded py-4 flex items-center px-6 gap-3 hover:bg-primary-transparent-color mb-2">
                     <img class="w-7" src="{% static 'icon/carbon_checkmark-outline.svg' %}" />
                     <a href="./../../pages/posts.html" class="font-bold text-gray text-base ">Itens entregues</a>
                 </ul>
-                <ul
-                    class=" bg-white rounded py-4 flex items-center px-6 gap-3 hover:bg-primary-transparent-color mb-2">
+                <ul class=" bg-white rounded py-4 flex items-center px-6 gap-3 hover:bg-primary-transparent-color mb-2">
                     <img class="w-7" src="{% static 'icon/carbon_close-outline.svg' %}" />
                     <a href="./../../pages/posts.html" class="font-bold text-gray text-base ">Itens expirados</a>
                 </ul>
                 <hr class="border-light-gray my-5">
-                <ul
-                    class=" bg-white rounded py-4 flex items-center px-6 gap-3 hover:bg-primary-transparent-color">
+                <ul class=" bg-white rounded py-4 flex items-center px-6 gap-3 hover:bg-primary-transparent-color">
                     <img class="w-7" src="{% static 'icon/carbon_time.svg' %}" />
                     <a href="./../../pages/posts.html" class="font-bold text-gray text-base ">Todos os registros</a>
                 </ul>
@@ -55,8 +55,9 @@
             </div>
             <hr class="my-6 border-light-gray">
 
-            <div >
-                <button class="w-full text-error-color font-bold flex items-center justify-center gap-3 hover:bg-error-transparent-color py-3 transition-all rounded-lg">
+            <div>
+                <button
+                    class="w-full text-error-color font-bold flex items-center justify-center gap-3 hover:bg-error-transparent-color py-3 transition-all rounded-lg">
                     <img class="w-7" src="{% static 'icon/carbon_logout.svg' %}" />
                     Sair da conta
                 </button>
