@@ -7,70 +7,231 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Lottie Files -->
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
     <title>Achados e perdidos</title>
-    
-    
-    {% tailwind_preload_css %}
+
     {% tailwind_css %}
 </head>
 
 {% load static %}
 
-<body class="grid grid-cols-2">
-    <aside
-        class="bg-white border-r-light-gray border-solid border-r-2 h-[100vh] w-[320px] flex flex-col items-center py-12 px-6">
+<body class="bg-background-color flex flex-col w-full overflow-x-hidden">
 
-        <section class="flex-1 w-full">
-            <h1>
-                <img class="mb-2 mx-auto" src="{% static 'svg/logo.svg' %}" width="200" />
-            </h1>
-            <hr class="w-full my-5 border-light-gray">
-            <li class="list-none">
-                <ul class=" bg-primary rounded-lg py-4 flex items-center px-6 gap-3 mb-2">
-                    <img class="w-7" src="{% static 'icon/carbon_report.svg' %}" />
-                    <a href="./../../pages/posts.html" class="font-bold text-gray text-base ">Postagens</a>
-                </ul>
-                <ul class=" bg-white rounded py-4 flex items-center px-6 gap-3 hover:bg-primary-transparent-color mb-2">
-                    <img class="w-7" src="{% static 'icon/carbon_checkmark-outline.svg' %}" />
-                    <a href="./../../pages/posts.html" class="font-bold text-gray text-base ">Itens entregues</a>
-                </ul>
-                <ul class=" bg-white rounded py-4 flex items-center px-6 gap-3 hover:bg-primary-transparent-color mb-2">
-                    <img class="w-7" src="{% static 'icon/carbon_close-outline.svg' %}" />
-                    <a href="./../../pages/posts.html" class="font-bold text-gray text-base ">Itens expirados</a>
-                </ul>
-                <hr class="border-light-gray my-5">
-                <ul class=" bg-white rounded py-4 flex items-center px-6 gap-3 hover:bg-primary-transparent-color">
-                    <img class="w-7" src="{% static 'icon/carbon_time.svg' %}" />
-                    <a href="./../../pages/posts.html" class="font-bold text-gray text-base ">Todos os registros</a>
-                </ul>
-            </li>
-        </section>
-        <section class="w-full">
-            <div class="bg-primary rounded-lg flex flex-row p-5 gap-3 items-center">
-                <img src="{% static 'image/user.png' %}" class="w-[58px]" />
-                <div class="flex flex-col text-gray">
-                    <strong>André Ferreira</strong>
-                    <label class="text-sm">Funcionário</label>
-                </div>
+    <header class="flex flex-row items-center justify-between w-[60%] mx-auto py-8">
+        <img class="w-32" src="{% static 'svg/logo.svg' %}" width="200" />
+
+        <button class="flex flex-row items-center justify-center gap-2 hover:bg-primary-hover py-3 px-5 rounded-lg hover:transition-all">
+            <img class="w-8" src="{% static 'icon/carbon_login.svg' %}" />
+            <div class="flex flex-col items-start text-black leading-none">
+                <span class="text-xs mb-[-6px]">É funcionário?</span>
+                <strong class="text-lg">Entrar</strong>
             </div>
-            <hr class="my-6 border-light-gray">
+        </button>
+    </header>
 
-            <div>
-                <button
-                    class="w-full text-error-color font-bold flex items-center justify-center gap-3 hover:bg-error-transparent-color py-3 transition-all rounded-lg">
-                    <img class="w-7" src="{% static 'icon/carbon_logout.svg' %}" />
-                    Sair da conta
+    <main class="">
+        <section class="flex flex-row items-center justify-between w-[60%] h-[70vh] mx-auto">
+            <div class="w-2/5">
+                <h1 class="text-black font-bold text-5xl">
+                    Perdeu algo?<br>
+                    Nós encontramos para você
+                </h1>
+                <p class="text-black mt-4">
+                    Pesquise itens que foram perdidos dentro do Instituto Federal do Rio Grande do Norte - Campus Pau
+                    dos ferros.
+                </p>
+
+                <button class="hover:bg-primary-contrast transition font-bold text-black mt-6 bg-primary rounded-lg w-48 h-10 text-lg">
+                    Começar a ver
                 </button>
             </div>
+
+            <lottie-player src="https://assets10.lottiefiles.com/packages/lf20_hpdv2lor.json" background="transparent"
+                speed="0.5" class="w-1/2" loop autoplay></lottie-player>
         </section>
-    </aside>
 
-    <main class="flex flex-1 bg-white">
-        <h1 class="text-primary-color font-bold">
-            Hello world!
-        </h1>
+        <img class="w-full h-1/2 rotate-[359deg] mb-[-18px]" src="{% static 'svg/waves.svg' %}" />
+        <section class="bg-primary mx-auto flex flex-row items-baseline justify-center gap-48 h-[30vh] ">
+            <div class="flex flex-col items-center gap-2">
+                <div class="relative flex flex-col items-center">
+                    <img class="w-8 absolute bottom-3/6 self-end mr-3"
+                        src="{% static 'icon/carbon_close-filled.svg' %}" />
+                    <img class="w-24" src="{% static 'icon/carbon_box.svg' %}" />
+                    <label class="font-bold text-black text-xl">Itens perdidos</label>
+                </div>
+                <strong class="text-5xl text-black">83</strong>
+            </div>
+            <div class="flex flex-col items-center gap-2">
+                <div class="relative flex flex-col items-center">
+                    <img class="w-8 absolute bottom-3/6 self-end mr-3"
+                        src="{% static 'icon/carbon_twotone-access-time-filled.svg' %}" />
+                    <img class="w-24" src="{% static 'icon/carbon_box.svg' %}" />
+                    <label class="font-bold text-black text-xl">Itens expirados</label>
+                </div>
+                <strong class="text-5xl text-black">83</strong>
+            </div>
+            <div class="flex flex-col items-center gap-2">
+                <div class="relative flex flex-col items-center">
+                    <img class="w-8 absolute bottom-3/6 self-end mr-3"
+                        src="{% static 'icon/carbon_checkmark-filled.svg' %}" />
+                    <img class="w-24" src="{% static 'icon/carbon_box.svg' %}" />
+                    <label class="font-bold text-black text-xl">Itens entregues</label>
+                </div>
+                <strong class="text-5xl text-black">83</strong>
+            </div>
+        </section>
+        <img class="w-full h-1/2 rotate-[178deg] mt-[-86px]" src="{% static 'svg/waves.svg' %}" />
 
+        <section class="flex flex-row gap-14 w-[50%] h-[70vh] mx-auto">
+            <img width="40%" src="{% static 'lottie-files/about-system-illustration.svg' %}" />
+
+            <article class="text-black flex flex-col justify-center gap-2">
+                <h2 class="font-bold text-4xl">Nosso sistema</h2>
+
+                <p class="mt-1">
+                    A plataforma de achados e perdidos foi criada com o objetivo de ajudar pessoas que perderam itens, e
+                    esses itens foram encontrados nas dependências do IFRN - Campus Pau dos Ferros.
+                </p>
+                <p class="mt-4">
+                    Aqui você pode visualizar os itens que foram encontrados e que estão guardados aguardando a
+                    reivindicação de seus donos, e também a relação dos itens que já foram entregues.
+                </p>
+                <p class="mt-4">
+                    Caso tenha perdido algo dentro da instituição e tenha sido encontrado por algum funcionário, pode
+                    ter certeza que ele será guardado e exibido em nosso sistema.
+                </p>
+            </article>
+        </section>
+
+        <section class="bg-black relative pb-32">
+            <div class="w-[50%] mx-auto flex flex-row gap-14 h-[70vh]">
+                <article class="text-white flex flex-col justify-center gap-2 w-[70%]">
+                    <h2 class="font-bold text-4xl">Quem somos nós?</h2>
+
+                    <p class="mt-1">
+                        Somos estudantes do Instituto Federal do Rio Grande do Norte - Campus Pau dos Ferros do curso
+                        Técnologo em Análise e Desenvolvimento de Sistemas.
+                    </p>
+                    <p class="mt-4">
+                        Nos chamamos Felippe Rian e Bruna Maria e estamos no 4° período. Esse sistema foi documentado,
+                        projetado e codificado durante a disciplina de Desenvolvimento de Projetos I.
+                    </p>
+                    <p class="mt-4">
+                        Desenvolvemos essa plataforma como forma de alertar ao público que perdeu algo de forma mais
+                        simples: apenas acessando o site e visualizando se seu item está lá!
+                    </p>
+                </article>
+
+                <lottie-player src="{% static 'lottie-files/team.json' %}" background="transparent" speed="1" loop
+                    autoplay></lottie-player>
+            </div>
+
+            <section class="flex flex-row items-center gap-16 justify-center">
+                <div
+                    class="bg-primary rounded-2xl w-[280px] h-[380px] flex flex-col items-center justify-between pt-8 pb-12 absolute right-[54%] top-[75%]">
+
+                    <section class="text-center text-black flex flex-col items-center">
+                        <img class="w-36" src="{% static 'image/user-team-1.png' %}" />
+
+                        <h3 class="font-bold text-xl mt-4">Felippe Rian</h3>
+                        <p class="text-gray">Desenvolvedor front-end</p>
+                    </section>
+
+                    <section class="flex flex-row items-center gap-1">
+                        <a href="https://github.com/imfelippe365" target="_blank">
+                            <img class="w-10 hover:translate-y-[-4px] hover:transition-all" src="{% static 'icon/carbon_logo-github.svg' %}" />
+                        </a>
+                        <a href="https://linkedin.com/in/felippe-rian">
+                            <img class="w-10 hover:translate-y-[-4px] hover:transition-all" src="{% static 'icon/carbon_logo-linkedin.svg' %}" />
+                        </a>
+                    </section>
+                </div>
+                <div
+                    class="bg-primary rounded-2xl w-[280px] h-[380px] flex flex-col items-center justify-between pt-8 pb-12 absolute left-[54%] top-[75%]">
+
+                    <section class="text-center text-black flex flex-col items-center">
+                        <img class="w-36" src="{% static 'image/user-team-2.png' %}" />
+
+                        <h3 class="font-bold text-xl mt-4">Bruna Maria</h3>
+                        <p class="text-gray">Desenvolvedor front-end</p>
+                    </section>
+
+                    <section class="flex flex-row items-center gap-1">
+                        <a href="https://github.com/brunamariap" target="_blank">
+                            <img class="w-10 hover:translate-y-[-4px] hover:transition-all" src="{% static 'icon/carbon_logo-github.svg' %}" />
+                        </a>
+                        <a href="https://linkedin.com/in/">
+                            <img class="w-10 hover:translate-y-[-4px] hover:transition-all" src="{% static 'icon/carbon_logo-linkedin.svg' %}" />
+                        </a>
+                    </section>
+                </div>
+            </section>
+
+        </section>
+
+
+
+        <section class="flex flex-row items-center gap-14 w-[50%] h-[70vh] mx-auto mt-36">
+
+            <img class="w-[280px] h-[330px]" src="{% static 'image/ifrn-pdf-logo.png' %}" />
+
+            <article class="text-black flex flex-col justify-center gap-2">
+                <h2 class="font-bold text-4xl">Sobre a instituição</h2>
+
+                <p class="mt-1">
+                    O Instituto Federal de Educação, Ciência e Tecnologia do Rio Grande do Norte (IFRN) é uma
+                    instituição que oferece educação básica, profissional e superior, de forma "pluricurricular".
+                </p>
+                <p class="mt-4">
+                    É uma instituição multicampi, especializada na oferta de educação profissional e tecnológica nas
+                    diferentes modalidades de ensino, com base na conjugação de conhecimentos técnicos e tecnológicos às
+                    suas práticas pedagógicas.
+                </p>
+            </article>
+        </section>
     </main>
+
+    <footer class="bg-black py-8">
+        <div class="flex flex-row items-center justify-between w-[50%] h-[25vh] m-auto">
+            <img class="w-56" src="{% static 'svg/logo-colorful.svg' %}" width="200" />
+
+            <article class="text-white flex flex-col gap-3">
+                <h3 class="font-bold text-light-gray text-3xl">Contato</h3>
+
+                <ul class="flex flex-col gap-1">
+                    <li>
+                        <a class="flex flex-row items-center gap-3" href="mailto:coades.pf@ifrn.edu.br">
+                            <img class="w-6" src="{% static 'icon/carbon_email.svg' %}" />
+                            coades.pf@ifrn.edu.br
+                        </a>
+                    </li>
+                    <li>
+                        <a class="flex flex-row items-center gap-3" href="tel:+8440054109">
+                            <img class="w-6" src="{% static 'icon/carbon_phone.svg' %}" />
+                            (84) 4005 4109
+                        </a>
+                    </li>
+                    <li>
+                        <a>
+                            <div class="flex flex-row items-center gap-3">
+                                <img class="w-6" src="{% static 'icon/carbon_phone-ip.svg' %}" />
+                                <h4>Ramais</h4>
+                            </div>
+                            <ul class="pl-9">
+                                <li>6609 - COADES Prédio I</li>
+                                <li>6603 - COADES Prédio II (anexo)</li>
+                            </ul>
+                        </a>
+                    </li>
+                </ul>
+
+            </article>
+        </div>
+        <h4 class="text-center text-light-gray w-full">Copyright &copy; Todos os direitos reservados</h4>
+    </footer>
 </body>
 
 </html>

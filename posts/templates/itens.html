@@ -30,17 +30,18 @@
                     <a href="./../../pages/posts.html" class="font-bold text-gray text-base ">Postagens</a>
                 </ul>
                 <ul
-                    class=" bg-white rounded py-4 flex items-center px-6 gap-3 hover:bg-primary-hover transition-all mb-2">
+                    class=" bg-white rounded-lg py-4 flex items-center px-6 gap-3 hover:bg-primary-hover transition-all mb-2">
                     <img class="w-7" src="{% static 'icon/carbon_checkmark-outline.svg' %}" />
                     <a href="./../../pages/posts.html" class="font-bold text-gray text-base ">Itens entregues</a>
                 </ul>
                 <ul
-                    class=" bg-white rounded py-4 flex items-center px-6 gap-3 hover:bg-primary-hover transition-all mb-2">
+                    class=" bg-white rounded-lg py-4 flex items-center px-6 gap-3 hover:bg-primary-hover transition-all mb-2">
                     <img class="w-7" src="{% static 'icon/carbon_close-outline.svg' %}" />
                     <a href="./../../pages/posts.html" class="font-bold text-gray text-base ">Itens expirados</a>
                 </ul>
                 <hr class="border-light-gray my-5">
-                <ul class=" bg-white rounded py-4 flex items-center px-6 gap-3 hover:bg-primary-hover transition-all">
+                <ul
+                    class=" bg-white rounded-lg py-4 flex items-center px-6 gap-3 hover:bg-primary-hover transition-all">
                     <img class="w-7" src="{% static 'icon/carbon_time.svg' %}" />
                     <a href="./../../pages/posts.html" class="font-bold text-gray text-base ">Todos os registros</a>
                 </ul>
@@ -50,7 +51,7 @@
             <div class="bg-primary rounded-lg flex flex-row p-5 gap-3 items-center">
                 <img src="{% static 'image/user.png' %}" class="w-[58px]" />
                 <div class="flex flex-col text-gray">
-                    <strong>André Ferreira</strong>
+                    <strong class="font-bold">André Ferreira</strong>
                     <label class="text-sm">Funcionário</label>
                 </div>
             </div>
@@ -70,9 +71,9 @@
         <header>
             <h2 class="font-bold text-black text-3xl mb-5">Postagens</h2>
 
-            <section class="flex flex-row items-center gap-6 justify-between">
+            <section class="flex flex-row items-center gap-6 justify-between flex-wrap">
                 <div
-                    class="border-light-gray border-[1px] border-solid bg-white rounded-lg flex flex-row items-center gap-2 pl-6 flex-1">
+                    class="border-light-gray border-[1px] border-solid bg-white rounded-lg flex flex-row items-center gap-2 pl-6 flex-1 min-w-[200px]">
                     <img class="w-5" src="{% static 'icon/carbon_search.svg' %}" />
                     <input class="outline-none border-none bg-transparent w-full placeholder:text-gray" type="search"
                         placeholder="Pesquise pelo nome do item" />
@@ -84,7 +85,7 @@
                 </select>
 
                 <button
-                    class=" bg-primary w-1/5 rounded-lg py-2 flex flex-row items-center justify-center gap-2 font-bold text-black">
+                    class=" bg-primary w-[200px] rounded-lg py-2 flex flex-row items-center justify-center gap-2 font-bold text-black">
                     <img class="fill-black w-6" src="{% static 'icon/carbon_add-alt.svg' %}" />
                     Novo post
                 </button>

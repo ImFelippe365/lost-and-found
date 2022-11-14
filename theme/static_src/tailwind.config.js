@@ -48,6 +48,7 @@ module.exports = {
         extend: {
             colors: {
                 'primary': '#98EE6F',
+                'primary-contrast': '#93E76C',
                 'primary-hover': '#98EE6F50',
                 'white': '#FFFFFF',
                 'light-gray': '#D9D9D9',
@@ -63,6 +64,9 @@ module.exports = {
             },
             gridTemplateColumns: {
                 'view': '0fr 1fr;',
+            },
+            width: {
+                '60%': '60%',
             }
         },
     },

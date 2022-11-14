@@ -131,6 +131,7 @@ STATICFILES_DIRS = [
     ("icon", "config/static/icon"),
     ("image", "config/static/image"),
     ("svg", "config/static/svg"),
+    ("lottie-files", "config/static/lottie-files"),
 ]
 
 # Default primary key field type
