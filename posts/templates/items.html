@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+{% load static %}
+{%block main%}
+<header>
+    <h2 class="font-bold text-black text-3xl mb-5">Postagens</h2>
+
+    <section class="flex flex-row items-center gap-6 justify-between flex-wrap">
+        <div
+            class="border-light-gray border-[1px] border-solid bg-white rounded-lg flex flex-row items-center gap-2 pl-6 flex-1 min-w-[200px]">
+            <img class="w-5" src="{% static 'icon/carbon_search.svg' %}" />
+            <input class="outline-none border-none bg-transparent w-full placeholder:text-gray" type="search"
+                placeholder="Pesquise pelo nome do item" />
+        </div>
+
+        <select aria-placeholder="Ordenar por" class="border-light-gray rounded-lg pl-6 pr-16 text-gray">
+            <option value="recents">Mais recentes</option>
+            <option value="older">Mais antigos</option>
+        </select>
+
+        <button
+            class=" bg-primary w-[200px] rounded-lg py-2 flex flex-row items-center justify-center gap-2 font-bold text-black">
+            <img class="fill-black w-6" src="{% static 'icon/carbon_add-alt.svg' %}" />
+            Novo post
+        </button>
+
+    </section>
+</header>
+
+<section>
+    <div class="flex flex-row items-center gap-9 border-2 border-light-gray rounded-2xl mt-12">
+        <img class="object-cover w-[260px] h-full rounded-tl-2xl rounded-bl-2xl" src="{% static 'image/jarra-de-vo.jpg' %}"
+            alt="Foto do item" />
+
+        <div class="flex-1 px-8 py-4">
+            <section class="flex flex-row items-center justify-between">
+                <span class="bg-error-color rounded-3xl font-bold text-xs text-white px-4 py-1">Perdido</span>
+
+                <div class="flex flex-row items-center gap-2">
+                    <button class="hover:bg-primary-hover rounded-full p-2 transition-all">
+                        <img class="fill-black w-6" src="{% static 'icon/carbon_share.svg' %}" />
+                    </button>
+                    <button class="hover:bg-primary-hover rounded-full p-1 transition-all">
+                        <img class="fill-black w-7" src="{% static 'icon/carbon_overflow-menu-vertical.svg' %}" />
+                    </button>
+                </div>
+            </section>
+
+            <h4 class="font-bold text-black text-[28px] mb-4">Jarra de vidro</h4>
+
+            <div class="flex flex-row flex-wrap items-center gap-y-4 relative">
+                <div class="bg-white w-[250px] shadow-lg py-4 px-5 rounded-lg absolute z-10 left-[65%] bottom-[10%]">
+                    <button class="flex flex-row items-center justify-between w-full mb-4">
+                        Editar
+                        <img class="w-5" src="{% static 'icon/carbon_chevron-right.svg' %}" />
+                    </button>
+
+                    <button class="flex flex-row items-center justify-between w-full text-error-color mb-4">
+                        Excluir
+                        <img class="w-5" src="{% static 'icon/carbon_chevron-right-warning.svg' %}" />
+                    </button>
+
+                    <button class="flex flex-row items-center justify-between w-full text-success-color">
+                        Definir como entregue
+                        <img class="w-5" src="{% static 'icon/carbon_chevron-right-success.svg' %}" />
+                    </button>
+                </div>
+
+                <div class="flex flex-row items-center gap-3 w-[300px]">
+                    <img class="w-8" src="{% static 'icon/carbon_location-hazard.svg' %}" />
+
+                    <div class="leading-none">
+                        <strong class="text-black m-0 text-sm">Local onde foi encontrado:</strong>
+                        <p class="text-gray m-0 text-sm">Banheiro masculino</p>
+                    </div>
+                </div>
+                <div class="flex flex-row items-center gap-3 w-[300px]">
+                    <img class="w-8 fill-black" src="{% static 'icon/carbon_time-small.svg' %}" />
+
+                    <div class="leading-none">
+                        <strong class="text-black m-0 text-sm">Quando foi encontrado:</strong>
+                        <p class="text-gray m-0 text-sm">
+                            <span class="font-bold">16/10</span>/2022 durante à <span class="font-bold">noite</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="flex flex-row items-center gap-3 w-[300px]">
+                    <img class="w-8" src="{% static 'icon/carbon_checkmark-outline-colorful.svg' %}" />
+
+                    <div class="leading-none">
+                        <strong class="text-success-color m-0 text-sm">Data limite para retirada:</strong>
+                        <p class="text-gray m-0 text-sm">23/10/2022</p>
+                    </div>
+                </div>
+                <div class="flex flex-row items-center gap-3 w-[300px]">
+                    <img class="w-8" src="{% static 'icon/carbon_tool-box.svg' %}" />
+
+                    <div class="leading-none">
+                        <strong class="text-black m-0 text-sm">COADES para retirada:</strong>
+                        <p class="text-gray m-0 text-sm">Bloco para retirada</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+{% endblock %}
