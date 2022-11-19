@@ -50,6 +50,7 @@ module.exports = {
                 'primary': '#98EE6F',
                 'primary-contrast': '#93E76C',
                 'primary-hover': '#98EE6F50',
+                'light-gray-hover': '#D9D9D925',
                 'white': '#FFFFFF',
                 'light-gray': '#D9D9D9',
                 'gray': '#676767',
@@ -63,7 +64,7 @@ module.exports = {
                 'error-transparent-color': 'rgba(201, 42, 42, 0.1)',
             },
             gridTemplateColumns: {
-                'view': '0fr 1fr;',
+                'view': '320px 1fr;',
             },
             width: {
                 '60%': '60%',

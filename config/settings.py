@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'tailwind',
     'theme',
     'posts',
+    'registers'
 ]
 
 MIDDLEWARE = [
@@ -128,10 +129,10 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     BASE_DIR / "static",
-    ("icon", "config/static/icon"),
-    ("image", "config/static/image"),
-    ("svg", "config/static/svg"),
-    ("lottie-files", "config/static/lottie-files"),
+    ("icon", "static/icon"),
+    ("image", "static/image"),
+    ("svg", "static/svg"),
+    ("lottie-files", "static/lottie-files"),
 ]
 
 # Default primary key field type

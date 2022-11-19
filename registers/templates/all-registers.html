@@ -1,0 +1,141 @@
+{% extends 'base.html' %}
+{% load static %}
+{%block main%}
+<section>
+    <h2 class="font-bold text-black text-3xl mb-5">Registros</h2>
+
+    <section class="flex flex-row items-center gap-6 justify-between flex-wrap">
+        <div
+            class="border-light-gray border-[1px] border-solid bg-white rounded-lg flex flex-row items-center gap-2 pl-6 flex-1 min-w-[200px]">
+            <img class="w-5" src="{% static 'icon/carbon_search.svg' %}" />
+            <input class="outline-none border-none bg-transparent w-full placeholder:text-gray" type="search"
+                placeholder="Pesquise pelo nome do item" />
+        </div>
+
+        <select aria-placeholder="Ordenar por" class="border-light-gray rounded-lg pl-6 pr-16 text-gray">
+            <option value="recents">Mais recentes</option>
+            <option value="older">Mais antigos</option>
+        </select>
+    </section>
+</section>
+
+<section>
+    <table class="w-full mt-6 px-4">
+        <thead>
+            <tr>
+                <th class="text-start text-gray">Status</th>
+                <th class="text-start text-gray">Nome de quem achou</th>
+                <th class="text-start text-gray">Data de criação</th>
+                <th class="text-start text-gray">Nome do item</th>
+                <th class="text-start text-gray">Local</th>
+                <th class="text-start text-gray">COADES</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr class="bg-primary-hover mt-2">
+                <td class="h-full px-4 rounded-l-lg">
+                    <div class="rounded-3xl inline font-bold text-xs text-white px-4 py-1 {% if item.status == 'Entregue' %} bg-success-color
+                    {% elif item.status == 'Perdido' %}  
+                    bg-error-color
+                    {% else %}
+                    bg-black
+                {% endif %}">
+                        Entregue
+                    </div>
+                </td>
+                <td class="text-black py-4">José manoel</td>
+                <td class="text-black">22/10/2022</td>
+                <td class="text-black">Jarra de vidro de vó</td>
+                <td class="text-black">Sala 109 do anexo</td>
+                <td class="text-black px-4 rounded-r-lg">Bloco principal</td>
+            </tr>
+            <tr class="bg-primary-hover mt-2">
+                <td class="h-full px-4 rounded-l-lg">
+                    <div class="rounded-3xl inline font-bold text-xs text-white px-4 py-1 {% if item.status == 'Entregue' %} bg-success-color
+                    {% elif item.status == 'Perdido' %}  
+                    bg-error-color
+                    {% else %}
+                    bg-black
+                {% endif %}">
+                        Entregue
+                    </div>
+                </td>
+                <td class="text-black py-4">José manoel</td>
+                <td class="text-black">22/10/2022</td>
+                <td class="text-black">Jarra de vidro de vó</td>
+                <td class="text-black">Sala 109 do anexo</td>
+                <td class="text-black px-4 rounded-r-lg">Bloco principal</td>
+            </tr>
+            <tr class="bg-primary-hover mt-2">
+                <td class="h-full px-4 rounded-l-lg">
+                    <div class="rounded-3xl inline font-bold text-xs text-white px-4 py-1 {% if item.status == 'Entregue' %} bg-success-color
+                    {% elif item.status == 'Perdido' %}  
+                    bg-error-color
+                    {% else %}
+                    bg-black
+                {% endif %}">
+                        Entregue
+                    </div>
+                </td>
+                <td class="text-black py-4">José manoel</td>
+                <td class="text-black">22/10/2022</td>
+                <td class="text-black">Jarra de vidro de vó</td>
+                <td class="text-black">Sala 109 do anexo</td>
+                <td class="text-black px-4 rounded-r-lg">Bloco principal</td>
+            </tr>
+            <tr class="bg-primary-hover mt-2">
+                <td class="h-full px-4 rounded-l-lg">
+                    <div class="rounded-3xl inline font-bold text-xs text-white px-4 py-1 {% if item.status == 'Entregue' %} bg-success-color
+                    {% elif item.status == 'Perdido' %}  
+                    bg-error-color
+                    {% else %}
+                    bg-black
+                {% endif %}">
+                        Entregue
+                    </div>
+                </td>
+                <td class="text-black py-4">José manoel</td>
+                <td class="text-black">22/10/2022</td>
+                <td class="text-black">Jarra de vidro de vó</td>
+                <td class="text-black">Sala 109 do anexo</td>
+                <td class="text-black px-4 rounded-r-lg">Bloco principal</td>
+            </tr>
+            <tr class="bg-primary-hover mt-2">
+                <td class="h-full px-4 rounded-l-lg">
+                    <div class="rounded-3xl inline font-bold text-xs text-white px-4 py-1 {% if item.status == 'Entregue' %} bg-success-color
+                    {% elif item.status == 'Perdido' %}  
+                    bg-error-color
+                    {% else %}
+                    bg-black
+                {% endif %}">
+                        Entregue
+                    </div>
+                </td>
+                <td class="text-black py-4">José manoel</td>
+                <td class="text-black">22/10/2022</td>
+                <td class="text-black">Jarra de vidro de vó</td>
+                <td class="text-black">Sala 109 do anexo</td>
+                <td class="text-black px-4 rounded-r-lg">Bloco principal</td>
+            </tr>
+            <tr class="bg-primary-hover mt-2">
+                <td class="h-full px-4 rounded-l-lg">
+                    <div class="rounded-3xl inline font-bold text-xs text-white px-4 py-1 {% if item.status == 'Entregue' %} bg-success-color
+                    {% elif item.status == 'Perdido' %}  
+                    bg-error-color
+                    {% else %}
+                    bg-black
+                {% endif %}">
+                        Entregue
+                    </div>
+                </td>
+                <td class="text-black py-4">José manoel</td>
+                <td class="text-black">22/10/2022</td>
+                <td class="text-black">Jarra de vidro de vó</td>
+                <td class="text-black">Sala 109 do anexo</td>
+                <td class="text-black px-4 rounded-r-lg">Bloco principal</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+{% endblock %}
