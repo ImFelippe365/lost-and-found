@@ -17,11 +17,13 @@
             <option value="older">Mais antigos</option>
         </select>
 
-        <button
-            class=" bg-primary w-[200px] rounded-lg py-2 flex flex-row items-center justify-center gap-2 font-bold text-black">
-            <img class="fill-black w-6" src="{% static 'icon/carbon_add-alt.svg' %}" />
-            Novo post
-        </button>
+        <a href="{% url 'create-post' %}">
+            <button
+                class=" bg-primary w-[200px] rounded-lg py-2 flex flex-row items-center justify-center gap-2 font-bold text-black">
+                <img class="fill-black w-6" src="{% static 'icon/carbon_add-alt.svg' %}"/>
+                Novo post
+            </button>
+        </a>
 
     </section>
 </header>

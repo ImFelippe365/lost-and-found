@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block main %}
+<section>
+    <h2 class="font-bold text-black text-3xl mb-5">Criar nova postagem</h2>
+    <div>
+        <p class="text-black">Preencha os campos para criar uma nova postagem. O <b>“*”</b> indica que o <b>campo é
+                obrigatório</b></p>
+    </div>
+</section>
+
+<section class="w-full mt-6 px-4">
+    <section>
+        <form class="" action="" method="post">
+            <h3 class="font-bold text-black">Dados de encontro do item</h3>
+            <fieldset class="grid grid-cols-2">
+
+                <div class="">
+                    <p>
+                        <label class="text-gray font-semibold" for="name-person">Nome de quem encontrou *</label>
+                    </p>
+                    <p class="">
+                        <input type="text" name="name" placeholder="Ex: João Silva" class="text-gray border-light-gray rounded-lg p-10" required>
+                    </p>
+                </div>
+
+                <div>
+                    <p>
+                        <label class="text-gray font-semibold" for="date-found">Data de quando foi encontrado *</label>
+                    </p>
+                    <p>
+                        <input type="date" name="date-found" placeholder="__/__/__" class="text-gray border-light-gray rounded-lg grid-cols-2" required>
+                    </p>
+                </div>
+
+                <div>
+                    <p>
+                        <label class="text-gray font-semibold" for="place">Local que foi encontrado *</label>
+                    </p>
+                    <p> 
+                        <input type="text" name="place" placeholder="Ex: Ginásio" class="text-gray border-light-gray rounded-lg" required>
+                    </p>
+                </div>
+
+
+                <div>
+                    <p>
+                        <label class="text-gray font-semibold" for="hour">Turno que foi encontrado *</label>
+                    </p>
+                    <p> 
+                        <select aria-placeholder="Selecione o turno" class="text-gray border-light-gray rounded-lg">
+                            <option value="morning">Manhã</option>
+                            <option value="afternoon">Tarde</option>
+                            <option value="night">Noite</option>
+                        </select>
+                    </p>
+                </div>
+            </fieldset>
+
+            <h3 class="font-bold text-black">Dados do item</h3>
+            <fieldset>
+                <div>
+                    <p>
+                        <label class="text-gray font-semibold" for="name-item">Nome *</label>
+                    </p>
+                    <p>
+                        <input type="text" name="name-item" placeholder="Ex: Garrafa" class="text-gray border-light-gray rounded-lg" required>
+                    </p>
+                </div>
+                
+                <div>
+                    <p>
+                        <label class="text-gray font-semibold" for="description">Descrição</label>
+                    </p>
+                    <p>
+                        <input type="text" name="description" placeholder="Ex: Garrafa de plástico vermelha" class="text-gray border-light-gray rounded-lg">
+                    </p>
+                </div>
+
+                <div>
+                    <p>
+                        <label class="text-gray font-semibold" for="photo">Foto</label>
+                    </p>
+                    <p>
+                        <input type="file"  name="photo-item" id="photo-item" accept="image/*" class="text-gray">
+                    </p>
+                </div>
+            </fieldset>
+
+            <h3 class="font-bold text-black">Dados para retirada do item</h3>
+            <fieldset>
+
+                <div>
+                    <p>
+                        <label for="coades">COADES *</label>
+                    </p>
+                    <p>
+                        <select aria-placeholder="Selecione o local" class="border-light-gray rounded-lg text-gray" required>
+                            <option value="main-block">Bloco Principal</option>
+                            <option value="annex-block">Bloco anexo</option>
+                        </select>   
+                    </p>
+                </div>
+
+                <div>
+                    <p>
+                        <label for="date-withdrawal">Data limite para retirada *</label>
+                    </p>
+                    <p>
+                        <input type="date" name="date-withdrawal" placeholder="__/__/__" class="text-gray border-light-gray rounded-lg" required>
+                    </p>
+                </div>
+            </fieldset>
+
+        </form>
+
+        <section>
+            <form action="" method="post"></form>
+        </section>
+    </section>
+</section>
+<button type="reset">Cancelar</button>
+<button class="bg-primary" type="submit">Finalizar</button>
+{% endblock %}

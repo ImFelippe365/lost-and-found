@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'tailwind',
     'theme',
     'posts',
-    'registers'
+    'registers',
+    'form'
 ]
 
 MIDDLEWARE = [
