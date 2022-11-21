@@ -59,8 +59,12 @@
                 </div>
 
                 <div class="flex flex-col" style="width: 45%;">
-                    <label class="text-gray font-semibold" for="photo">Foto</label>
-                    <input type="file" name="photo-item" id="photo-item" accept="image/*" class="text-gray">
+                    <label class="text-gray font-semibold" for="archive">Foto</label>
+                    <label for="archive" class="flex flex-row items-center justify-center gap-3 bg-primary text-black text-lg py-2 rounded-lg font-bold text-center cursor-pointer hover:bg-primary-contrast">
+                        <img src="{% static 'icon/carbon_upload.svg' %}" class="w-5" />
+                        Clique para fazer o upload
+                    </label>
+                    <input id="archive" type="file" name="photo-item" accept="image/*" class="text-gray hidden">
                 </div>
 
 
@@ -84,7 +88,7 @@
                 </div>
             </fieldset>
 
-            <div class="flex" style="justify-content: end;">
+            <div class="flex justify-end">
                 <button type="reset" class="text-black font-bold border-gray border-2 rounded-lg px-8 mr-3 py-2">Cancelar</button>
                 <button class=" text-black font-bold bg-primary rounded-lg px-8 py-2" type="submit">Finalizar</button>
             </div>

@@ -50,6 +50,18 @@ def items(request):
                 'withdrawal_deadline': '23/12/2022',
                 'pickup_location': 'Bloco principal',
             },
+            {
+                'id': 4,
+                'status': 'Entregue',
+                'image': 'image/jarra-de-vo.jpg',
+                'name': 'Pipoqueira',
+                'local_found': 'Na porta do refeitório',
+                'when_was_found': '16/10/2022',
+                'shift': 'noite',
+                'withdrawal_deadline': '23/12/2022',
+                'withdrawal_deadline': '23/12/2022',
+                'pickup_location': 'Bloco principal',
+            },
         ]
     }
     
