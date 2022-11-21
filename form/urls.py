@@ -2,5 +2,5 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('create-post', views.create_post, name='create-post'),
+    path('items/create', views.create_post, name='items/create'),
 ]

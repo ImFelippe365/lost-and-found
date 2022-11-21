@@ -9,6 +9,7 @@
         options.display = options.display == 'none' ? 'block' : 'none'
     }
 </script>
+
 <div id="card_{{ item.id }}" class="flex flex-row items-center gap-9 border-2 border-light-gray rounded-2xl mt-12">
     <img class="object-cover w-[260px] h-full rounded-tl-2xl rounded-bl-2xl" src="{% static item.image %}"
         alt="Foto do item" />
@@ -20,7 +21,7 @@
                 bg-error-color
                 
                 {% else %}
-                bg-black
+                bg-gray
             {% endif %}">{{ item.status }}</span>
 
             <div class="flex flex-row items-center gap-2">
