@@ -16,73 +16,114 @@
 {% load static %}
 
 <body class="grid grid-cols-view bg-background-color max-xl:grid-cols-none">
-
-
-    <aside class=" w-[320px]">
+    <aside class="w-[320px]">
         <div
             class="bg-white border-r-light-gray border-solid border-r-2 h-[100vh] w-[320px] flex flex-col items-center py-12 px-6 max-xl:hidden fixed">
-            <section class="flex-1 w-full">
+            <nav class="flex-1 w-full">
                 <h1>
                     <a>
                         <img class="mb-2 mx-auto" src="{% static 'svg/logo.svg' %}" width="200" />
                     </a>
                 </h1>
                 <hr class="w-full my-5 border-light-gray">
-                <li class="list-none">
-                    <ul>
+                <ul class="list-none">
+                    <li>
                         <a href="{% url 'items' %}"
                             class="font-bold text-gray text-base mb-2 rounded-lg py-4 flex items-center px-6 gap-3 {% if activeTab == 'items' %}bg-primary {% else %}bg-white hover:bg-primary-hover transition-all{% endif %}">
                             <img class="w-7" src="{% static 'icon/carbon_report.svg' %}" />
                             Postagens
                         </a>
-                    </ul>
-                    <ul>
+                    </li>
+                    <li>
                         <a href="{% url 'delivered-items' %}"
                             class="font-bold text-gray text-base mb-2 rounded-lg py-4 flex items-center px-6 gap-3 {% if activeTab == 'delivered-items' %}bg-primary {% else %}bg-white hover:bg-primary-hover transition-all{% endif %}">
 
                             <img class="w-7" src="{% static 'icon/carbon_checkmark-outline.svg' %}" />
                             Itens entregues
                         </a>
-                    </ul>
-                    <ul>
+                    </li>
+                    <li>
                         <a href="{% url 'expired-items' %}"
                             class="font-bold text-gray text-base mb-2 rounded-lg py-4 flex items-center px-6 gap-3 {% if activeTab == 'expired-items' %}bg-primary {% else %}bg-white hover:bg-primary-hover transition-all{% endif %}">
 
                             <img class="w-7" src="{% static 'icon/carbon_close-outline.svg' %}" />
                             Itens expirados
                         </a>
-                    </ul>
+                    </li>
                     <hr class="border-light-gray my-5">
-                    <ul>
+                    <li>
                         <a href="{% url 'all-registers' %}"
                             class="font-bold text-gray text-base mb-2 rounded-lg py-4 flex items-center px-6 gap-3 {% if activeTab == 'all-registers' %}bg-primary {% else %}bg-white hover:bg-primary-hover transition-all{% endif %}">
 
                             <img class="w-7" src="{% static 'icon/carbon_time.svg' %}" />
                             Todos os registros
                         </a>
-                    </ul>
-                </li>
-            </section>
-            <section class="w-full">
-                <div class="bg-primary rounded-lg flex flex-row p-5 gap-3 items-center">
-                    <img src="{% static 'image/user.png' %}" class="w-[58px]" />
+                    </li>
+                </ul>
+            </nav>
+
+            <hr class="w-full my-6 border-light-gray">
+
+            <section class="w-full pl-5 pr-3 flex flex-row justify-between items-center">
+                <div class="flex flex-row gap-3 items-center">
+                    <img src="{% static 'image/user.png' %}" class="w-[55px]" />
                     <div class="flex flex-col text-gray">
                         <strong class="font-bold">André Ferreira</strong>
                         <label class="text-sm">Funcionário</label>
                     </div>
-                </div>
-                <hr class="my-6 border-light-gray">
 
-                <div>
-                    <button
-                        class="w-full text-error-color font-bold flex items-center justify-center gap-3 hover:bg-error-transparent-color py-3 transition-all rounded-lg">
-                        <img class="w-7" src="{% static 'icon/carbon_logout.svg' %}" />
-                        Sair da conta
-                    </button>
                 </div>
+                <button class="hover:bg-error-transparent-color transition-all p-2 rounded-full">
+                    <img class="w-6" src="{% static 'icon/carbon_logout.svg' %}" />
+                </button>
             </section>
         </div>
     </aside>
+
+    <header class="hidden w-11/12 mx-auto max-xl:block">
+        <h1>
+            <a>
+                <img class="mb-2 mx-auto mt-8" src="{% static 'svg/logo.svg' %}" width="200" />
+            </a>
+        </h1>
+
+        <nav class="flex-1 w-full border-solid border-[1px] rounded-lg border-light-gray mt-6">
+            <ul class="list-none flex flex-row items-center justify-around">
+                <li>
+                    <a href="{% url 'items' %}"
+                        class="flex flex-col items-center gap-1 text-center text-sm font-semibold text-gray py-4 {% if activeTab == 'items' %}border-b-4 border-primary {% endif %}">
+                        <img class="w-7" src="{% static 'icon/carbon_report.svg' %}" />
+                        Postagens
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'delivered-items' %}"
+                        class="flex flex-col items-center gap-1 text-center text-sm font-semibold justify-center text-gray py-4 {% if activeTab == 'delivered-items' %}border-b-4 border-primary{% endif %}">
+
+                        <img class="w-7" src="{% static 'icon/carbon_checkmark-outline.svg' %}" />
+                        Entregues
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'expired-items' %}"
+                        class="flex flex-col items-center gap-1 text-center text-sm font-semibold text-gray py-4 {% if activeTab == 'expired-items' %}border-b-4 border-primary{% endif %}">
+
+                        <img class="w-7" src="{% static 'icon/carbon_close-outline.svg' %}" />
+                        Expirados
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'all-registers' %}"
+                        class="flex flex-col items-center gap-1 text-center text-sm font-semibold text-gray py-4 {% if activeTab == 'all-registers' %}border-b-4 border-primary{% endif %}">
+
+                        <img class="w-7" src="{% static 'icon/carbon_time.svg' %}" />
+                        Registros
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
     <main class="flex flex-1 py-16 flex-col w-4/6 mx-auto max-2xl:w-11/12">
         {%block main%}
         {%endblock%}

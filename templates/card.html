@@ -8,9 +8,24 @@
         }
         options.display = options.display == 'none' ? 'block' : 'none'
     }
+
+    function showCardInformations(id, buttonId) {
+        var information = document.getElementById(id).style
+        var showInformationButton = document.getElementById(buttonId).style
+
+        if (!information.display) {
+            information.display = 'flex'
+            showInformationButton.display = information.display == 'none' ? 'block' : 'none'
+            return;
+        }
+
+        information.display = information.display == 'none' ? 'flex' : 'none'
+        showInformationButton.display = information.display == 'none' ? 'block' : 'none'
+    }
 </script>
 
-<div id="card_{{ item.id }}" class="flex flex-row items-center gap-9 border-2 border-light-gray rounded-2xl mt-12">
+<div id="card_{{ item.id }}"
+    class="flex flex-row items-center gap-9 border-2 border-light-gray rounded-2xl mt-12 max-xl:hidden">
     <img class="object-cover w-[260px] h-full rounded-tl-2xl rounded-bl-2xl" src="{% static item.image %}"
         alt="Foto do item" />
 
@@ -19,7 +34,6 @@
             <span class=" rounded-3xl font-bold text-xs text-white px-4 py-1 {% if item.status == 'Entregue' %} bg-success-color
                 {% elif item.status == 'Perdido' %}  
                 bg-error-color
-                
                 {% else %}
                 bg-gray
             {% endif %}">{{ item.status }}</span>
@@ -28,7 +42,7 @@
                 <button class="hover:bg-primary-hover rounded-full p-2 transition-all">
                     <img class="fill-black w-6" src="{% static 'icon/carbon_share.svg' %}" />
                 </button>
-                
+
                 {% if item.status != 'Entregue'%}
                 <button onclick="toggleMenu(`options_{{ item.id }}`)"
                     class="hover:bg-primary-hover rounded-full p-1 transition-all">
@@ -42,8 +56,11 @@
 
         <div class="flex flex-row flex-wrap items-center gap-y-4 relative">
 
-            <div id="options_{{ item.id }}"
-                class="bg-white w-[250px] shadow-lg rounded-lg absolute z-10 left-[65%] bottom-[10%] border-solid border-[1px] border-light-gray hidden">
+            <div id="options_{{ item.id }}" class="bg-white w-[250px] shadow-lg rounded-lg absolute z-10 left-[65%]  border-solid border-[1px] border-light-gray hidden {% if item.status == 'Expirado' %}
+                bottom-[100%]
+                {% else %}
+                bottom-[10%]
+                {% endif %}">
                 {% if item.status == 'Expirado' %}
                 <a href=""
                     class="flex flex-row items-center justify-between w-full py-3 px-5 hover:bg-light-gray-hover transition-all">
@@ -117,4 +134,119 @@
             </div>
         </div>
     </div>
+</div>
+
+<div class="hidden max-xl:block mt-8">
+    <section class="flex flex-row items-center justify-between border-[1px] border-light-gray rounded-t-lg px-2 py-1">
+        <div class="flex flex-row gap-2 items-center">
+            <span class="rounded-3xl font-bold text-[10px] text-white text-center h-5 px-3 py-0.5 {% if item.status == 'Entregue' %} bg-success-color
+            {% elif item.status == 'Perdido' %}  
+            bg-error-color
+            {% else %}
+            bg-gray
+        {% endif %}">{{ item.status }}</span>
+            <h4 class="font-bold text-black">{{ item.name }}</h4>
+        </div>
+
+        <div class="flex flex-row items-center">
+            <button class="hover:bg-primary-hover rounded-full p-2 transition-all">
+                <img class="fill-black w-5" src="{% static 'icon/carbon_share.svg' %}" />
+            </button>
+
+            {% if item.status != 'Entregue'%}
+            <button onclick="toggleMenu(`options_{{ item.id }}`)"
+                class="hover:bg-primary-hover rounded-full p-1 transition-all">
+                <img class="fill-black w-6" src="{% static 'icon/carbon_overflow-menu-vertical.svg' %}" />
+            </button>
+            {% endif %}
+        </div>
+    </section>
+
+    <section class="relative">
+        <div id="options_{{ item.id }}"
+            class="hidden bg-white w-[250px] shadow-lg rounded-lg absolute z-10 right-0 border-solid border-[1px] border-light-gray">
+            {% if item.status == 'Expirado' %}
+            <a href=""
+                class="flex flex-row items-center justify-between w-full py-3 px-5 hover:bg-light-gray-hover transition-all">
+                Editar
+                <img class="w-5" src="{% static 'icon/carbon_chevron-right.svg' %}" />
+            </a>
+            {% else %}
+            <a href=""
+                class="flex flex-row items-center justify-between w-full py-3 px-5 hover:bg-light-gray-hover transition-all">
+                Editar
+                <img class="w-5" src="{% static 'icon/carbon_chevron-right.svg' %}" />
+            </a>
+
+            <button
+                class="flex flex-row items-center justify-between w-full text-error-color py-3 px-5 hover:bg-light-gray-hover transition-all">
+                Excluir
+                <img class="w-5" src="{% static 'icon/carbon_chevron-right-warning.svg' %}" />
+            </button>
+
+            <a href="{% url 'complete-delivery' %}"
+                class="flex flex-row items-center justify-between w-full text-success-color py-3 px-5 hover:bg-light-gray-hover transition-all">
+                Definir como entregue
+                <img class="w-5" src="{% static 'icon/carbon_chevron-right-success.svg' %}" />
+            </a>
+            {% endif %}
+        </div>
+        <div id="informations_{{ item.id }}"
+            class="hidden w-full h-full bg-background-black-transparent absolute rounded-b-2xl flex-col justify-center items-center gap-y-4">
+            <div class="flex flex-row items-center gap-3 w-[250px]">
+                <img class="w-8" src="{% static 'icon/carbon_location-hazard-primary.svg' %}" />
+
+                <div class="leading-none">
+                    <strong class="text-primary m-0 text-base">Local onde foi encontrado:</strong>
+                    <p class="text-light-gray m-0 text-base">{{ item.local_found }}</p>
+                </div>
+            </div>
+            <div class="flex flex-row items-center gap-3 w-[250px]">
+                <img class="w-8 fill-black" src="{% static 'icon/carbon_time-primary.svg' %}" />
+
+                <div class="leading-none">
+                    <strong class="text-primary m-0 text-base">Quando foi encontrado:</strong>
+                    <p class="text-light-gray m-0 text-base">
+                        <span class="font-bold">{{ item.when_was_found }}</span> durante à <span class="font-bold">
+                            {{ item.shift }}</span>
+                    </p>
+                </div>
+            </div>
+            <div class="flex flex-row items-center gap-3 w-[250px] {% if item.status == 'Entregue' %}
+                hidden
+            {% endif %}">
+                {% if item.status == 'Expirado' %}
+                <img class="w-8" src="{% static 'icon/carbon_close-outline-colorful.svg' %}" />
+                {% else %}
+                <img class="w-8" src="{% static 'icon/carbon_checkmark-outline-primary.svg' %}" />
+                {% endif %}
+
+                <div class="leading-none">
+                    <strong class="m-0 text-base {% if item.status == 'Expirado' %} text-error-color
+                        {% else %}
+                        text-primary
+                    {% endif %}">Data limite para retirada:</strong>
+                    <p class="text-light-gray m-0 text-base">23/10/2022</p>
+                </div>
+            </div>
+            <div class="flex flex-row items-center gap-3 w-[250px]">
+                <img class="w-8" src="{% static 'icon/carbon_tool-box-primary.svg' %}" />
+
+                <div class="leading-none">
+                    <strong class="text-primary m-0 text-base">COADES para retirada:</strong>
+                    <p class="text-light-gray m-0 text-base">{{ item.pickup_location }}</p>
+                </div>
+            </div>
+
+            <button onclick="showCardInformations(`informations_{{ item.id }}`, `show_information_button_{{ item.id }}`)"
+                class="bg-primary text-black font-bold rounded-2xl px-8 py-1">
+                Mostrar menos
+            </button>
+        </div>
+        <button id="show_information_button_{{ item.id }}" onclick="showCardInformations(`informations_{{ item.id }}`, `show_information_button_{{ item.id }}`)"
+            class="bg-primary absolute bottom-12 right-[25%] text-black font-bold rounded-2xl px-8 py-1 shadow">
+            Ver informações
+        </button>
+        <img class="object-cover w-full h-full rounded-b-2xl" src="{% static item.image %}" alt="Foto do item" />
+    </section>
 </div>
