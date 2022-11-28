@@ -22,6 +22,7 @@
         information.display = information.display == 'none' ? 'flex' : 'none'
         showInformationButton.display = information.display == 'none' ? 'block' : 'none'
     }
+
 </script>
 
 <div id="card_{{ item.id }}"
@@ -154,7 +155,7 @@
             </button>
 
             {% if item.status != 'Entregue'%}
-            <button onclick="toggleMenu(`options_{{ item.id }}`)"
+            <button onclick="toggleMenu(`options_mobile_{{ item.id }}`)"
                 class="hover:bg-primary-hover rounded-full p-1 transition-all">
                 <img class="fill-black w-6" src="{% static 'icon/carbon_overflow-menu-vertical.svg' %}" />
             </button>
@@ -163,7 +164,7 @@
     </section>
 
     <section class="relative">
-        <div id="options_{{ item.id }}"
+        <div id="options_mobile_{{ item.id }}"
             class="hidden bg-white w-[250px] shadow-lg rounded-lg absolute z-10 right-0 border-solid border-[1px] border-light-gray">
             {% if item.status == 'Expirado' %}
             <a href=""
