@@ -1108,11 +1108,6 @@ select{
   width: 400px;
 }
 
-.w-fit{
-  width: -moz-fit-content;
-  width: fit-content;
-}
-
 .w-\[75\%\]{
   width: 75%;
 }
@@ -1316,10 +1311,6 @@ select{
   border-bottom-width: 4px;
 }
 
-.border-b-2{
-  border-bottom-width: 2px;
-}
-
 .border-solid{
   border-style: solid;
 }
@@ -1341,11 +1332,6 @@ select{
 .border-gray{
   --tw-border-opacity: 1;
   border-color: rgb(103 103 103 / var(--tw-border-opacity));
-}
-
-.border-black{
-  --tw-border-opacity: 1;
-  border-color: rgb(61 61 61 / var(--tw-border-opacity));
 }
 
 .border-r-light-gray{
