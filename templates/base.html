@@ -21,7 +21,7 @@
             class="bg-white border-r-light-gray border-solid border-r-2 h-[100vh] w-[320px] flex flex-col items-center py-12 px-6 max-xl:hidden fixed">
             <nav class="flex-1 w-full">
                 <h1>
-                    <a>
+                    <a href="{% url 'index' %}">
                         <img class="mb-2 mx-auto" src="{% static 'svg/logo.svg' %}" width="200" />
                     </a>
                 </h1>
@@ -82,7 +82,7 @@
 
     <header class="hidden w-11/12 mx-auto max-xl:block">
         <h1>
-            <a>
+            <a href="{% url 'index' %}">
                 <img class="mb-2 mx-auto mt-8" src="{% static 'svg/logo.svg' %}" width="200" />
             </a>
         </h1>
