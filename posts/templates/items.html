@@ -2,28 +2,28 @@
 {% load static %}
 {%block main%}
 <header>
-    <h2 class="font-bold text-black text-3xl mb-5">Postagens</h2>
+    <h2 class="font-bold text-black text-3xl mb-5 inline-block max-xl:hidden">Postagens</h2>
 
     <section class="flex flex-row items-center gap-6 justify-between flex-wrap">
         <div
-            class="border-light-gray border-[1px] border-solid bg-white rounded-lg flex flex-row items-center gap-2 pl-6 flex-1 min-w-[200px]">
+            class="border-light-gray border-[1px] border-solid bg-white rounded-lg flex flex-row items-center gap-2 pl-6 flex-1 min-w-[300px] max-2xl:w-full">
             <img class="w-5" src="{% static 'icon/carbon_search.svg' %}" />
             <input class="outline-none border-none bg-transparent w-full placeholder:text-gray" type="search"
                 placeholder="Pesquise pelo nome do item" />
         </div>
 
-        <select aria-placeholder="Ordenar por" class="border-light-gray rounded-lg pl-6 pr-16 text-gray">
-            <option value="recents">Mais recentes</option>
-            <option value="older">Mais antigos</option>
-        </select>
+        <div class="flex justify-between flex-row gap-4">
+            <select aria-placeholder="Ordenar por" class="border-light-gray rounded-lg pl-6 pr-16 text-gray ">
+                <option value="recents">Mais recentes</option>
+                <option value="older">Mais antigos</option>
+            </select>
 
-        <a href="{% url 'items/create' %}">
-            <button
-                class=" bg-primary w-[200px] rounded-lg py-2 flex flex-row items-center justify-center gap-2 font-bold text-black">
-                <img class="fill-black w-6" src="{% static 'icon/carbon_add-alt.svg' %}"/>
-                Novo post
-            </button>
-        </a>
+            <a href="{% url 'items/create' %}"
+                class="bg-primary w-[200px] min-w-[160px] max-w-[200px] rounded-lg py-2 flex flex-row items-center justify-center gap-2 font-bold text-black max-2xl:w-full max-2xl:flex-1 max-2xl:px-4">
+                <img class="fill-black w-6" src="{% static 'icon/carbon_add-alt.svg' %}" />
+                <span class="">Novo post</span>
+            </a>
+        </div>
 
     </section>
 </header>

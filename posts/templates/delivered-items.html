@@ -2,7 +2,7 @@
 {% load static %}
 {%block main%}
 <section>
-    <h2 class="font-bold text-black text-3xl mb-5">Itens entregues</h2>
+    <h2 class="font-bold text-black text-3xl mb-5 max-xl:hidden">Itens entregues</h2>
 
     <section class="flex flex-row items-center gap-6 justify-between flex-wrap">
         <div
@@ -18,5 +18,12 @@
         </select>
     </section>
 </section>
+
+<section>
+    {% for item in items %}
+    {% include 'card.html' %}
+    {% endfor %}
+</section>
+
 
 {% endblock %}

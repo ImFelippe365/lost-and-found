@@ -26,7 +26,7 @@
 </script>
 
 <div id="card_{{ item.id }}"
-    class="flex flex-row items-center gap-9 border-2 border-light-gray rounded-2xl mt-12 max-xl:hidden">
+    class="flex flex-row items-center gap-6 border-2 border-light-gray rounded-2xl mt-12 max-xl:hidden">
     <img class="object-cover w-[260px] h-full rounded-tl-2xl rounded-bl-2xl" src="{% static item.image %}"
         alt="Foto do item" />
 
@@ -89,7 +89,7 @@
                 {% endif %}
             </div>
 
-            <div class="flex flex-row items-center gap-3 w-[300px]">
+            <div class="flex flex-row items-center gap-3 w-[250px]">
                 <img class="w-8" src="{% static 'icon/carbon_location-hazard.svg' %}" />
 
                 <div class="leading-none">
@@ -97,7 +97,7 @@
                     <p class="text-gray m-0 text-sm">{{ item.local_found }}</p>
                 </div>
             </div>
-            <div class="flex flex-row items-center gap-3 w-[300px]">
+            <div class="flex flex-row items-center gap-3 w-[250px]">
                 <img class="w-8 fill-black" src="{% static 'icon/carbon_time-small.svg' %}" />
 
                 <div class="leading-none">
@@ -108,7 +108,7 @@
                     </p>
                 </div>
             </div>
-            <div class="flex flex-row items-center gap-3 w-[300px] {% if item.status == 'Entregue' %}
+            <div class="flex flex-row items-center gap-3 w-[250px] {% if item.status == 'Entregue' %}
                 hidden
             {% endif %}">
                 {% if item.status == 'Expirado' %}
@@ -125,7 +125,7 @@
                     <p class="text-gray m-0 text-sm">23/10/2022</p>
                 </div>
             </div>
-            <div class="flex flex-row items-center gap-3 w-[300px]">
+            <div class="flex flex-row items-center gap-3 w-[250px]">
                 <img class="w-8" src="{% static 'icon/carbon_tool-box.svg' %}" />
 
                 <div class="leading-none">

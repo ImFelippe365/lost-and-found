@@ -24,7 +24,7 @@ SECRET_KEY = 'django-insecure-g&)ghnl4b===18z5f%49_y@6dnc#&3%kk41p5k+s7))9$u(f#9
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 INTERNAL_IPS = ["*"]
 NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
 
