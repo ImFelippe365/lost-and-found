@@ -20,22 +20,22 @@
 {% load static %}
 
 <body class="flex flex-row items-center h-[100vh]">
-
-    <aside class="mx-auto flex-1 flex flex-col items-center justify-center bg-background-color h-full">
+    <aside class="mx-auto flex-1 flex flex-col items-center justify-center bg-background-color h-full min-w-[600px] max-xl:hidden">
 
         <lottie-player src="https://assets1.lottiefiles.com/packages/lf20_fzqg1yye.json" background="transparent"
             speed="1" class="h-auto w-auto" loop autoplay></lottie-player>
 
         <h3 class="text-[1.6rem] text-black font-bold">Apenas funcionários precisam se autenticar</h3>
         <p class="text-lg text-black text-center mt-1 w-[60%] mb-24">
-            A autenticação é destinada ao pessoal autorizado, como os funcionários da instituição. Qualquer autenticação
+            A autenticação é destinada ao pessoal autorizado, tal como os funcionários e bolsistas da instituição.
+            Qualquer autenticação
             via SUAP por mais que válida, não será reconhecida pelo sistema se for um aluno.
         </p>
     </aside>
 
-    <main class="bg-white flex-0 w-[40%]">
+    <main class="bg-white flex-0 w-[40%] mx-auto max-xl:w-[80%]">
 
-        <form class="w-[400px] mx-auto">
+        <form class="max-w-[400px] mx-auto">
             <h2 class="text-black font-bold text-4xl mb-1">Entrar</h2>
             <p class="text-gray text-lg mb-4">Bem vindo de volta. Estávamos ansiosos por sua volta!</p>
 
