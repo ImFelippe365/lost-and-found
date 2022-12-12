@@ -81,11 +81,17 @@
     </aside>
 
     <header class="hidden w-11/12 mx-auto max-xl:block">
-        <h1>
-            <a href="{% url 'index' %}">
-                <img class="mb-2 mx-auto mt-8" src="{% static 'svg/logo.svg' %}" width="200" />
-            </a>
-        </h1>
+        <section class="flex flex-row items-center justify-between mb-2 mx-auto mt-8">
+            <h1>
+                <a href="{% url 'index' %}">
+                    <img class="" src="{% static 'svg/logo.svg' %}" width="200" />
+                </a>
+            </h1>
+
+            <button class="hover:bg-error-transparent-color transition-all p-2 rounded-full">
+                <img class="w-6" src="{% static 'icon/carbon_logout.svg' %}" />
+            </button>
+        </section>
 
         <nav class="flex-1 w-full border-solid border-[1px] rounded-lg border-light-gray mt-6">
             <ul class="list-none flex flex-row items-center justify-around">
@@ -124,7 +130,8 @@
         </nav>
     </header>
 
-    <main class="flex flex-1 py-16 flex-col w-4/6 mx-auto max-xl:w-11/12 max-2xl:w-11/12 max-2xl:py-0 max-2xl:pb-16 max-2xl:pt-8">
+    <main
+        class="flex flex-1 py-16 flex-col w-4/6 mx-auto max-xl:w-11/12 max-2xl:w-11/12 max-2xl:py-0 max-2xl:pb-16 max-2xl:pt-8">
         {%block main%}
         {%endblock%}
     </main>
