@@ -2,7 +2,7 @@
  
 <br />
 <p align="center">
-  <img src="https://github.com/ImFelippe365/lost-and-found/blob/main/static/svg/logo.svg" />
+  <img src="https://github.com/ImFelippe365/lost-and-found/blob/main/static/svg/logo-colorful.svg" />
 </p>
 <br />
 
