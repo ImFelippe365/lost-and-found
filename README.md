@@ -15,6 +15,15 @@ aguardo pela reivindicação de seu respectivo dono.
 Projeto desenvolvido na disciplina de Desenvolvimento de Projetos I, utilizando os conhecimentos adquiridos nas demais, como Banco de Dados,
 A.P.O.O (Análise de Projeto Orientado a Objeto) e Desenvolvimento de Sistemas Web. 
 
+## Documentação
+
+- [📄 Requisitos funcionais/não funcionais](https://docs.google.com/document/d/1k6iyMif7JBYWqFZr6DYuE6BhKITYCGbwaOYUaZEvZ2c/edit?usp=share_link)
+- [👩🏻‍💻 Casos de uso](https://drive.google.com/file/d/1amFtxJyLK-zctjWa07qfXQijiTyQHaK2/view?usp=share_link)
+- [🖌️ Protótipo da interface (figma)](https://www.figma.com/file/TXJJujEIJa6hu9stL3my2E/Lost-%26-Found?node-id=610%3A2&t=RNjaDMX6VKs3griU-1)
+- [⚙️ Modelo lógico](https://drive.google.com/file/d/17b4GmaiIXhSfJhieznj52OoQVe8qvc-q/view?usp=share_link)
+- 💭 Diagrama de classes
+- 💭 Diagrama de sequência
+
 ## Tecnologias utilizadas
 
 - Django
@@ -36,6 +45,3 @@ Para instalar e usar pelo repositório, clone o repositório e instale as depend
 pip install -r requirements.txt
 ```
 
-## Documentação
-
-Coming soon...
