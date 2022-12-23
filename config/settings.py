@@ -52,7 +52,6 @@ INSTALLED_APPS = [
     'core',
     'posts',
     'registers',
-    'form'
 ]
 
 MIDDLEWARE = [
