@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block main%}
+<section>
+    <h2 class="font-bold text-black text-3xl mb-2">Concluir entrega do item</h2>
+    <div>
+        <p class="text-black">Verifique os <b>dados do item</b> antes de <b>definir como entregue</b> para evitar
+            futuros conflitos</b></p>
+    </div>
+</section>
+
+<section class="w-full mt-6">
+    <h3 class="font-bold text-black text-xl">Dados do objeto</h3>
+    <div class="bg-primary rounded-2xl flex justify-center p-8 mt-3 flex-wrap md:flex-nowrap">
+        <div>
+            <div class="my-6 ml-6 w-[90%]">
+                <img class="rounded-full" src="{% static 'image/jarra-de-vo.jpg' %}">
+            </div>
+        </div>
+
+        <div class="flex flex-wrap justify-self-center content-evenly mx-9 my-7 w-[80%]">
+            <div class="flex flex-row items-center">
+                <img src="{% static 'icon/carbon_apple.svg' %}">
+                <p class="text-black ml-3"><b>Jarra de vidro.</b> É uma jarra de vidro que foi de minha vó</p>
+            </div>
+
+            <div class="flex flex-row items-center">
+                <img src="{% static 'icon/carbon_location-hazard_larger.svg' %}">
+                <p class="text-black ml-3">Local que foi achado: <b>Ginásio</b>. Foi encontrado pela <b>tarde</b> no dia
+                    <b>22/10/2022</b> por <b>José Manoel.</b></p>
+            </div>
+
+            <div class="flex flex-row items-center">
+                <img src="{% static 'icon/carbon_tool-box_larger.svg' %}">
+                <p class="text-black ml-4">Se encontra na <b>COADES</b> do <b>Bloco Principal</b></p>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <h3 class="font-bold text-black text-xl mt-3">Dados de quem retirou o item</h3>
+        <form action="" method="post">
+            <fieldset class="flex flex-wrap md:flex-nowrap justify-between gap-y-3 mt-3 mb-5">
+                <div class="flex flex-col w-full sm:w-[45%]">
+                    <label class="text-gray font-semibold" for="name-person-delevery">Nome *</label>
+                    <input type="text" name="name-person-delevery" placeholder="Ex: Jorge Silva"
+                        class="text-gray border-light-gray rounded-lg px-4" required>
+                </div>
+
+                <div class="flex flex-col w-full sm:w-[45%]">
+                    <label class="text-gray font-semibold" for="registration">Matrícula</label>
+                    <input type="text" name="registration" placeholder="Número da matrícula"
+                        class="text-gray border-light-gray rounded-lg px-4">
+                </div>
+            </fieldset>
+        </form>
+    </div>
+
+    <div class="flex flex-wrap justify-center sm:justify-end mt-12 gap-3">
+        <button type="reset"
+            class="text-black font-bold border-gray border-2 rounded-lg px-12 py-2">Cancelar</button>
+        <button class=" text-black font-bold bg-primary rounded-lg px-12 py-2 hover:bg-primary-contrast"
+            type="submit">Confirmar</button>
+    </div>
+</section>
+{% endblock %}
