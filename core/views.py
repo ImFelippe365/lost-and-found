@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .forms import LoginForm
 from django.http import HttpResponseRedirect
 import requests
+from .models import Administrator
 
 class Suap:
     def __init__(self,token=False):
@@ -12,23 +13,18 @@ class Suap:
 
         self.endpoint = 'https://suap.ifrn.edu.br/api/v2/'
         
-    def autenticar(self, username, password, acessKey=False, setToken=True):
-        if acessKey:
-            url = self.endpoint+'autenticacao/acesso_responsaveis/'
-            params = {
-                'matricula': username,
-                'chave': password,
-                }
-        else:
-            url = self.endpoint+'autenticacao/token/'
-            params = {
-                'username':username,
-                'password':password,
-            }
+    def autenticar(self, username, password, setToken=True):
+
+        url = self.endpoint+'autenticacao/token/'
+        params = {
+            'username':username,
+            'password':password,
+        }
 
         response = requests.post(url, data=params)
         data = False
 
+        print("RESPOSTA AO AUTENTICAR -> ",response.json())
         if response.status_code == 200:
             data = response.json()
             if setToken:
@@ -71,11 +67,22 @@ def login(request):
             password = form.cleaned_data['password']
 
             suap = Suap()
-            suap.autenticar(username, password)
-            dados = suap.getMeusDados()
-            # print(info)
-            print(dados)
-            return HttpResponseRedirect('/')
+            isAuthenticated = suap.autenticar(username, password)
+            print("isAuthenticated ->", isAuthenticated)
+            if not (isAuthenticated):
+                form.add_error("username","Usuário e/ou senha incorreto(s). Tente novamente")
+                return render(request, 'login.html', {'form': form})
+            else:
+                dados = suap.getMeusDados()
+                print("Dados que peguei ->", dados)
+                newAuth = Administrator()
+                newAuth.department = dados['tipo_vinculo']
+                newAuth.registration = dados['matricula']
+                newAuth.name = dados['nome_usual']
+                newAuth.picture = dados['url_foto_75x100']
+                newAuth.save()
+                print(newAuth)
+                return HttpResponseRedirect('/')
 
     # if a GET (or any other method) we'll create a blank form
     else:
