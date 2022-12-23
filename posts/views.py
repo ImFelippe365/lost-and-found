@@ -1,10 +1,6 @@
 from django.shortcuts import render
 
 
-def login(request):
-
-    return render(request, 'login.html')
-
 
 def items(request):
     context = {
@@ -176,3 +172,17 @@ def expiredItems(request):
     }
 
     return render(request, 'expired-items.html', context)
+
+
+def create_post(request):
+    context = {
+        'activeTab': 'items'
+    }
+
+    return render(request, 'create_post.html', context)
+
+def complete_delivery(request):
+    context = {
+        'activeTab': 'items'
+    }
+    return render(request, 'complete_delivery.html', context)
