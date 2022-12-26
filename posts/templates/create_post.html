@@ -96,6 +96,11 @@
                 <button class=" text-black font-bold bg-primary rounded-lg px-12 py-2 hover:bg-primary-contrast" type="submit">Finalizar</button>
             </div>
         </form>
+
+        <form action="" method="post">
+            {% csrf_token %}
+            {{form}}
+        </form>
     </section>
 </section>
 {% endblock %}

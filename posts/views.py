@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .forms import ItemModelForm
 
 
 
@@ -175,8 +176,10 @@ def expiredItems(request):
 
 
 def create_post(request):
+    form = ItemModelForm()
     context = {
-        'activeTab': 'items'
+        'activeTab': 'items',
+        'form': form,
     }
 
     return render(request, 'create_post.html', context)

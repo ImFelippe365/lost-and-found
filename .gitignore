@@ -9,7 +9,7 @@ media
 pip-log.txt 
 pip-delete-this-directory.txt 
 # Environments 
-.env 
+*.env*
 .venv 
 env/ 
 venv/ 
