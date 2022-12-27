@@ -15,10 +15,6 @@ class ItemModelForm(forms.ModelForm):
                 'class': "text-gray border-light-gray rounded-lg px-4",
                 'placeholder': 'Ex: João Silva'
                 }),
-            'when_was_found': forms.TextInput(attrs={
-                'class': "text-gray border-light-gray rounded-lg px-4",
-                'placeholder': '__/__/__'
-                }),
             'local_found': forms.TextInput(attrs={
                 'class': "text-gray border-light-gray rounded-lg px-4",
                 'placeholder': 'Ex: Ginásio'
@@ -35,16 +31,11 @@ class ItemModelForm(forms.ModelForm):
                 'class': "text-gray border-light-gray rounded-lg px-4",
                 'placeholder': 'Ex: Garrafa de plástico vermelha'
                 }),
-            'image': forms.TextInput(attrs={
-                'class': "text-gray border-light-gray rounded-lg px-4",
-                'placeholder': 'Name'
+            'image': forms.FileInput(attrs={
+                'class': "hidden",
                 }),
             'pickup_location': forms.TextInput(attrs={
                 'class': "text-gray border-light-gray rounded-lg px-4",
                 'placeholder': 'Name'
-                }),
-            'withdrawal_deadline': forms.DateInput(attrs={
-                'class': "text-gray border-light-gray rounded-lg px-4",
-                'placeholder': '__/__/__'
                 }),
         }

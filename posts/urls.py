@@ -7,4 +7,5 @@ urlpatterns = [
     path('expired-items', views.expiredItems, name='expired-items'),
     path('items/create', views.ItemCreate.as_view(), name='items/create'),
     path('items/complete-delivery', views.complete_delivery, name='complete-delivery'),
+    path("__reload__/", include("django_browser_reload.urls")),
 ]

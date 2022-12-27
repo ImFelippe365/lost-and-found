@@ -23,7 +23,8 @@
 
                 <div class="flex flex-col w-full sm:w-[45%]">
                     <label class="text-gray font-semibold" for="{{ form.when_was_found.id_for_label }}."> {{ form.when_was_found.label }}</label>
-                    {{ form.when_was_found }}
+                    <input type="date" name="when_was_found" id="{{ form.when_was_found.id_for_label }}" 
+                            class="text-gray border-light-gray rounded-lg px-4" placeholder="__/__/__" required>
                 </div>
 
                 <div class="flex flex-col w-full sm:w-[45%]">
@@ -55,13 +56,14 @@
                 </div>
 
                 <div class="flex flex-col w-full sm:w-[45%]">
-                    <label class="text-gray font-semibold" for="archive"></label>
-                    <label for="archive"
+                    <label class="text-gray font-semibold" for="{{ form.image.id_for_label }}">{{ form.image.label }}</label>
+                    <label for="{{ form.image.id_for_label }}"
                         class="flex flex-row items-center justify-center gap-3 bg-primary text-black text-lg py-2 rounded-lg font-bold text-center cursor-pointer hover:bg-primary-contrast">
                         <img src="{% static 'icon/carbon_upload.svg' %}" class="w-5" />
                         Clique para fazer o upload
                     </label>
-                    <input id="archive" type="file" name="photo-item" accept="image/*" class="hidden">
+                    {{ form.image }}
+                    <!-- <input id="" type="file" name="image" accept="image/*" class="hidden"> -->
                 </div>
 
 
@@ -80,7 +82,8 @@
 
                 <div class="flex flex-col w-full sm:w-[45%]">
                     <label for="{{ form.withdrawal_deadline.id_for_label }}" class="text-gray font-semibold">{{ form.withdrawal_deadline.label }}</label>
-                    {{ form.withdrawal_deadline }}
+                    <input type="date" name="withdrawal_deadline" id="{{ form.withdrawal_deadline.id_for_label }}" 
+                            class="text-gray border-light-gray rounded-lg px-4" placeholder="__/__/__" required>
                 </div>
             </fieldset>
 
