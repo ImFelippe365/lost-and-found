@@ -1,5 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .forms import ItemModelForm
+from django.views.generic import CreateView
+from .models import Item
 
 
 
@@ -175,17 +177,30 @@ def expiredItems(request):
     return render(request, 'expired-items.html', context)
 
 
-def create_post(request):
-    form = ItemModelForm()
-    context = {
-        'activeTab': 'items',
-        'form': form,
-    }
+""" def create_post(request):
+    if request.method == 'POST':
+        form = ItemModelForm(request.POST)
 
-    return render(request, 'create_post.html', context)
+        if form.is_valid():
+            form.save()
+            return redirect('index')
+        else:
+            return render(request, 'create_post.html', {
+                                                    'activeTab': 'items',
+                                                    'form': form,})
+    else:
+        form = ItemModelForm()
+        return render(request, 'create_post.html', {'activeTab': 'items','form': form})
+ """
 
 def complete_delivery(request):
     context = {
         'activeTab': 'items'
     }
     return render(request, 'complete_delivery.html', context)
+
+
+class ItemCreate(CreateView):
+    model = Item
+    form_class = ItemModelForm
+    template_name = 'create_post.html'

@@ -13,24 +13,22 @@
 <section class="w-full mt-6">
     <section>
         <form action="" method="post">
+            {% csrf_token %}
             <h3 class="font-bold text-black text-xl">Dados de encontro do item</h3>
             <fieldset class="flex flex-wrap justify-between gap-y-3 mt-2 mb-5">
                 <div class="flex flex-col w-full sm:w-[45%]">
-                    <label class="text-gray font-semibold" for="name-person">Nome de quem encontrou *</label>
-                    <input type="text" name="name" placeholder="Ex: João Silva"
-                        class="text-gray border-light-gray rounded-lg px-4" required>
+                    <label class="text-gray font-semibold" for="{{ form.who_found.id_for_label }}">{{form.who_found.label}}</label>
+                    {{ form.who_found }}
                 </div>
 
                 <div class="flex flex-col w-full sm:w-[45%]">
-                    <label class="text-gray font-semibold" for="date-found">Data de quando foi encontrado *</label>
-                    <input type="date" name="date-found" placeholder="__/__/__"
-                        class="text-gray border-light-gray rounded-lg px-4" required>
+                    <label class="text-gray font-semibold" for="{{ form.when_was_found.id_for_label }}."> {{ form.when_was_found.label }}</label>
+                    {{ form.when_was_found }}
                 </div>
 
                 <div class="flex flex-col w-full sm:w-[45%]">
-                    <label class="text-gray font-semibold" for="place">Local que foi encontrado *</label>
-                    <input type="text" name="place" placeholder="Ex: Ginásio"
-                        class="text-gray border-light-gray rounded-lg px-4" required>
+                    <label class="text-gray font-semibold" for="{{ form.local_found.id_for_label }}">{{ form.local_found.label }}</label>
+                    {{ form.local_found }}
                 </div>
 
                 <div class="flex flex-col w-full sm:w-[45%]">
@@ -47,19 +45,17 @@
             <h3 class="font-bold text-black text-xl">Dados do item</h3>
             <fieldset class="flex flex-wrap justify-between gap-y-3 mt-2 mb-5">
                 <div class="flex flex-col w-full sm:w-[45%]">
-                    <label class="text-gray font-semibold" for="name-item">Nome *</label>
-                    <input type="text" name="name-item" placeholder="Ex: Garrafa"
-                        class="text-gray border-light-gray rounded-lg px-4" required>
+                    <label class="text-gray font-semibold" for="{{ form.name.id_for_label }}">{{ form.name.label }}</label>
+                    {{ form.name }}
                 </div>
 
                 <div class="flex flex-col w-full sm:w-[45%]">
-                    <label class="text-gray font-semibold" for="description">Descrição</label>
-                    <input type="text" name="description" id="description"
-                        placeholder="Ex: Garrafa de plástico vermelha" class="text-gray border-light-gray rounded-lg px-4">
+                    <label class="text-gray font-semibold" for="{{ form.description.id_for_label }}">{{ form.description.label }}</label>
+                    {{ form.description }}
                 </div>
 
                 <div class="flex flex-col w-full sm:w-[45%]">
-                    <label class="text-gray font-semibold" for="archive">Foto</label>
+                    <label class="text-gray font-semibold" for="archive"></label>
                     <label for="archive"
                         class="flex flex-row items-center justify-center gap-3 bg-primary text-black text-lg py-2 rounded-lg font-bold text-center cursor-pointer hover:bg-primary-contrast">
                         <img src="{% static 'icon/carbon_upload.svg' %}" class="w-5" />
@@ -75,7 +71,7 @@
             <h3 class="font-bold text-black text-xl">Dados para retirada do item</h3>
             <fieldset class="flex flex-wrap justify-between gap-y-3 mt-2 mb-5">
                 <div class="flex flex-col w-full sm:w-[45%]">
-                    <label for="coades" class="text-gray font-semibold">COADES *</label>
+                    <label for="coades" class="text-gray font-semibold"></label>
                     <select aria-placeholder="Selecione o local" class="border-light-gray rounded-lg text-gray px-4"
                         required>
                         <option value="main-block">Bloco Principal</option>
@@ -84,9 +80,8 @@
                 </div>
 
                 <div class="flex flex-col w-full sm:w-[45%]">
-                    <label for="date-withdrawal" class="text-gray font-semibold">Data limite para retirada *</label>
-                    <input type="date" name="date-withdrawal" placeholder="__/__/__"
-                        class="text-gray border-light-gray rounded-lg px-4" required>
+                    <label for="{{ form.withdrawal_deadline.id_for_label }}" class="text-gray font-semibold">{{ form.withdrawal_deadline.label }}</label>
+                    {{ form.withdrawal_deadline }}
                 </div>
             </fieldset>
 
@@ -95,11 +90,6 @@
                     class="text-black font-bold border-gray border-2 rounded-lg px-12 py-2">Cancelar</button>
                 <button class=" text-black font-bold bg-primary rounded-lg px-12 py-2 hover:bg-primary-contrast" type="submit">Finalizar</button>
             </div>
-        </form>
-
-        <form action="" method="post">
-            {% csrf_token %}
-            {{form}}
         </form>
     </section>
 </section>
