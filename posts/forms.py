@@ -15,7 +15,7 @@ class ItemModelForm(forms.ModelForm):
                 'class': "text-gray border-light-gray rounded-lg px-4",
                 'placeholder': 'Ex: João Silva'
                 }),
-            'when_was_found': forms.DateInput(attrs={
+            'when_was_found': forms.TextInput(attrs={
                 'class': "text-gray border-light-gray rounded-lg px-4",
                 'placeholder': '__/__/__'
                 }),
