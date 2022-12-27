@@ -1,18 +1,21 @@
 from .models import Administrator
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 
-def onLogout(request):
-    print("SOCORRO ENTREI AQUI DENTRO")
-    user = Administrator.objects.all().first()
-    if (user):
-        user.delete()
+def onLogout(request, id):
+    print(id)
+    user = Administrator.objects.filter(registration=id)
+    print("ESSE É O USER ->",user)
+    user.delete()
 
-    return { 'is_authenticated': False }
+    return HttpResponseRedirect(reverse('index'))
 
 def isAuthenticated(request):
     user = Administrator.objects.all().first()
-
+    print("TEM USUÁRIO? ->", user)
     if (user is not None):
-        return { 'is_authenticated': True, 'user': user[0], 'logout': onLogout }
+        return { 'is_authenticated': True, 'user': user, 'logout': onLogout }
     else:
         return { 'is_authenticated': False }
 
+    

@@ -5,5 +5,5 @@ from . import context_processors
 urlpatterns = [
     path('', views.index, name='index'),
     path('login', views.login, name='login'),
-    path('logout', context_processors.onLogout, name='logout'),
+    path('logout:<int:id>', context_processors.onLogout, name='logout'),
 ]
