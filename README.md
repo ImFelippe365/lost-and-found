@@ -33,8 +33,16 @@ A.P.O.O (Análise de Projeto Orientado a Objeto) e Desenvolvimento de Sistemas W
 
 - [ ] Criar formulários usando Django
 - [ ] Criar página para gerenciar bolsistas
-- [ ] Organizar melhor as aplicações
-- [ ] Autenticação via SUAP
+- [x] Organizar melhor as aplicações
+- [x] Autenticação via SUAP
+- [ ] Configurar permissões do usuário (entrar nas páginas)
+- [ ] Ajustar botões de cancelar dos formulários
+- [ ] Inserir ícone do site
+- [ ] Estilizar scrollbar
+- [ ] Configurar tipo de dado a ser pesquisado nos registros
+- [ ] Criar componente de modal
+- [ ] Criar tela de confirmação para se deslogar
+- [ ] Criar tela de confirmação para apagar item
 
 ## Instalação
 
