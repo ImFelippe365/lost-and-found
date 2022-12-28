@@ -44,6 +44,7 @@ A.P.O.O (Análise de Projeto Orientado a Objeto) e Desenvolvimento de Sistemas W
 - [ ] Criar tela de confirmação para se deslogar
 - [ ] Criar tela de confirmação para apagar item
 - [ ] Mostrar avisos de erros e sucessos ao tentar logar
+- [ ] Compartilhar postagem
 
 ## Instalação
 
