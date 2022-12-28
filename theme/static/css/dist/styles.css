@@ -862,6 +862,10 @@ select{
   margin-bottom: 1rem;
 }
 
+.mb-\[-6px\]{
+  margin-bottom: -6px;
+}
+
 .mt-4{
   margin-top: 1rem;
 }
@@ -1078,6 +1082,10 @@ select{
   width: 240px;
 }
 
+.w-8{
+  width: 2rem;
+}
+
 .w-\[60\%\]{
   width: 60%;
 }
@@ -1140,6 +1148,18 @@ select{
 
 .w-\[48px\]{
   width: 48px;
+}
+
+.w-\[80\%\]{
+  width: 80%;
+}
+
+.w-\[200px\]{
+  width: 200px;
+}
+
+.w-\[75\%\]{
+  width: 75%;
 }
 
 .min-w-\[400px\]{
@@ -1569,15 +1589,15 @@ select{
 .py-10{
   padding-top: 2.5rem;
   padding-bottom: 2.5rem;
+ }
+  
+.pl-5{
+  padding-left: 1.25rem;
 }
 
 .py-9{
   padding-top: 2.25rem;
   padding-bottom: 2.25rem;
-}
-
-.pl-5{
-  padding-left: 1.25rem;
 }
 
 .pr-3{
