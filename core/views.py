@@ -23,8 +23,10 @@ def login(request):
                 form.add_error("username","Usuário e/ou senha incorreto(s). Tente novamente")
                 return render(request, 'login.html', {'form': form})
             else:
-                return HttpResponseRedirect('/')
+                request.session['token'] = isAuthenticated['access']
+                request.session['refresh_token'] = isAuthenticated['refresh']
+                return HttpResponseRedirect('items/')
     else:
         form = LoginForm()
 
-    return render(request, 'login.html', {'form': form})
+    return render(request, 'login.html', { 'form': form })

@@ -18,11 +18,13 @@
                 <option value="older">Mais antigos</option>
             </select>
 
+            {% if is_authenticated %}
             <a href="{% url 'items/create' %}"
                 class="bg-primary w-[200px] min-w-[160px] max-w-[200px] rounded-lg py-2 flex flex-row items-center justify-center gap-2 font-bold text-black max-2xl:w-full max-2xl:flex-1 max-2xl:px-4">
                 <img class="fill-black w-6" src="{% static 'icon/carbon_add-alt.svg' %}" />
                 <span class="">Novo post</span>
             </a>
+            {% endif %}
         </div>
 
     </section>

@@ -26,7 +26,7 @@
         {% if is_authenticated %}
         <section>
             <h3>Logado como <strong> {{ user.name }} </strong></h3>
-            <a href="{% url 'logout' user.registration %}" class="text-red">Sair</a>
+            <a href="{% url 'logout' %}" class="text-red">Sair</a>
         </section>
         {% else %}
         <a href="{% url 'login' %}"
