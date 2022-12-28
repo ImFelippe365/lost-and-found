@@ -44,6 +44,7 @@
             {% for field in form %}
             <label class="font-bold text-gray" for="{{ field.auto_id }}">{{ field.label }}</label>
             {{ field }}
+            {{ field.error }}
             {% endfor %}
             <!-- <fieldset name="user" class="text-gray flex flex-col mb-3">
                 <label for="user" class="font-bold">Usuário</label>

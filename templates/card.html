@@ -44,7 +44,7 @@
                     <img class="fill-black w-6" src="{% static 'icon/carbon_share.svg' %}" />
                 </button>
 
-                {% if item.status != 'Entregue'%}
+                {% if item.status != 'Entregue' and is_authenticated %}
                 <button onclick="toggleMenu(`options_{{ item.id }}`)"
                     class="hover:bg-primary-hover rounded-full p-1 transition-all">
                     <img class="fill-black w-7" src="{% static 'icon/carbon_overflow-menu-vertical.svg' %}" />
@@ -162,7 +162,7 @@
                 <img class="fill-black w-5" src="{% static 'icon/carbon_share.svg' %}" />
             </button>
 
-            {% if item.status != 'Entregue'%}
+            {% if item.status != 'Entregue' and is_authenticated %}
             <button onclick="toggleMenu(`options_mobile_{{ item.id }}`)"
                 class="hover:bg-primary-hover rounded-full p-1 transition-all">
                 <img class="fill-black w-6" src="{% static 'icon/carbon_overflow-menu-vertical.svg' %}" />

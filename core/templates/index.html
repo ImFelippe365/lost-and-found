@@ -23,6 +23,12 @@
     <header class="flex flex-row items-center justify-between w-[60%] mx-auto py-8">
         <img class="w-32" src="{% static 'svg/logo.svg' %}" width="200" />
 
+        {% if is_authenticated %}
+        <section>
+            <h3>Logado como <strong> {{ user.name }} </strong></h3>
+            <a href="{% url 'logout' %}" class="text-red">Sair</a>
+        </section>
+        {% else %}
         <a href="{% url 'login' %}"
             class="flex flex-row items-center justify-center gap-2 hover:bg-primary-hover py-3 px-5 rounded-lg hover:transition-all">
             <img class="w-8" src="{% static 'icon/carbon_login.svg' %}" />
@@ -31,6 +37,7 @@
                 <strong class="text-lg">Entrar</strong>
             </div>
         </a>
+        {% endif %}
     </header>
 
     <main>
@@ -41,7 +48,8 @@
                     Nós encontramos<br> para você
                 </h1>
                 <p class="text-black mt-4">
-                    Pesquise itens que foram perdidos dentro do Instituto<br> Federal do Rio Grande do Norte - Campus Pau
+                    Pesquise itens que foram perdidos dentro do Instituto<br> Federal do Rio Grande do Norte - Campus
+                    Pau
                     dos ferros.
                 </p>
 
@@ -58,7 +66,7 @@
         </section>
 
         <!-- <img class="w-full h-1/2 rotate-[359deg] mb-[-18px]" src="{% static 'svg/waves.svg' %}" />         -->
-        <img class="w-full" src="{% static 'svg/waves.svg' %}" />        
+        <img class="w-full" src="{% static 'svg/waves.svg' %}" />
         <section class="bg-primary mx-auto flex flex-row items-baseline justify-center gap-48 h-[30vh]">
             <div class="flex flex-col items-center gap-2">
                 <div class="relative flex flex-col items-center">
