@@ -32,12 +32,11 @@ A.P.O.O (Análise de Projeto Orientado a Objeto) e Desenvolvimento de Sistemas W
 ## To do
 
 - [ ] Criar formulários usando Django
-- [ ] Criar página para gerenciar bolsistas
 - [x] Organizar melhor as aplicações
 - [x] Autenticação via SUAP
 - [ ] Configurar permissões do usuário (entrar nas páginas)
-- [ ] Ajustar botões de cancelar dos formulários
-- [ ] Inserir ícone do site
+- [x] Ajustar botões de cancelar dos formulários
+- [x] Inserir ícone do site
 - [ ] Estilizar scrollbar
 - [ ] Configurar tipo de dado a ser pesquisado nos registros
 - [ ] Criar componente de modal
@@ -45,6 +44,12 @@ A.P.O.O (Análise de Projeto Orientado a Objeto) e Desenvolvimento de Sistemas W
 - [ ] Criar tela de confirmação para apagar item
 - [ ] Mostrar avisos de erros e sucessos ao tentar logar
 - [ ] Compartilhar postagem
+- [ ] Criar página de erro 404 e proibido
+- [ ] Inserir erro de não ter permissão para acessar a página no login
+
+## Ideias futuras
+
+- [ ] Criar página para gerenciar bolsistas
 
 ## Instalação
 
