@@ -1,6 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
 
-# Create your views here.
+def isAuthenticated(request):
+    token = request.session.get('token')
+    if (token is None):
+        return True
+    return False
 
 def allRegisters(request):
     context = {
@@ -61,7 +66,7 @@ def allRegisters(request):
         ]
     }
 
-    return render(request, 'all-registers.html', context)
+    return redirect(reverse_lazy('login')) if isAuthenticated(request) else render(request, 'all-registers.html', context)
 
 def details(request):
     context = {
@@ -106,4 +111,4 @@ def details(request):
         ]
     }
 
-    return render(request, 'details.html', context)
+    return redirect(reverse_lazy('login')) if isAuthenticated(request) else render(request, 'details.html', context)

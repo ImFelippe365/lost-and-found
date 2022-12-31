@@ -216,7 +216,27 @@ class ItemCreate(CreateView):
         context['activeTab'] = activeTab
         return context
 
+    def get(self, request):
+        if (isAuthenticated(request)):
+            return redirect(reverse_lazy('login'))
+
+        return render(request, 'create_post.html', { 'form': self.get_form(), 'activeTab': 'items' })
+        
 class ItemDelete(DeleteView):
     model = Item
     success_url = "items"
-    template_name = "geeks/geeksmodel_confirm_delete.html"
+    queryset = 1
+    template_name = "delete_post.html"
+
+    def get(self, request):
+        if (isAuthenticated(request)):
+            return redirect(reverse_lazy('login'))
+            
+        return render(request, 'delete_post.html', { 'form': self.get_form(), 'activeTab': 'items' })
+
+def tempDelete(request):
+    context = {
+        'activeTab': 'items'
+    }
+
+    return render(request, 'delete_post.html', context)
