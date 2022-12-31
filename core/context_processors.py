@@ -11,8 +11,6 @@ def onLogout(request):
     return HttpResponseRedirect(reverse('index'))
 
 def isAuthenticated(request):
-    print('CONTEXT PROCESSORS -> FUI REQUISITADO NOVAMENTE')
-    
     token = request.session.get('token')
     refresh_token = request.session.get('refresh_token')
     user = request.session.get('user')
@@ -27,5 +25,5 @@ def isAuthenticated(request):
         user = auth.getUserData(token)
         request.session['user'] = user
         return { 'is_authenticated': True, 'user': user, 'logout': onLogout }
-    else:
-        return { 'is_authenticated': False }
+    
+    return { 'is_authenticated': False }

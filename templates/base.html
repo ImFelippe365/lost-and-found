@@ -70,9 +70,9 @@
                 <div class="flex flex-row gap-3 items-center">
                     <img src="https://suap.ifrn.edu.br{{user.picture}}"
                         class="w-[55px] h-[55px] object-cover rounded-full" />
-                    <div class="flex flex-col text-gray">
-                        <strong class="font-bold">{{ user.name }}</strong>
-                        <label class="text-sm">{{ user.department }}</label>
+                    <div class="flex flex-col">
+                        <strong class="font-bold text-black">{{ user.name }}</strong>
+                        <label class="text-sm text-gray">{{ user.department }}</label>
                     </div>
                 </div>
                 <a href="{% url 'logout' %}" class="hover:bg-error-transparent-color transition-all p-2 rounded-full">
@@ -102,7 +102,8 @@
 
             <section class="flex flex-row items-center gap-4">
                 {% if is_authenticated %}
-                <img class="w-[48px] h-[48px] object-cover rounded-full" src="https://suap.ifrn.edu.br{{user.picture}}" />
+                <img class="w-[48px] h-[48px] object-cover rounded-full"
+                    src="https://suap.ifrn.edu.br{{user.picture}}" />
                 <a href="{% url 'logout' %}" class="hover:bg-error-transparent-color transition-all p-2 rounded-full">
                     <img class="w-6" src="{% static 'icon/carbon_logout.svg' %}" />
                 </a>
@@ -155,7 +156,7 @@
     </header>
 
     <main
-        class="flex flex-1 py-16 flex-col w-4/6 mx-auto max-xl:w-11/12 max-2xl:w-11/12 max-2xl:py-0 max-2xl:pb-16 max-2xl:pt-8">
+        class="flex flex-1 py-16 flex-col w-4/6 mx-auto max-xl:w-11/12 max-2xl:w-11/12 max-2xl:py-0 max-2xl:pb-16 max-2xl:pt-8 relative">
         {%block main%}
         {%endblock%}
     </main>

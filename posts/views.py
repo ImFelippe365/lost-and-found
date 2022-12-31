@@ -1,9 +1,14 @@
 from django.shortcuts import render, redirect
 from .forms import ItemModelForm
-from django.views.generic import CreateView
+from django.views.generic import CreateView, DeleteView
 from .models import Item
+from django.urls import reverse_lazy
 
-
+def isAuthenticated(request):
+    token = request.session.get('token')
+    if (token is None):
+        return True
+    return False
 
 def items(request):
     context = {
@@ -197,7 +202,7 @@ def complete_delivery(request):
     context = {
         'activeTab': 'items'
     }
-    return render(request, 'complete_delivery.html', context)
+    return redirect(reverse_lazy('login')) if isAuthenticated(request) else render(request, 'complete_delivery.html', context)
 
 
 class ItemCreate(CreateView):
@@ -210,3 +215,8 @@ class ItemCreate(CreateView):
         activeTab = 'items'
         context['activeTab'] = activeTab
         return context
+
+class ItemDelete(DeleteView):
+    model = Item
+    success_url = "items"
+    template_name = "geeks/geeksmodel_confirm_delete.html"
