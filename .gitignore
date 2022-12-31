@@ -17,5 +17,6 @@ ENV/
 env.bak/ 
 venv.bak/
 env*
+*/.env
 #other
 # *.bat

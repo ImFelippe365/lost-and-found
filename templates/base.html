@@ -18,7 +18,7 @@
 <body class="grid grid-cols-view bg-background-color max-xl:grid-cols-none">
     <aside class="w-[320px]">
         <div
-            class="bg-white border-r-light-gray border-solid border-r-2 h-[100vh] w-[320px] flex flex-col items-center py-12 px-6 max-xl:hidden fixed">
+            class="bg-white border-r-light-gray border-solid border-r-2 h-[100vh] w-[320px] flex flex-col items-center py-8 px-6 max-xl:hidden fixed">
             <nav class="flex-1 w-full">
                 <h1>
                     <a href="{% url 'index' %}">
@@ -50,6 +50,7 @@
                             Itens expirados
                         </a>
                     </li>
+                    {% if is_authenticated %}
                     <hr class="border-light-gray my-5">
                     <li>
                         <a href="{% url 'all-registers' %}"
@@ -59,24 +60,35 @@
                             Todos os registros
                         </a>
                     </li>
+                    {% endif %}
                 </ul>
             </nav>
 
             <hr class="w-full my-6 border-light-gray">
-
+            {% if is_authenticated %}
             <section class="w-full pl-5 pr-3 flex flex-row justify-between items-center">
                 <div class="flex flex-row gap-3 items-center">
-                    <img src="{% static 'image/user.png' %}" class="w-[55px]" />
-                    <div class="flex flex-col text-gray">
-                        <strong class="font-bold">André Ferreira</strong>
-                        <label class="text-sm">Funcionário</label>
+                    <img src="https://suap.ifrn.edu.br{{user.picture}}"
+                        class="w-[55px] h-[55px] object-cover rounded-full" />
+                    <div class="flex flex-col">
+                        <strong class="font-bold text-black">{{ user.name }}</strong>
+                        <label class="text-sm text-gray">{{ user.department }}</label>
                     </div>
-
                 </div>
-                <button class="hover:bg-error-transparent-color transition-all p-2 rounded-full">
+                <a href="{% url 'logout' %}" class="hover:bg-error-transparent-color transition-all p-2 rounded-full">
                     <img class="w-6" src="{% static 'icon/carbon_logout.svg' %}" />
-                </button>
+                </a>
             </section>
+            {% else %}
+            <a href="{% url 'login' %}"
+                class="flex flex-row w-full items-center justify-start gap-2 hover:bg-primary-hover py-3 px-5 rounded-lg hover:transition-all">
+                <img class="w-8" src="{% static 'icon/carbon_login.svg' %}" />
+                <div class="flex flex-col items-start leading-none">
+                    <span class="text-xs mb-[-6px] text-gray">É funcionário?</span>
+                    <strong class="text-lg text-black ">Entrar</strong>
+                </div>
+            </a>
+            {% endif %}
         </div>
     </aside>
 
@@ -89,10 +101,18 @@
             </h1>
 
             <section class="flex flex-row items-center gap-4">
-                <img class="w-12" src="{% static 'image/user.png' %}" />
-                <button class="hover:bg-error-transparent-color transition-all p-2 rounded-full">
+                {% if is_authenticated %}
+                <img class="w-[48px] h-[48px] object-cover rounded-full"
+                    src="https://suap.ifrn.edu.br{{user.picture}}" />
+                <a href="{% url 'logout' %}" class="hover:bg-error-transparent-color transition-all p-2 rounded-full">
                     <img class="w-6" src="{% static 'icon/carbon_logout.svg' %}" />
-                </button>
+                </a>
+                {% else %}
+                <a href="{% url 'login' %}"
+                    class="flex flex-row w-full items-center justify-start gap-2 hover:bg-primary-hover p-2 rounded-full hover:transition-all">
+                    <img class="w-8" src="{% static 'icon/carbon_login.svg' %}" />
+                </a>
+                {% endif %}
             </section>
         </section>
 
@@ -121,6 +141,7 @@
                         Expirados
                     </a>
                 </li>
+                {% if is_authenticated %}
                 <li>
                     <a href="{% url 'all-registers' %}"
                         class="flex flex-col items-center gap-1 text-center text-sm font-semibold text-gray py-4 {% if activeTab == 'all-registers' %}border-b-4 border-primary{% endif %}">
@@ -129,12 +150,13 @@
                         Registros
                     </a>
                 </li>
+                {% endif %}
             </ul>
         </nav>
     </header>
 
     <main
-        class="flex flex-1 py-16 flex-col w-4/6 mx-auto max-xl:w-11/12 max-2xl:w-11/12 max-2xl:py-0 max-2xl:pb-16 max-2xl:pt-8">
+        class="flex flex-1 py-16 flex-col w-4/6 mx-auto max-xl:w-11/12 max-2xl:w-11/12 max-2xl:py-0 max-2xl:pb-16 max-2xl:pt-8 relative">
         {%block main%}
         {%endblock%}
     </main>
