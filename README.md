@@ -29,23 +29,22 @@ A.P.O.O (Análise de Projeto Orientado a Objeto) e Desenvolvimento de Sistemas W
 - Django
 - TailwindCSS
 
-## To do
+## A fazer
 
 - [ ] Criar formulários usando Django
 - [x] Organizar melhor as aplicações
 - [x] Autenticação via SUAP
-- [ ] Configurar permissões do usuário (entrar nas páginas)
+- [x] Configurar permissões do usuário (entrar nas páginas)
 - [x] Ajustar botões de cancelar dos formulários
 - [x] Inserir ícone do site
-- [ ] Estilizar scrollbar
 - [ ] Configurar tipo de dado a ser pesquisado nos registros
-- [ ] Criar componente de modal
-- [ ] Criar tela de confirmação para se deslogar
-- [ ] Criar tela de confirmação para apagar item
-- [ ] Mostrar avisos de erros e sucessos ao tentar logar
+- [x] Criar tela de confirmação para apagar item
+- [x] Mostrar avisos de erros e sucessos ao tentar logar
 - [ ] Compartilhar postagem
-- [ ] Criar página de erro 404 e proibido
+- [x] Criar página de erro 404
+- [x] Substitutir página padrão de erro 404
 - [ ] Inserir erro de não ter permissão para acessar a página no login
+- [ ] Adicionar CPF a documentação e o campo do mesmo na página de "definir como entregue"
 
 ## Ideias futuras
 
