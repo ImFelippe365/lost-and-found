@@ -26,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 INTERNAL_IPS = ["*"]
@@ -142,6 +142,11 @@ STATICFILES_DIRS = [
     ("svg", "static/svg"),
     ("lottie-files", "static/lottie-files"),
 ]
+
+STATIC_ROOT = Path.joinpath(BASE_DIR, 'staticfiles')
+
+MEDIA_URL = 'media/'
+MEDIA_ROOT = Path.joinpath(BASE_DIR, 'media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field

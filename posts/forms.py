@@ -19,9 +19,9 @@ class ItemModelForm(forms.ModelForm):
                 'class': "text-gray border-light-gray rounded-lg px-4",
                 'placeholder': 'Ex: Ginásio'
                 }),
-            'shift': forms.TextInput(attrs={
+            'shift': forms.Select(attrs={
                 'class': "text-gray border-light-gray rounded-lg px-4",
-                'placeholder': 'Name'
+                'placeholder': 'Selecione o turno',
                 }),
             'name': forms.TextInput(attrs={
                 'class': "text-gray border-light-gray rounded-lg px-4",
@@ -34,8 +34,8 @@ class ItemModelForm(forms.ModelForm):
             'image': forms.FileInput(attrs={
                 'class': "hidden",
                 }),
-            'pickup_location': forms.TextInput(attrs={
+            'pickup_location': forms.Select(attrs={
                 'class': "text-gray border-light-gray rounded-lg px-4",
-                'placeholder': 'Name'
+                'placeholder': 'Selecione o local'
                 }),
         }

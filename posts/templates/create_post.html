@@ -12,7 +12,7 @@
 
 <section class="w-full mt-6">
     <section>
-        <form action="" method="post">
+        <form action="" method="post" enctype="multipart/form-data" autocomplete="off">
             {% csrf_token %}
             <h3 class="font-bold text-black text-xl">Dados de encontro do item</h3>
             <fieldset class="flex flex-wrap justify-between gap-y-3 mt-2 mb-5">
@@ -33,12 +33,8 @@
                 </div>
 
                 <div class="flex flex-col w-full sm:w-[45%]">
-                    <label class="text-gray font-semibold" for="hour">Turno que foi encontrado *</label>
-                    <select aria-placeholder="Selecione o turno" class="text-gray border-light-gray rounded-lg px-4">
-                        <option value="morning">Manhã</option>
-                        <option value="afternoon">Tarde</option>
-                        <option value="night">Noite</option>
-                    </select>
+                    <label class="text-gray font-semibold" for="{{form.shift.id_for_label}}">Turno que foi encontrado *</label>
+                    {{form.shift}}
                 </div>
                 </div>
             </fieldset>
@@ -63,7 +59,6 @@
                         Clique para fazer o upload
                     </label>
                     {{ form.image }}
-                    <!-- <input id="" type="file" name="image" accept="image/*" class="hidden"> -->
                 </div>
 
 
@@ -72,12 +67,8 @@
             <h3 class="font-bold text-black text-xl">Dados para retirada do item</h3>
             <fieldset class="flex flex-wrap justify-between gap-y-3 mt-2 mb-5">
                 <div class="flex flex-col w-full sm:w-[45%]">
-                    <label for="coades" class="text-gray font-semibold"></label>
-                    <select aria-placeholder="Selecione o local" class="border-light-gray rounded-lg text-gray px-4"
-                        required>
-                        <option value="main-block">Bloco Principal</option>
-                        <option value="annex-block">Bloco anexo</option>
-                    </select>
+                    <label for="{{form.pickup_location.id_for_label}}" class="text-gray font-semibold">{{form.pickup_location.label}}</label>
+                    {{form.pickup_location}}
                 </div>
 
                 <div class="flex flex-col w-full sm:w-[45%]">
