@@ -209,6 +209,7 @@ class ItemCreate(CreateView):
     model = Item
     form_class = ItemModelForm
     template_name = 'create_post.html'
+    success_url = reverse_lazy('items')
     
     def get_context_data(self, **kwargs):
         context = super(ItemCreate, self).get_context_data(**kwargs)
