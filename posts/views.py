@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.template import RequestContext
 from .forms import ItemModelForm
 from django.views.generic import CreateView, DeleteView, ListView
 from .models import Item
@@ -13,6 +14,40 @@ def isAuthenticated(request):
 class ItemView(ListView):
     template_name = 'items.html'
     queryset = Item.objects.all()
+
+    item = Item.objects.get(id=1)
+    print(item.when_was_found.day, item.when_was_found.month, item.when_was_found.year)
+
+    SHIFT_CHOICES = {
+        'Morning': 'Manhã',
+        'Afternoon': 'Tarde',
+        'Night': 'Noite'
+    }
+    
+    STATUS_CHOICES = {
+        'Lost': 'Perdido',
+        'Delivered': 'Entregue',
+        'Expired': 'Expirado'
+    }
+    
+    def get_context_data(self, **kwargs):
+        context = super(ItemView, self).get_context_data(**kwargs)
+        context_list = context['object_list']
+        
+        for item in context_list:
+            when_was_found = f'{item.when_was_found.day}/{item.when_was_found.month}/{item.when_was_found.year}'
+            item.when_was_found = when_was_found
+            item.withdrawal_deadline = f'{item.withdrawal_deadline.day}/{item.withdrawal_deadline.month}/{item.withdrawal_deadline.year}'
+            item.shift = self.SHIFT_CHOICES[item.shift if item.shift else 'Morning']
+            item.status = self.STATUS_CHOICES[item.status if item.status else 'Lost']
+        
+        # context = RequestContext(self.request, {
+        #     'object_list': context
+        # })
+        context['object_list'] = context_list
+        context.update({'activeTab': 'items'})
+        
+        return context
 
 
 def items(request):
