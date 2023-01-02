@@ -1,8 +1,7 @@
 from django.shortcuts import render, redirect
-from django.template import RequestContext
-from .forms import ItemModelForm
+from .forms import ItemModelForm, CompleteDeliveryModelForm
 from django.views.generic import CreateView, DeleteView, ListView
-from .models import Item
+from .models import Item, DeliveredItem
 from django.urls import reverse_lazy
 
 def isAuthenticated(request):
@@ -221,11 +220,11 @@ def expiredItems(request):
 
     return render(request, 'expired-items.html', context)
 
-def complete_delivery(request):
+""" def complete_delivery(request):
     context = {
         'activeTab': 'items'
     }
-    return redirect(reverse_lazy('login')) if isAuthenticated(request) else render(request, 'complete_delivery.html', context)
+    return redirect(reverse_lazy('login')) if isAuthenticated(request) else render(request, 'complete_delivery.html', context) """
 
 
 class ItemCreate(CreateView):
@@ -233,12 +232,6 @@ class ItemCreate(CreateView):
     form_class = ItemModelForm
     template_name = 'create_post.html'
     success_url = reverse_lazy('items')
-    
-    def get_context_data(self, **kwargs):
-        context = super(ItemCreate, self).get_context_data(**kwargs)
-        activeTab = 'items'
-        context['activeTab'] = activeTab
-        return context
 
     def get(self, request):
         if (isAuthenticated(request)):
@@ -270,3 +263,16 @@ def tempDelete(request):
     }
 
     return render(request, 'delete_post.html', context)
+
+
+class CompleteDelivery(CreateView):
+    model = DeliveredItem
+    form_class = CompleteDeliveryModelForm
+    template_name = 'complete_delivery.html'
+    success_url = reverse_lazy('complete-delivery')
+
+    def get(self, request):
+        if (isAuthenticated(request)):
+            return redirect(reverse_lazy('login'))
+
+        return render(request, 'complete_delivery.html', { 'form': self.get_form(), 'activeTab': 'items' })
