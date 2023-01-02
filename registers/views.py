@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
+from django.views.generic import ListView, DetailView
 
 def isAuthenticated(request):
     token = request.session.get('token')
@@ -67,6 +68,9 @@ def allRegisters(request):
     }
 
     return redirect(reverse_lazy('login')) if isAuthenticated(request) else render(request, 'all-registers.html', context)
+
+class Registers(ListView):
+    pass
 
 def details(request):
     context = {

@@ -27,7 +27,7 @@
 
 <div id="card_{{ item.id }}"
     class="flex flex-row items-center gap-6 border-2 border-light-gray rounded-2xl mt-12 max-xl:hidden flex-1">
-    <img class="object-cover w-[260px] h-full rounded-tl-2xl rounded-bl-2xl" src="{% static item.image %}"
+    <img class="object-cover w-[260px] h-full rounded-tl-2xl rounded-bl-2xl" src="{% get_media_prefix %}{{item.image}}"
         alt="Foto do item" />
 
     <div class="flex-1 px-8 py-4">

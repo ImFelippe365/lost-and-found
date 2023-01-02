@@ -1,5 +1,5 @@
 from django.db import models
-
+import datetime
 
 class Item(models.Model):
 
@@ -21,7 +21,7 @@ class Item(models.Model):
         ('Bloco Anexo', 'Bloco Anexo'),
     )
     
-    status = models.CharField(verbose_name='Status', max_length=9)
+    status = models.CharField(verbose_name='Status', max_length=9, default='Lost')
     name = models.CharField(verbose_name='Nome *', max_length=20)
     description = models.CharField(verbose_name='Descrição', max_length=150)
     who_found = models.CharField(verbose_name='Nome de quem encontrou *', max_length=50)
@@ -31,6 +31,10 @@ class Item(models.Model):
     shift = models.CharField(verbose_name='Turno', max_length=9, choices=SHIFT_CHOICES)
     withdrawal_deadline = models.DateField(verbose_name='Data limite para retirada *')
     pickup_location = models.CharField(verbose_name='COADES *', max_length=20, choices=PICKUP_LOCATION_CHOICES)
+    user_registration = models.CharField(blank=True, max_length=20)
+    
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
     
     def __str__(self):
         return self.name

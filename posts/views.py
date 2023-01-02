@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .forms import ItemModelForm
-from django.views.generic import CreateView, DeleteView
+from django.views.generic import CreateView, DeleteView, ListView
 from .models import Item
 from django.urls import reverse_lazy
 
@@ -9,6 +9,11 @@ def isAuthenticated(request):
     if (token is None):
         return True
     return False
+
+class ItemView(ListView):
+    template_name = 'items.html'
+    queryset = Item.objects.all()
+
 
 def items(request):
     context = {
@@ -181,23 +186,6 @@ def expiredItems(request):
 
     return render(request, 'expired-items.html', context)
 
-
-""" def create_post(request):
-    if request.method == 'POST':
-        form = ItemModelForm(request.POST)
-
-        if form.is_valid():
-            form.save()
-            return redirect('index')
-        else:
-            return render(request, 'create_post.html', {
-                                                    'activeTab': 'items',
-                                                    'form': form,})
-    else:
-        form = ItemModelForm()
-        return render(request, 'create_post.html', {'activeTab': 'items','form': form})
- """
-
 def complete_delivery(request):
     context = {
         'activeTab': 'items'
@@ -222,6 +210,12 @@ class ItemCreate(CreateView):
             return redirect(reverse_lazy('login'))
 
         return render(request, 'create_post.html', { 'form': self.get_form(), 'activeTab': 'items' })
+
+    def form_valid(self, form):
+        user = self.request.session.get('user')
+        form.instance.user_registration = user['registration']
+        return super(ItemCreate, self).form_valid(form)
+        
         
 class ItemDelete(DeleteView):
     model = Item
