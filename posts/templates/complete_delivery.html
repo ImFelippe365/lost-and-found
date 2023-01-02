@@ -40,18 +40,16 @@
 
     <div>
         <h3 class="font-bold text-black text-xl mt-3">Dados de quem retirou o item</h3>
-        <form action="" method="post">
+        <form action="" method="post" autocomplete="off">
             <fieldset class="flex flex-wrap md:flex-nowrap justify-between gap-y-3 mt-3 mb-5">
                 <div class="flex flex-col w-full sm:w-[45%]">
-                    <label class="text-gray font-semibold" for="name-person-delevery">Nome *</label>
-                    <input type="text" name="name-person-delevery" placeholder="Ex: Jorge Silva"
-                        class="text-gray border-light-gray rounded-lg px-4" required>
+                    <label class="text-gray font-semibold" for="{{form.claimant_name.id_for_label}}">{{form.claimant_name.label}}</label>
+                    {{form.claimant_name}}
                 </div>
 
                 <div class="flex flex-col w-full sm:w-[45%]">
-                    <label class="text-gray font-semibold" for="registration">Matrícula</label>
-                    <input type="text" name="registration" placeholder="Número da matrícula"
-                        class="text-gray border-light-gray rounded-lg px-4">
+                    <label class="text-gray font-semibold" for="{{form.cpf.id_for_label}}">{{form.cpf.label}}</label>
+                    {{form.cpf}}
                 </div>
             </fieldset>
         </form>
