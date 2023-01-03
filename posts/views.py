@@ -3,7 +3,7 @@ from .forms import ItemModelForm, CompleteDeliveryModelForm
 from django.views.generic import CreateView, DeleteView, ListView
 from .models import Item, DeliveredItem
 from django.urls import reverse_lazy
-from datetime import date
+
 
 def isAuthenticated(request):
     token = request.session.get('token')
@@ -11,7 +11,7 @@ def isAuthenticated(request):
         return True
     return False
 
-class ItemView(ListView):
+class ItemsView(ListView):
     template_name = 'items.html'
     allow_empty = True
     queryset = Item.objects.all()
@@ -23,7 +23,7 @@ class ItemView(ListView):
     }
     
     def get_context_data(self, **kwargs):
-        context = super(ItemView, self).get_context_data(**kwargs)
+        context = super(ItemsView, self).get_context_data(**kwargs)
         context_list = context['object_list']
         
         for item in context_list:
@@ -33,181 +33,61 @@ class ItemView(ListView):
             item.status = self.STATUS_CHOICES[item.status]
         
         context['object_list'] = context_list
-        context.update({'activeTab': 'items'})
+        context.update({ 'activeTab': 'items' })
         
         return context
 
-def items(request):
-    context = {
-        'activeTab': 'items',
-        'items': [
-            {
-                'id': 1,
-                'status': 'Perdido',
-                'image': 'image/jarra-de-vo.jpg',
-                'name': 'Jarra de porcelana',
-                'local_found': 'Sala 61',
-                'when_was_found': '16/10/2022',
-                'shift': 'noite',
-                'withdrawal_deadline': '23/12/2022',
-                'withdrawal_deadline': '23/12/2022',
-                'pickup_location': 'Bloco principal',
-            },
-            {
-                'id': 2,
-                'status': 'Perdido',
-                'image': 'image/jarra-de-vo.jpg',
-                'name': 'Jarra de porcelana',
-                'local_found': 'Na porta do refeitório',
-                'when_was_found': '16/10/2022',
-                'shift': 'noite',
-                'withdrawal_deadline': '23/12/2022',
-                'withdrawal_deadline': '23/12/2022',
-                'pickup_location': 'Bloco principal',
-            },
-            {
-                'id': 3,
-                'status': 'Perdido',
-                'image': 'image/jarra-de-vo.jpg',
-                'name': 'Jarra de porcelana',
-                'local_found': 'Na porta do refeitório',
-                'when_was_found': '16/10/2022',
-                'shift': 'noite',
-                'withdrawal_deadline': '23/12/2022',
-                'withdrawal_deadline': '23/12/2022',
-                'pickup_location': 'Bloco principal',
-            },
-            {
-                'id': 4,
-                'status': 'Perdido',
-                'image': 'image/jarra-de-vo.jpg',
-                'name': 'Pipoqueira',
-                'local_found': 'Na porta do refeitório',
-                'when_was_found': '16/10/2022',
-                'shift': 'noite',
-                'withdrawal_deadline': '23/12/2022',
-                'withdrawal_deadline': '23/12/2022',
-                'pickup_location': 'Bloco principal',
-            },
-        ]
+class DeliveredItemsView(ListView):
+    template_name = 'delivered_items.html'
+    allow_empty = True
+    queryset = Item.objects.all().filter(status='Delivered')
+
+    STATUS_CHOICES = {
+        'Lost': 'Perdido',
+        'Delivered': 'Entregue',
+        'Expired': 'Expirado'
     }
     
-    return render(request, 'items.html', context)
+    def get_context_data(self, **kwargs):
+        context = super(DeliveredItemsView, self).get_context_data(**kwargs)
+        context_list = context['object_list']
+        
+        for item in context_list:
+            item.when_was_found = item.when_was_found.strftime("%m/%d/%Y")
+            item.withdrawal_deadline = item.withdrawal_deadline.strftime("%m/%d/%Y")
+            item.shift = item.shift
+            item.status = self.STATUS_CHOICES[item.status]
+        
+        context['object_list'] = context_list
+        context.update({'activeTab': 'delivered-items'})
+        
+        return context
 
-def deliveredItems(request):
-    context = {
-        'activeTab': 'delivered-items',
-        'items': [
-            {
-                'id': 1,
-                'status': 'Entregue',
-                'image': 'image/jarra-de-vo.jpg',
-                'name': 'Jarra de porcelana',
-                'local_found': 'Sala 61',
-                'when_was_found': '16/10/2022',
-                'shift': 'noite',
-                'withdrawal_deadline': '23/12/2022',
-                'withdrawal_deadline': '23/12/2022',
-                'pickup_location': 'Bloco principal',
-            },
-            {
-                'id': 2,
-                'status': 'Entregue',
-                'image': 'image/jarra-de-vo.jpg',
-                'name': 'Jarra de porcelana',
-                'local_found': 'Na porta do refeitório',
-                'when_was_found': '16/10/2022',
-                'shift': 'noite',
-                'withdrawal_deadline': '23/12/2022',
-                'withdrawal_deadline': '23/12/2022',
-                'pickup_location': 'Bloco principal',
-            },
-            {
-                'id': 3,
-                'status': 'Entregue',
-                'image': 'image/jarra-de-vo.jpg',
-                'name': 'Jarra de porcelana',
-                'local_found': 'Na porta do refeitório',
-                'when_was_found': '16/10/2022',
-                'shift': 'noite',
-                'withdrawal_deadline': '23/12/2022',
-                'withdrawal_deadline': '23/12/2022',
-                'pickup_location': 'Bloco principal',
-            },
-            {
-                'id': 4,
-                'status': 'Entregue',
-                'image': 'image/jarra-de-vo.jpg',
-                'name': 'Pipoqueira',
-                'local_found': 'Na porta do refeitório',
-                'when_was_found': '16/10/2022',
-                'shift': 'noite',
-                'withdrawal_deadline': '23/12/2022',
-                'withdrawal_deadline': '23/12/2022',
-                'pickup_location': 'Bloco principal',
-            },
-        ]
+class ExpiredItemsView(ListView):
+    template_name = 'expired_items.html'
+    allow_empty = True
+    queryset = Item.objects.all().filter(status='Expired')
+
+    STATUS_CHOICES = {
+        'Lost': 'Perdido',
+        'Delivered': 'Entregue',
+        'Expired': 'Expirado'
     }
-
-    return render(request, 'delivered-items.html', context)
-
-def expiredItems(request):
-    context = {
-        'activeTab': 'expired-items',
-        'items': [
-            {
-                'id': 1,
-                'status': 'Expirado',
-                'image': 'image/jarra-de-vo.jpg',
-                'name': 'Jarra de porcelana',
-                'local_found': 'Sala 61',
-                'when_was_found': '16/10/2022',
-                'shift': 'noite',
-                'withdrawal_deadline': '23/12/2022',
-                'withdrawal_deadline': '23/12/2022',
-                'pickup_location': 'Bloco principal',
-            },
-            {
-                'id': 2,
-                'status': 'Expirado',
-                'image': 'image/jarra-de-vo.jpg',
-                'name': 'Jarra de porcelana',
-                'local_found': 'Na porta do refeitório',
-                'when_was_found': '16/10/2022',
-                'shift': 'noite',
-                'withdrawal_deadline': '23/12/2022',
-                'withdrawal_deadline': '23/12/2022',
-                'pickup_location': 'Bloco principal',
-            },
-            {
-                'id': 3,
-                'status': 'Expirado',
-                'image': 'image/jarra-de-vo.jpg',
-                'name': 'Jarra de porcelana',
-                'local_found': 'Na porta do refeitório',
-                'when_was_found': '16/10/2022',
-                'shift': 'noite',
-                'withdrawal_deadline': '23/12/2022',
-                'withdrawal_deadline': '23/12/2022',
-                'pickup_location': 'Bloco principal',
-            },
-            {
-                'id': 4,
-                'status': 'Expirado',
-                'image': 'image/jarra-de-vo.jpg',
-                'name': 'Pipoqueira',
-                'local_found': 'Na porta do refeitório',
-                'when_was_found': '16/10/2022',
-                'shift': 'noite',
-                'withdrawal_deadline': '23/12/2022',
-                'withdrawal_deadline': '23/12/2022',
-                'pickup_location': 'Bloco principal',
-            },
-        ]
-    }
-
-    return render(request, 'expired-items.html', context)
-
+    
+    def get_context_data(self, **kwargs):
+        context = super(ExpiredItemsView, self).get_context_data(**kwargs)
+        context_list = context['object_list']
+        
+        for item in context_list:
+            item.when_was_found = item.when_was_found.strftime("%m/%d/%Y")
+            item.withdrawal_deadline = item.withdrawal_deadline.strftime("%m/%d/%Y")
+            item.shift = item.shift
+            item.status = self.STATUS_CHOICES[item.status]
+        
+        context['object_list'] = context_list
+        context.update({'activeTab': 'expired-items'})
+        
+        return context
 """ def complete_delivery(request):
     context = {
         'activeTab': 'items'
@@ -235,23 +115,8 @@ class ItemCreate(CreateView):
         
 class ItemDelete(DeleteView):
     model = Item
-    success_url = "items"
-    queryset = 1
+    success_url = reverse_lazy("items")
     template_name = "delete_post.html"
-
-    def get(self, request):
-        if (isAuthenticated(request)):
-            return redirect(reverse_lazy('login'))
-            
-        return render(request, 'delete_post.html', { 'form': self.get_form(), 'activeTab': 'items' })
-
-def tempDelete(request):
-    context = {
-        'activeTab': 'items'
-    }
-
-    return render(request, 'delete_post.html', context)
-
 
 class CompleteDelivery(CreateView):
     model = DeliveredItem

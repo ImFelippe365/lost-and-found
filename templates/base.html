@@ -53,8 +53,8 @@
                     {% if is_authenticated %}
                     <hr class="border-light-gray my-5">
                     <li>
-                        <a href="{% url 'all-registers' %}"
-                            class="font-bold text-gray text-base mb-2 rounded-lg py-4 flex items-center px-6 gap-3 {% if activeTab == 'all-registers' %}bg-primary {% else %}bg-white hover:bg-primary-hover transition-all{% endif %}">
+                        <a href="{% url 'registers' %}"
+                            class="font-bold text-gray text-base mb-2 rounded-lg py-4 flex items-center px-6 gap-3 {% if activeTab == 'registers' %}bg-primary {% else %}bg-white hover:bg-primary-hover transition-all{% endif %}">
 
                             <img class="w-7" src="{% static 'icon/carbon_time.svg' %}" />
                             Todos os registros
@@ -143,8 +143,8 @@
                 </li>
                 {% if is_authenticated %}
                 <li>
-                    <a href="{% url 'all-registers' %}"
-                        class="flex flex-col items-center gap-1 text-center text-sm font-semibold text-gray py-4 {% if activeTab == 'all-registers' %}border-b-4 border-primary{% endif %}">
+                    <a href="{% url 'registers' %}"
+                        class="flex flex-col items-center gap-1 text-center text-sm font-semibold text-gray py-4 {% if activeTab == 'registers' %}border-b-4 border-primary{% endif %}">
 
                         <img class="w-7" src="{% static 'icon/carbon_time.svg' %}" />
                         Registros

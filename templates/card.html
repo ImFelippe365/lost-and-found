@@ -80,7 +80,7 @@
                     <img class="w-5" src="{% static 'icon/carbon_chevron-right.svg' %}" />
                 </a>
 
-                <a href="{% url 'delete' %}"
+                <a href="{% url 'delete' item.id %}"
                     class="flex flex-row items-center justify-between w-full text-error-color py-3 px-5 hover:bg-light-gray-hover transition-all">
                     Excluir
                     <img class="w-5" src="{% static 'icon/carbon_chevron-right-warning.svg' %}" />
@@ -192,7 +192,7 @@
                 <img class="w-5" src="{% static 'icon/carbon_chevron-right.svg' %}" />
             </a>
 
-            <a href="{% url 'delete' %}"
+            <a href="{% url 'delete' item.id %}"
                 class="flex flex-row items-center justify-between w-full text-error-color py-3 px-5 hover:bg-light-gray-hover transition-all">
                 Excluir
                 <img class="w-5" src="{% static 'icon/carbon_chevron-right-warning.svg' %}" />
