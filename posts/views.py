@@ -1,8 +1,9 @@
-from django.shortcuts import render, redirect, get_list_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from .forms import ItemModelForm, CompleteDeliveryModelForm
-from django.views.generic import CreateView, DeleteView, ListView
+from django.views.generic import CreateView, DeleteView, ListView, UpdateView
 from .models import Item, DeliveredItem
 from django.urls import reverse_lazy
+from django.http import HttpResponseRedirect
 
 
 def isAuthenticated(request):
@@ -31,6 +32,7 @@ class ItemsView(ListView):
             item.withdrawal_deadline = item.withdrawal_deadline.strftime("%d/%m/%Y")
             item.shift = item.shift
             item.status = self.STATUS_CHOICES[item.status]
+            print(item.status)
         
         context['object_list'] = context_list
         context.update({ 'activeTab': 'items' })
@@ -88,11 +90,6 @@ class ExpiredItemsView(ListView):
         context.update({'activeTab': 'expired-items'})
         
         return context
-""" def complete_delivery(request):
-    context = {
-        'activeTab': 'items'
-    }
-    return redirect(reverse_lazy('login')) if isAuthenticated(request) else render(request, 'complete_delivery.html', context) """
 
 
 class ItemCreate(CreateView):
@@ -118,14 +115,25 @@ class ItemDelete(DeleteView):
     success_url = reverse_lazy("items")
     template_name = "delete_post.html"
 
+
 class CompleteDelivery(CreateView):
     model = DeliveredItem
     form_class = CompleteDeliveryModelForm
     template_name = 'complete_delivery.html'
-    success_url = reverse_lazy('complete-delivery')
+    success_url = reverse_lazy('items')
 
-    def get(self, request):
+    def get(self, request, pk):
         if (isAuthenticated(request)):
             return redirect(reverse_lazy('login'))
+        
+        item = get_object_or_404(Item, pk=pk)
+        item.when_was_found = item.when_was_found.strftime("%d/%m/%Y")
 
-        return render(request, 'complete_delivery.html', { 'form': self.get_form(), 'activeTab': 'items' })
+        return render(request, 'complete_delivery.html', {'form': self.get_form(), 'activeTab': 'items', 'item':item})
+
+
+class ItemUpdate(UpdateView):
+    model = Item
+    form_class = ItemModelForm
+    success_url = reverse_lazy('items')
+    template_name = 'create_post.html'

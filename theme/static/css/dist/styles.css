@@ -972,12 +972,16 @@ select{
   height: 48px;
 }
 
-.h-full{
-  height: 100%;
+.\!h-\[260px\]{
+  height: 260px !important;
 }
 
 .h-5{
   height: 1.25rem;
+}
+
+.h-full{
+  height: 100%;
 }
 
 .h-\[70vh\]{
@@ -1465,10 +1469,6 @@ select{
 
 .p-1{
   padding: 0.25rem;
-}
-
-.p-8{
-  padding: 2rem;
 }
 
 .p-4{

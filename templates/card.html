@@ -74,7 +74,7 @@
                     <img class="w-5" src="{% static 'icon/carbon_chevron-right.svg' %}" />
                 </a>
                 {% else %}
-                <a href=""
+                <a href="{% url 'edit-item' item.id%}"
                     class="flex flex-row items-center justify-between w-full py-3 px-5 hover:bg-light-gray-hover transition-all">
                     Editar
                     <img class="w-5" src="{% static 'icon/carbon_chevron-right.svg' %}" />
@@ -86,7 +86,7 @@
                     <img class="w-5" src="{% static 'icon/carbon_chevron-right-warning.svg' %}" />
                 </a>
 
-                <a href="{% url 'complete-delivery' %}"
+                <a href="{% url 'complete-delivery' item.id %}"
                     class="flex flex-row items-center justify-between w-full text-success-color py-3 px-5 hover:bg-light-gray-hover transition-all">
                     Definir como entregue
                     <img class="w-5" src="{% static 'icon/carbon_chevron-right-success.svg' %}" />
@@ -186,7 +186,7 @@
                 <img class="w-5" src="{% static 'icon/carbon_chevron-right.svg' %}" />
             </a>
             {% else %}
-            <a href=""
+            <a href="{% url 'edit-item' item.id%}"
                 class="flex flex-row items-center justify-between w-full py-3 px-5 hover:bg-light-gray-hover transition-all">
                 Editar
                 <img class="w-5" src="{% static 'icon/carbon_chevron-right.svg' %}" />
@@ -198,7 +198,7 @@
                 <img class="w-5" src="{% static 'icon/carbon_chevron-right-warning.svg' %}" />
             </a>
 
-            <a href="{% url 'complete-delivery' %}"
+            <a href="{% url 'complete-delivery' item.id %}"
                 class="flex flex-row items-center justify-between w-full text-success-color py-3 px-5 hover:bg-light-gray-hover transition-all">
                 Definir como entregue
                 <img class="w-5" src="{% static 'icon/carbon_chevron-right-success.svg' %}" />
