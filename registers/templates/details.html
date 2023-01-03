@@ -21,11 +21,13 @@
 
 <section class="w-full mt-6">
     <div class="flex items-center flex-wrap md:flex-nowrap">
+        {% if object.image %}
         <div>
             <div class="mx-auto w-[75%]">
                 <img class="rounded-full" src="{{ object.image.url }}">
             </div>
         </div>
+        {% endif %}
 
         <div class="flex flex-col flex-wrap gap-3 mx-9 my-7 w-[80%]">
             <div>
@@ -39,9 +41,11 @@
                 </div>
             </div>
             <h2 class="text-black font-bold text-3xl">{{ object.name }}</h2>
+            {% if object.description %}
             <p class="text-gray">
                 {{ object.description }}
             </p>
+            {% endif %}
         </div>
     </div>
 

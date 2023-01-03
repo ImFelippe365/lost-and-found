@@ -110,6 +110,22 @@ class ItemCreate(CreateView):
         return super(ItemCreate, self).form_valid(form)
         
         
+class ItemUpdate(UpdateView):
+    model = Item
+    form_class = ItemModelForm
+    success_url = reverse_lazy('items')
+    template_name = 'create_post.html'
+
+    def get(self, request, pk):
+        if (isAuthenticated(request)):
+            return redirect(reverse_lazy('login'))
+        
+        item = get_object_or_404(Item, pk=pk)
+        item.when_was_found = item.when_was_found.strftime("%d/%m/%Y")
+
+        return render(request, 'create_post.html', {'form': self.get_form(), 'activeTab': 'items', 'item':item})
+
+        
 class ItemDelete(DeleteView):
     model = Item
     success_url = reverse_lazy("items")
@@ -130,10 +146,3 @@ class CompleteDelivery(CreateView):
         item.when_was_found = item.when_was_found.strftime("%d/%m/%Y")
 
         return render(request, 'complete_delivery.html', {'form': self.get_form(), 'activeTab': 'items', 'item':item})
-
-
-class ItemUpdate(UpdateView):
-    model = Item
-    form_class = ItemModelForm
-    success_url = reverse_lazy('items')
-    template_name = 'create_post.html'

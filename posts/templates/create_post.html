@@ -59,6 +59,9 @@
                         Clique para fazer o upload
                     </label>
                     {{ form.image }}
+                    {% if item.image %}
+                    <p class="text-gray m-1">Arquivo atual: <i>{{item.image.name}}</i></p>
+                    {% endif %}
                 </div>
 
 
