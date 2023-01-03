@@ -9,5 +9,6 @@ urlpatterns = [
     # path('items/1/delete', views.DeleteView.as_view(), name='delete'),
     path('items/1/delete', views.tempDelete, name='delete'),
     #path('items/complete-delivery', views.complete_delivery, name='complete-delivery'),
+    #path('items/complete-delivery', views.CompleteDelivery.as_view(), name='complete-delivery'),
     path('items/complete-delivery', views.CompleteDelivery.as_view(), name='complete-delivery'),
 ]
