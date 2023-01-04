@@ -15,6 +15,10 @@ class ItemModelForm(forms.ModelForm):
                 'class': "text-gray border-light-gray rounded-lg px-4",
                 'placeholder': 'Ex: João Silva'
             }),
+            'when_was_found': forms.DateInput(attrs={
+                'class': "text-gray border-light-gray rounded-lg px-4",
+                'type': 'date',
+            }),
             'local_found': forms.TextInput(attrs={
                 'class': "text-gray border-light-gray rounded-lg px-4",
                 'placeholder': 'Ex: Ginásio'
@@ -37,6 +41,10 @@ class ItemModelForm(forms.ModelForm):
             'pickup_location': forms.Select(attrs={
                 'class': "text-gray border-light-gray rounded-lg px-4",
                 'placeholder': 'Selecione o local'
+            }),
+            'withdrawal_deadline': forms.DateInput(attrs={
+                'class': "text-gray border-light-gray rounded-lg px-4",
+                'type': 'date',
             }),
         }
 

@@ -23,8 +23,10 @@
 
                 <div class="flex flex-col w-full sm:w-[45%]">
                     <label class="text-gray font-semibold" for="{{ form.when_was_found.id_for_label }}."> {{ form.when_was_found.label }}</label>
-                    <input type="date" name="when_was_found" id="{{ form.when_was_found.id_for_label }}" 
-                            class="text-gray border-light-gray rounded-lg px-4" placeholder="__/__/__" required>
+                    {{form.when_was_found}}
+                    {% if item.when_was_found %}
+                    <p class="text-gray text-sm mt-1">Data atual: <i>{{item.when_was_found}}</i></p>
+                    {% endif %}
                 </div>
 
                 <div class="flex flex-col w-full sm:w-[45%]">
@@ -60,7 +62,7 @@
                     </label>
                     {{ form.image }}
                     {% if item.image %}
-                    <p class="text-gray m-1">Arquivo atual: <i>{{item.image.name}}</i></p>
+                    <p class="text-gray text-sm mt-1">Arquivo atual: <i>{{item.image.name}}</i></p>
                     {% endif %}
                 </div>
 
@@ -76,8 +78,10 @@
 
                 <div class="flex flex-col w-full sm:w-[45%]">
                     <label for="{{ form.withdrawal_deadline.id_for_label }}" class="text-gray font-semibold">{{ form.withdrawal_deadline.label }}</label>
-                    <input type="date" name="withdrawal_deadline" id="{{ form.withdrawal_deadline.id_for_label }}" 
-                            class="text-gray border-light-gray rounded-lg px-4" placeholder="__/__/__" required>
+                    {{form.withdrawal_deadline}}
+                    {% if item.withdrawal_deadline %}
+                    <p class="text-gray text-sm mt-1">Data atual: <i>{{item.withdrawal_deadline}}</i></p>
+                    {% endif %}
                 </div>
             </fieldset>
 

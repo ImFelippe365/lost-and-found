@@ -11,12 +11,6 @@ class Item(models.Model):
     class PickupLocation(models.TextChoices):
         BLOCO_PRINCIPAL = 'Bloco Principal'
         BLOCO_ANEXO = 'Bloco anexo'
-    
-    STATUS_CHOICES = (
-        ('Lost', 'Perdido'),
-        ('Delivered', 'Entregue'),
-        ('Expired', 'Expirado')
-    )
 
     status = models.CharField(verbose_name='Status', max_length=9, default='Lost')
     name = models.CharField(verbose_name='Nome *', max_length=20)
@@ -38,3 +32,6 @@ class DeliveredItem(models.Model):
     claimant_name = models.CharField(verbose_name='Nome de quem reivindicou *', max_length=50)
     cpf = models.CharField(verbose_name='CPF *', max_length=14)
     withdrawal_date = models.DateTimeField(verbose_name='Data de retirada')
+    user_registration = models.CharField(blank=True, max_length=20)
+
+    created_at = models.DateTimeField(auto_now_add=True)
