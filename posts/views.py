@@ -32,7 +32,6 @@ class ItemsView(ListView):
             item.withdrawal_deadline = item.withdrawal_deadline.strftime("%d/%m/%Y")
             item.shift = item.shift
             item.status = self.STATUS_CHOICES[item.status]
-            print(item.status)
         
         context['object_list'] = context_list
         context.update({ 'activeTab': 'items' })
@@ -122,10 +121,13 @@ class ItemUpdate(UpdateView):
         
         item = get_object_or_404(Item, pk=pk)
         item.when_was_found = item.when_was_found.strftime("%d/%m/%Y")
+        item.image.name = item.image.name[6:]
 
-        return render(request, 'create_post.html', {'form': self.get_form(), 'activeTab': 'items', 'item':item})
+        form = ItemModelForm(instance=item)
+        if request.method == 'GET':
+            return render(request, 'create_post.html', {'form': form, 'item' : item, 'activeTab': 'items',})
 
-        
+   
 class ItemDelete(DeleteView):
     model = Item
     success_url = reverse_lazy("items")
