@@ -28,10 +28,10 @@ class Item(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
 class DeliveredItem(models.Model):
-    #item_id = models.ForeignKey(Item, on_delete=models.CASCADE)
+    item_id = models.OneToOneField(Item, on_delete=models.CASCADE)
     claimant_name = models.CharField(verbose_name='Nome de quem reivindicou *', max_length=50)
     cpf = models.CharField(verbose_name='CPF *', max_length=14)
-    withdrawal_date = models.DateTimeField(verbose_name='Data de retirada')
-    user_registration = models.CharField(blank=True, max_length=20)
+    withdrawal_date = models.DateTimeField(auto_now=True, verbose_name='Data de retirada')
+    user_registration = models.CharField(blank=True, null=True, max_length=20)
 
     created_at = models.DateTimeField(auto_now_add=True)

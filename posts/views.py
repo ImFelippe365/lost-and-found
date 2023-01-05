@@ -3,7 +3,7 @@ from .forms import ItemModelForm, CompleteDeliveryModelForm
 from django.views.generic import CreateView, DeleteView, ListView, UpdateView
 from .models import Item, DeliveredItem
 from django.urls import reverse_lazy
-
+from django.db import transaction
 
 def isAuthenticated(request):
     token = request.session.get('token')
@@ -15,7 +15,7 @@ def isAuthenticated(request):
 class ItemsView(ListView):
     template_name = 'items.html'
     allow_empty = True
-    queryset = Item.objects.all()
+    queryset = Item.objects.all().filter(status='Lost')
 
     STATUS_CHOICES = {
         'Lost': 'Perdido',
@@ -130,8 +130,7 @@ class ItemUpdate(UpdateView):
         item.image.name = item.image.name[6:]
 
         form = ItemModelForm(instance=item)
-        if request.method == 'GET':
-            return render(request, 'create_post.html', {'form': form, 'item': item, 'activeTab': 'items', })
+        return render(request, 'create_post.html', {'form': form, 'item': item, 'activeTab': 'items', })
 
 
 class ItemDelete(DeleteView):
@@ -146,9 +145,41 @@ class CompleteDelivery(CreateView):
     template_name = 'complete_delivery.html'
     success_url = reverse_lazy('items')
 
+    def form_valid(self, form):
+        print("aaaaaaaaaaaa", self.kwargs['pk'])
+        item = get_object_or_404(Item, id=self.kwargs['pk'])
+        claimant_name = form.cleaned_data['claimant_name']
+        cpf = form.cleaned_data['cpf']
+        
+
+        with transaction.atomic():
+            itemDelivered = Item.objects.select_for_update().get(id=self.kwargs['pk'])
+            itemDelivered.status = 'Delivered'
+            itemDelivered.save()
+
+        DeliveredItem.objects.create(item_id=item, claimant_name=claimant_name, cpf=cpf)
+        return redirect(reverse_lazy('items'))
+
+    # def save_form(self):
+    #     pass
+
     def get(self, request, pk):
         if (isAuthenticated(request)):
             return redirect(reverse_lazy('login'))
 
         item = get_object_or_404(Item, pk=pk)
         item.when_was_found = item.when_was_found.strftime("%d/%m/%Y")
+        
+        form = self.get_form()
+
+        return render(request, 'complete_delivery.html', { 'form': form, 'activeTab': 'items', 'item': item })
+
+    # def get(self, request, pk):
+    #     if (isAuthenticated(request)):
+    #         return redirect(reverse_lazy('login'))
+
+    #     item = get_object_or_404(Item, pk=pk)
+    #     item.when_was_found = item.when_was_found.strftime("%d/%m/%Y")
+    #     form = self.get_context_data()
+    #     print("ESSA BUCTA AQUI", form)
+    #     return render(request, 'complete_delivery.html', { 'form': form })
