@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import ItemModelForm, CompleteDeliveryModelForm
 from django.views.generic import CreateView, DeleteView, ListView, UpdateView
-from .models import Item, DeliveredItem
+from .models import Item, DeliveredItem, Claimant
+from core.models import User
 from django.urls import reverse_lazy
 from django.db import transaction
 
@@ -109,8 +110,11 @@ class ItemCreate(CreateView):
         return render(request, 'create_post.html', {'form': self.get_form(), 'activeTab': 'items'})
 
     def form_valid(self, form):
-        user = self.request.session.get('user')
-        form.instance.user_registration = user['registration']
+        instance = form.save(commit=False)
+        user_object = self.request.session.get('user')
+        user, user_created = User.objects.get_or_create(registration=user_object['registration'], defaults=user_object)
+        instance.created_by = user
+
         return super(ItemCreate, self).form_valid(form)
 
 
@@ -146,22 +150,22 @@ class CompleteDelivery(CreateView):
     success_url = reverse_lazy('items')
 
     def form_valid(self, form):
-        print("aaaaaaaaaaaa", self.kwargs['pk'])
         item = get_object_or_404(Item, id=self.kwargs['pk'])
-        claimant_name = form.cleaned_data['claimant_name']
+        name = form.cleaned_data['name']
         cpf = form.cleaned_data['cpf']
-        
 
+        user_object = self.request.session.get('user')
+
+        claimant, claimant_created = Claimant.objects.get_or_create(cpf=cpf, defaults={'name': name})
+        user, user_created = User.objects.get_or_create(registration=user_object['registration'], defaults=user_object)
+        
         with transaction.atomic():
             itemDelivered = Item.objects.select_for_update().get(id=self.kwargs['pk'])
             itemDelivered.status = 'Delivered'
             itemDelivered.save()
 
-        DeliveredItem.objects.create(item_id=item, claimant_name=claimant_name, cpf=cpf)
+        DeliveredItem.objects.create(item=item, claimant=claimant, user=user)
         return redirect(reverse_lazy('items'))
-
-    # def save_form(self):
-    #     pass
 
     def get(self, request, pk):
         if (isAuthenticated(request)):
@@ -173,13 +177,3 @@ class CompleteDelivery(CreateView):
         form = self.get_form()
 
         return render(request, 'complete_delivery.html', { 'form': form, 'activeTab': 'items', 'item': item })
-
-    # def get(self, request, pk):
-    #     if (isAuthenticated(request)):
-    #         return redirect(reverse_lazy('login'))
-
-    #     item = get_object_or_404(Item, pk=pk)
-    #     item.when_was_found = item.when_was_found.strftime("%d/%m/%Y")
-    #     form = self.get_context_data()
-    #     print("ESSA BUCTA AQUI", form)
-    #     return render(request, 'complete_delivery.html', { 'form': form })

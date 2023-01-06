@@ -1,6 +1,6 @@
 from django.db import models
 import datetime
-
+from core.models import User
 class Item(models.Model):
 
     class Shift(models.TextChoices):
@@ -22,16 +22,20 @@ class Item(models.Model):
     shift = models.CharField(verbose_name='Turno', max_length=9, choices=Shift.choices)
     withdrawal_deadline = models.DateField(verbose_name='Data limite para retirada *')
     pickup_location = models.CharField(verbose_name='COADES *', max_length=20, choices=PickupLocation.choices)
-    user_registration = models.CharField(blank=True, max_length=20)
+    created_by = models.ForeignKey(User, on_delete=models.DO_NOTHING, max_length=20)
     
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+class Claimant(models.Model):
+    registration = models.CharField(verbose_name='Matrícula ', blank=True, null=True, max_length=20)
+    name = models.CharField(verbose_name='Nome de quem reivindicou *', max_length=50)
+    cpf = models.CharField(verbose_name='CPF *', max_length=14, blank=True, null=True)
+
 class DeliveredItem(models.Model):
-    item_id = models.OneToOneField(Item, on_delete=models.CASCADE)
-    claimant_name = models.CharField(verbose_name='Nome de quem reivindicou *', max_length=50)
-    cpf = models.CharField(verbose_name='CPF *', max_length=14)
+    item = models.OneToOneField(Item, on_delete=models.CASCADE)
     withdrawal_date = models.DateTimeField(auto_now=True, verbose_name='Data de retirada')
-    user_registration = models.CharField(blank=True, null=True, max_length=20)
+    user = models.ForeignKey(User, on_delete=models.DO_NOTHING, unique=False)
+    claimant = models.ForeignKey(Claimant, on_delete=models.DO_NOTHING, unique=False)
 
     created_at = models.DateTimeField(auto_now_add=True)

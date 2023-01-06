@@ -49,9 +49,8 @@
             {% csrf_token %}
             <fieldset class="flex flex-wrap md:flex-nowrap justify-between gap-y-3 mt-3 mb-5">
                 <div class="flex flex-col w-full sm:w-[45%]">
-                    <label class="text-gray font-semibold"
-                        for="{{form.claimant_name.id_for_label}}">{{form.claimant_name.label}}</label>
-                    {{form.claimant_name}}
+                    <label class="text-gray font-semibold" for="{{form.name.id_for_label}}">{{form.name.label}}</label>
+                    {{form.name}}
                 </div>
 
                 <div class="flex flex-col w-full sm:w-[45%]">

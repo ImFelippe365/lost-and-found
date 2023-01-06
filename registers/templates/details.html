@@ -71,6 +71,21 @@
                 <p class="text-gray font-bold">Turno: </p>
                 <p class="text-gray">{{ object.shift }}</p>
             </div>
+
+            <div class="flex justify-between gap-x-4">
+                <p class="text-gray font-bold">Criado por: </p>
+                <p class="text-gray">{{ object.created_by.name }}</p>
+            </div>
+
+            <div class="flex justify-between gap-x-4">
+                <p class="text-gray font-bold">Matrícula do criador: </p>
+                <p class="text-gray">{{ object.created_by.registration }}</p>
+            </div>
+
+            <div class="flex justify-between gap-x-4">
+                <p class="text-gray font-bold">Data de criação: </p>
+                <p class="text-gray">{{ object.created_at }}</p>
+            </div>
         </div>
 
         <div class="md:w-[45%] mx-auto w-full">
@@ -85,15 +100,32 @@
                 <p class="text-gray">{{ object.withdrawal_deadline }}</p>
             </div>
 
+            {% if object.withdrawal_data %}
             <div class="flex justify-between gap-x-4">
-                <p class="text-gray font-bold">Nome: </p>
-                <p class="text-gray">-</p>
+                <p class="text-gray font-bold">Reinvindicador: </p>
+                <p class="text-gray">{{ object.withdrawal_data.claimant.name }}</p>
             </div>
 
             <div class="flex justify-between gap-x-4">
-                <p class="text-gray font-bold">Matrícula: </p>
-                <p class="text-gray">-</p>
+                <p class="text-gray font-bold">CPF do reinvindicador: </p>
+                <p class="text-gray">{{ object.withdrawal_data.claimant.cpf }}</p>
             </div>
+
+            <div class="flex justify-between gap-x-4">
+                <p class="text-gray font-bold">Entregue por: </p>
+                <p class="text-gray">{{ object.withdrawal_data.user.name }}</p>
+            </div>
+
+            <div class="flex justify-between gap-x-4">
+                <p class="text-gray font-bold">Matrícula de quem entregou: </p>
+                <p class="text-gray">{{ object.withdrawal_data.user.registration }}</p>
+            </div>
+
+            <div class="flex justify-between gap-x-4">
+                <p class="text-gray font-bold">Data de criação: </p>
+                <p class="text-gray">{{ object.withdrawal_data.created_at }}</p>
+            </div>
+            {% endif %}
         </div>
     </div>
 </section>

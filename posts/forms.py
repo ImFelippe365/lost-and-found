@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import TextInput
-from .models import Item, DeliveredItem
+from .models import Item, DeliveredItem, Claimant
 
 
 class ItemModelForm(forms.ModelForm):
@@ -51,11 +51,11 @@ class ItemModelForm(forms.ModelForm):
 
 class CompleteDeliveryModelForm(forms.ModelForm):
     class Meta:
-        model = DeliveredItem
-        fields = ['claimant_name', 'cpf',]
+        model = Claimant
+        fields = ['name', 'cpf',]
 
         widgets = {
-            'claimant_name': forms.TextInput(attrs={
+            'name': forms.TextInput(attrs={
                 'class': "text-gray border-light-gray rounded-lg px-4",
                 'placeholder': 'Ex: Jorge Silva'
             }),
