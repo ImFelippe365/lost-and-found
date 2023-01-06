@@ -31,7 +31,7 @@ A.P.O.O (Análise de Projeto Orientado a Objeto) e Desenvolvimento de Sistemas W
 
 ## A fazer
 
-- [ ] Criar formulários usando Django
+- [x] Criar formulários usando Django
 - [x] Organizar melhor as aplicações
 - [x] Autenticação via SUAP
 - [x] Configurar permissões do usuário (entrar nas páginas)
@@ -44,7 +44,7 @@ A.P.O.O (Análise de Projeto Orientado a Objeto) e Desenvolvimento de Sistemas W
 - [x] Criar página de erro 404
 - [x] Substitutir página padrão de erro 404
 - [ ] Inserir erro de não ter permissão para acessar a página no login
-- [ ] Adicionar CPF a documentação e o campo do mesmo na página de "definir como entregue"
+- [x] Adicionar CPF a documentação e o campo do mesmo na página de "definir como entregue"
 
 ## Ideias futuras
 
