@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {%block main%}
+
 <header>
     <h2 class="font-bold text-black text-3xl mb-5 inline-block max-xl:hidden">Postagens</h2>
 
@@ -8,8 +9,8 @@
         <div
             class="border-light-gray border-[1px] border-solid bg-white rounded-lg flex flex-row items-center gap-2 pl-6 flex-1 min-w-[300px] max-2xl:w-full">
             <img class="w-5" src="{% static 'icon/carbon_search.svg' %}" />
-                <input class="outline-none border-none bg-transparent w-full placeholder:text-gray" type="search"
-                    placeholder="Pesquise pelo nome do item" />
+            <input id="searchBar" class="outline-none border-none bg-transparent w-full placeholder:text-gray"
+                type="search" placeholder="Pesquise pelo nome do item" />
         </div>
 
         <div class="flex justify-between flex-row gap-4">
@@ -30,10 +31,12 @@
     </section>
 </header>
 
-<section>
+<section id="itemsContainer">
     {% for item in object_list %}
     {% include 'card.html' %}
     {% endfor %}
 </section>
 
+<script src="{% static 'scripts/search.js'%}"></script>
+<script src="{% static 'scripts/share.js'%}"></script>
 {% endblock %}

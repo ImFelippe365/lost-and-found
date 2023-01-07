@@ -45,7 +45,8 @@
             {% endif %}">{{ item.status }}</span>
 
             <div class="flex flex-row items-center gap-2">
-                <button class="hover:bg-primary-hover rounded-full p-2 transition-all">
+                <button data-url="card_{{ item.id }}"
+                    class="hover:bg-primary-hover rounded-full p-2 transition-all shareButton">
                     <img class="fill-black w-6" src="{% static 'icon/carbon_share.svg' %}" />
                 </button>
 
@@ -58,7 +59,7 @@
             </div>
         </section>
 
-        <h4 class="font-bold text-black text-[28px] mb-4">{{ item.name }}</h4>
+        <h4 data-item-name="{{ item.name }}" class="font-bold text-black text-[28px] mb-4 item">{{ item.name }}</h4>
 
         <div class="flex flex-row items-start gap-y-4 relative">
 

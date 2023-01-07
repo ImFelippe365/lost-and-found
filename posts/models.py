@@ -28,7 +28,6 @@ class Item(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
 class Claimant(models.Model):
-    registration = models.CharField(verbose_name='Matrícula ', blank=True, null=True, max_length=20)
     name = models.CharField(verbose_name='Nome de quem reivindicou *', max_length=50)
     cpf = models.CharField(verbose_name='CPF *', max_length=14, blank=True, null=True)
 
