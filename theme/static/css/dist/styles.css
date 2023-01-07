@@ -803,10 +803,6 @@ select{
   margin: auto;
 }
 
-.m-1{
-  margin: 0.25rem;
-}
-
 .mx-auto{
   margin-left: auto;
   margin-right: auto;
@@ -920,16 +916,8 @@ select{
   margin-bottom: 1.5rem;
 }
 
-.ml-1{
-  margin-left: 0.25rem;
-}
-
 .ml-2{
   margin-left: 0.5rem;
-}
-
-.ml-5{
-  margin-left: 1.25rem;
 }
 
 .block{
@@ -1132,8 +1120,12 @@ select{
   width: 40%;
 }
 
-.w-\[90\%\]{
-  width: 90%;
+.w-\[100\%\]{
+  width: 100%;
+}
+
+.w-\[85\%\]{
+  width: 85%;
 }
 
 .w-\[80\%\]{
@@ -1226,6 +1218,10 @@ select{
   flex-wrap: wrap;
 }
 
+.flex-nowrap{
+  flex-wrap: nowrap;
+}
+
 .content-evenly{
   align-content: space-evenly;
 }
@@ -1256,6 +1252,10 @@ select{
 
 .justify-around{
   justify-content: space-around;
+}
+
+.justify-evenly{
+  justify-content: space-evenly;
 }
 
 .gap-3{
@@ -1333,6 +1333,10 @@ select{
 
 .rounded{
   border-radius: 0.25rem;
+}
+
+.rounded-xl{
+  border-radius: 0.75rem;
 }
 
 .rounded-t-lg{
@@ -1414,6 +1418,16 @@ select{
   border-color: rgb(103 103 103 / var(--tw-border-opacity));
 }
 
+.border-error-color{
+  --tw-border-opacity: 1;
+  border-color: rgb(201 42 42 / var(--tw-border-opacity));
+}
+
+.border-success-color{
+  --tw-border-opacity: 1;
+  border-color: rgb(88 174 48 / var(--tw-border-opacity));
+}
+
 .border-r-light-gray{
   --tw-border-opacity: 1;
   border-right-color: rgb(217 217 217 / var(--tw-border-opacity));
@@ -1468,6 +1482,10 @@ select{
 
 .bg-transparent{
   background-color: transparent;
+}
+
+.bg-success-transparent-color{
+  background-color: rgba(152, 238, 111, 0.08);
 }
 
 .fill-black{
@@ -1750,6 +1768,10 @@ select{
 .outline-none{
   outline: 2px solid transparent;
   outline-offset: 2px;
+}
+
+.outline{
+  outline-style: solid;
 }
 
 .filter{

@@ -5,6 +5,7 @@ from .models import Item, DeliveredItem, Claimant
 from core.models import User
 from django.urls import reverse_lazy
 from django.db import transaction
+from django.contrib import messages
 
 def isAuthenticated(request):
     token = request.session.get('token')
@@ -115,6 +116,8 @@ class ItemCreate(CreateView):
         user, user_created = User.objects.get_or_create(registration=user_object['registration'], defaults=user_object)
         instance.created_by = user
 
+        messages.success(self.request, 'Sua ação foi realizada com êxito')
+
         return super(ItemCreate, self).form_valid(form)
 
 
@@ -134,6 +137,9 @@ class ItemUpdate(UpdateView):
         item.image.name = item.image.name[6:]
 
         form = ItemModelForm(instance=item)
+
+        messages.success(self.request, 'Sua ação foi realizada com êxito')
+
         return render(request, 'create_post.html', {'form': form, 'item': item, 'activeTab': 'items', })
 
 
@@ -165,6 +171,8 @@ class CompleteDelivery(CreateView):
             itemDelivered.save()
 
         DeliveredItem.objects.create(item=item, claimant=claimant, user=user)
+        messages.success(self.request, 'Sua ação foi realizada com êxito')
+
         return redirect(reverse_lazy('items'))
 
     def get(self, request, pk):

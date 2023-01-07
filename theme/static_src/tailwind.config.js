@@ -60,7 +60,7 @@ module.exports = {
                 'shape': '#C1C1C1',
                 'success-color': '#58AE30',
                 'error-color': '#C92A2A',
-                'primary-transparent-color': 'rgba(152, 238, 111, 0.08)',
+                'success-transparent-color': 'rgba(152, 238, 111, 0.08)',
                 'error-transparent-color': 'rgba(201, 42, 42, 0.1)',
                 'background-black-transparent': 'rgba(0,0,0,0.6)'
             },
