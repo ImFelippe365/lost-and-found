@@ -23,8 +23,8 @@
     <div class="flex items-center flex-wrap md:flex-nowrap">
         {% if object.image %}
         <div>
-            <div class="mx-auto w-[75%]">
-                <img class="rounded-full" src="{{ object.image.url }}">
+            <div class="mx-auto">
+                <img class="rounded-full object-cover h-[320px]" src="{{ object.image.url }}">
             </div>
         </div>
         {% endif %}
@@ -122,7 +122,7 @@
             </div>
 
             <div class="flex justify-between gap-x-4">
-                <p class="text-gray font-bold">Data de criação: </p>
+                <p class="text-gray font-bold">Data de entrega: </p>
                 <p class="text-gray">{{ object.withdrawal_data.created_at }}</p>
             </div>
             {% endif %}

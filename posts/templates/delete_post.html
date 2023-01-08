@@ -10,8 +10,8 @@
     <form action="" method="post" class="flex gap-4 self-end mt-4">
         {% csrf_token %}
         <button class="bg-primary-hover text-success-color px-8 py-2 rounded text-base" type="submit">Sim</button>
-        <button class="bg-error-transparent-color text-error-color px-8 py-2 rounded text-base"
-            type="reset">Não</button>
+        <a href="{% url 'items' %}" class="bg-error-transparent-color text-error-color px-8 py-2 rounded text-base"
+            type="reset">Não</a>
     </form>
 </div>
 

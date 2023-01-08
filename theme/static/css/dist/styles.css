@@ -884,10 +884,6 @@ select{
   margin-bottom: 0.25rem;
 }
 
-.mb-3{
-  margin-bottom: 0.75rem;
-}
-
 .mt-2{
   margin-top: 0.5rem;
 }
@@ -914,10 +910,6 @@ select{
 
 .mb-6{
   margin-bottom: 1.5rem;
-}
-
-.mb-3{
-  margin-bottom: 0.75rem;
 }
 
 .block{
@@ -976,14 +968,6 @@ select{
   height: 48px;
 }
 
-.h-\[48px\]{
-  height: 48px;
-}
-
-.h-\[48px\]{
-  height: 48px;
-}
-
 .\!h-\[260px\]{
   height: 260px !important;
 }
@@ -1028,12 +1012,16 @@ select{
   height: 25vh;
 }
 
-.h-\[48px\]{
-  height: 48px;
+.h-\[40vh\]{
+  height: 40vh;
 }
 
-.h-12{
-  height: 3rem;
+.h-\[280px\]{
+  height: 280px;
+}
+
+.h-\[320px\]{
+  height: 320px;
 }
 
 .w-\[320px\]{
@@ -1064,8 +1052,6 @@ select{
   width: 91.666667%;
 }
 
-.w-\[48px\]{
-  width: 48px;
 .w-\[48px\]{
   width: 48px;
 }
@@ -1134,10 +1120,6 @@ select{
   width: 40%;
 }
 
-.w-\[100\%\]{
-  width: 100%;
-}
-
 .w-\[85\%\]{
   width: 85%;
 }
@@ -1150,8 +1132,8 @@ select{
   width: 200px;
 }
 
-.w-\[75\%\]{
-  width: 75%;
+.w-\[100\%\]{
+  width: 100%;
 }
 
 .min-w-\[400px\]{
@@ -1432,11 +1414,6 @@ select{
   border-color: rgb(103 103 103 / var(--tw-border-opacity));
 }
 
-.border-success-color{
-  --tw-border-opacity: 1;
-  border-color: rgb(88 174 48 / var(--tw-border-opacity));
-}
-
 .border-r-light-gray{
   --tw-border-opacity: 1;
   border-right-color: rgb(217 217 217 / var(--tw-border-opacity));
@@ -1517,9 +1494,6 @@ select{
 .py-8{
   padding-top: 2rem;
   padding-bottom: 2rem;
-.py-8{
-  padding-top: 2rem;
-  padding-bottom: 2rem;
 }
 
 .px-6{
@@ -1595,6 +1569,11 @@ select{
 .py-10{
   padding-top: 2.5rem;
   padding-bottom: 2.5rem;
+}
+
+.py-11{
+  padding-top: 2.75rem;
+  padding-bottom: 2.75rem;
 }
 
 .pl-5{
@@ -1776,10 +1755,6 @@ select{
 .outline-none{
   outline: 2px solid transparent;
   outline-offset: 2px;
-}
-
-.outline{
-  outline-style: solid;
 }
 
 .filter{

@@ -156,6 +156,20 @@ class DeleteItemView(DeleteView):
         messages.success(self.request, 'Sua ação foi realizada com êxito')
         return redirect(reverse_lazy('items'))
 
+    def get(self, request, pk):
+        if (isAuthenticated(request)):
+            return redirect(reverse_lazy('login'))
+
+        item = get_object_or_404(Item, pk=pk)
+        if item.status == 'Delivered':
+            return redirect(reverse_lazy('items'))
+
+        item.when_was_found = item.when_was_found.strftime("%d/%m/%Y")
+        
+        form = self.get_form()
+
+        return render(request, 'delete_post.html', { 'form': form, 'activeTab': 'items', 'object': item })
+
 
 class CompleteDeliveryView(CreateView):
     model = DeliveredItem

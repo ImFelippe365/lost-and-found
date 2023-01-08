@@ -26,8 +26,8 @@ class RegistersView(ListView):
         context_list = context['object_list']
 
         for item in context_list:
-            item.when_was_found = item.when_was_found.strftime("%m/%d/%Y")
-            item.withdrawal_deadline = item.withdrawal_deadline.strftime("%m/%d/%Y")
+            item.when_was_found = item.when_was_found.strftime("%d/%m/%Y")
+            item.withdrawal_deadline = item.withdrawal_deadline.strftime("%d/%m/%Y")
             item.shift = item.shift
             item.status = self.STATUS_CHOICES[item.status]
         

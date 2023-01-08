@@ -15,8 +15,8 @@
     <div class="bg-primary rounded-2xl flex justify-evenly p-2 mt-3 flex-wrap md:flex-nowrap">
         {% if item.image %}
         <div>
-            <div class="my-6 ml-6 w-[100%]">
-                <img class="rounded-full" src="{{item.image.url}}">
+            <div class="my-6 ml-6">
+                <img class="rounded-full object-cover h-[280px]" src="{{item.image.url}}">
             </div>
         </div>
         {% endif %}
