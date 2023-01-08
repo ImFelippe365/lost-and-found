@@ -98,7 +98,7 @@ class ExpiredItemsView(ListView):
         return context
 
 
-class ItemCreate(CreateView):
+class CreateItem(CreateView):
     model = Item
     form_class = ItemModelForm
     template_name = 'create_post.html'
@@ -118,10 +118,10 @@ class ItemCreate(CreateView):
 
         messages.success(self.request, 'Sua ação foi realizada com êxito')
 
-        return super(ItemCreate, self).form_valid(form)
+        return super(CreateItem, self).form_valid(form)
 
 
-class ItemUpdate(UpdateView):
+class UpdateItem(UpdateView):
     model = Item
     form_class = ItemModelForm
     success_url = reverse_lazy('items')
@@ -143,7 +143,7 @@ class ItemUpdate(UpdateView):
         return render(request, 'create_post.html', {'form': form, 'item': item, 'activeTab': 'items', })
 
 
-class ItemDelete(DeleteView):
+class DeleteItem(DeleteView):
     model = Item
     success_url = reverse_lazy("items")
     template_name = "delete_post.html"
