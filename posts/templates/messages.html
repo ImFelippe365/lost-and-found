@@ -4,19 +4,13 @@
 {% for message in messages %}
 <div class="flex justify-center">
     <div
-        class="bg-{{message.tags}}-transparent-color rounded-xl w-[100%] flex flex-row flex-nowrap gap-3 mt-6 items-center border-2 border-{{message.tags}}-color py-1">
+        class="bg-success-transparent-color rounded-xl w-[100%] flex flex-row flex-nowrap gap-3 mt-6 items-center border-2 border-success-color py-1">
         <div class="ml-3">
-            {% if message.tags == 'success' %}
             <img src="{% static 'icon/success-icon.svg' %}">
-            {% endif %}
-            {% if message.tags == 'error' %}
-            <img src="{% static 'icon/error-icon.svg' %}">
-            {% endif %}
         </div>
         <div class="">
-            <h2 class="text-{{message.tags}}-color text-2xl font-bold">
-                {% if message.tags == 'success' %}Sucessso{% endif %}
-                {% if message.tags == 'error' %}Erro{% endif %}
+            <h2 class="text-success-color text-2xl font-bold">
+                Sucessso
             </h2>
             <p class="text-gray">{{message}}</p>
         </div>
