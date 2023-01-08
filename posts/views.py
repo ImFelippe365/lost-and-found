@@ -18,6 +18,7 @@ class ItemsView(ListView):
     template_name = 'items.html'
     allow_empty = True
     queryset = Item.objects.all().filter(status='Lost')
+    ordering = ['-id']
 
     STATUS_CHOICES = {
         'Lost': 'Perdido',
@@ -46,6 +47,7 @@ class DeliveredItemsView(ListView):
     template_name = 'delivered_items.html'
     allow_empty = True
     queryset = Item.objects.all().filter(status='Delivered')
+    ordering = ['-id']
 
     STATUS_CHOICES = {
         'Lost': 'Perdido',
@@ -74,6 +76,7 @@ class ExpiredItemsView(ListView):
     template_name = 'expired_items.html'
     allow_empty = True
     queryset = Item.objects.all().filter(status='Expired')
+    ordering = ['-id']
 
     STATUS_CHOICES = {
         'Lost': 'Perdido',
@@ -98,7 +101,7 @@ class ExpiredItemsView(ListView):
         return context
 
 
-class CreateItem(CreateView):
+class CreateItemView(CreateView):
     model = Item
     form_class = ItemModelForm
     template_name = 'create_post.html'
@@ -118,10 +121,10 @@ class CreateItem(CreateView):
 
         messages.success(self.request, 'Sua ação foi realizada com êxito')
 
-        return super(CreateItem, self).form_valid(form)
+        return super(CreateItemView, self).form_valid(form)
 
 
-class UpdateItem(UpdateView):
+class UpdateItemView(UpdateView):
     model = Item
     form_class = ItemModelForm
     success_url = reverse_lazy('items')
@@ -143,7 +146,7 @@ class UpdateItem(UpdateView):
         return render(request, 'create_post.html', {'form': form, 'item': item, 'activeTab': 'items', })
 
 
-class DeleteItem(DeleteView):
+class DeleteItemView(DeleteView):
     model = Item
     success_url = reverse_lazy("items")
     template_name = "delete_post.html"
@@ -154,7 +157,7 @@ class DeleteItem(DeleteView):
         return redirect(reverse_lazy('items'))
 
 
-class CompleteDelivery(CreateView):
+class CompleteDeliveryView(CreateView):
     model = DeliveredItem
     form_class = CompleteDeliveryModelForm
     template_name = 'complete_delivery.html'

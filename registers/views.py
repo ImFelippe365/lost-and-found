@@ -9,10 +9,11 @@ def isAuthenticated(request):
         return True
     return False
 
-class Registers(ListView):
+class RegistersView(ListView):
     template_name = 'registers.html'
     allow_empty = True
     queryset = Item.objects.all()
+    ordering = ['-id']
 
     STATUS_CHOICES = {
         'Lost': 'Perdido',
@@ -21,7 +22,7 @@ class Registers(ListView):
     }
     
     def get_context_data(self, **kwargs):
-        context = super(Registers, self).get_context_data(**kwargs)
+        context = super(RegistersView, self).get_context_data(**kwargs)
         context_list = context['object_list']
 
         for item in context_list:
@@ -35,7 +36,7 @@ class Registers(ListView):
         
         return context
 
-class RegisterDetails(DetailView):
+class RegisterDetailsView(DetailView):
     template_name = 'details.html'
     allow_empty = True
     model = Item
@@ -47,7 +48,7 @@ class RegisterDetails(DetailView):
     }
     
     def get_context_data(self, **kwargs):
-        context = super(RegisterDetails, self).get_context_data(**kwargs)
+        context = super(RegisterDetailsView, self).get_context_data(**kwargs)
         context_object = context['object']
         if (context_object.status == 'Delivered'):
             context_object.withdrawal_data = DeliveredItem.objects.get(item=context_object.id)
