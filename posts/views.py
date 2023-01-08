@@ -188,6 +188,9 @@ class CompleteDeliveryView(CreateView):
             return redirect(reverse_lazy('login'))
 
         item = get_object_or_404(Item, pk=pk)
+        if item.status == 'Delivered':
+            return redirect(reverse_lazy('items'))
+
         item.when_was_found = item.when_was_found.strftime("%d/%m/%Y")
         
         form = self.get_form()
