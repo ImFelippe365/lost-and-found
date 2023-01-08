@@ -1,4 +1,14 @@
 from django import forms
+from django.forms.utils import ErrorList
+
+class DivErrorList(ErrorList):
+    def __str__(self):
+        return self.as_divs()
+
+    def as_divs(self):
+        if not self: return ''
+        
+        return '<div class="text-error-color">%s</div>'
 
 class LoginForm(forms.Form):
     username = forms.IntegerField(label="Usuário", widget=forms.NumberInput(attrs={

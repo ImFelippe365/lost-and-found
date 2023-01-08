@@ -916,6 +916,10 @@ select{
   margin-bottom: 1.5rem;
 }
 
+.mb-3{
+  margin-bottom: 0.75rem;
+}
+
 .block{
   display: block;
 }
@@ -972,6 +976,14 @@ select{
   height: 48px;
 }
 
+.h-\[48px\]{
+  height: 48px;
+}
+
+.h-\[48px\]{
+  height: 48px;
+}
+
 .\!h-\[260px\]{
   height: 260px !important;
 }
@@ -1016,8 +1028,12 @@ select{
   height: 25vh;
 }
 
-.h-\[40vh\]{
-  height: 40vh;
+.h-\[48px\]{
+  height: 48px;
+}
+
+.h-12{
+  height: 3rem;
 }
 
 .w-\[320px\]{
@@ -1048,6 +1064,8 @@ select{
   width: 91.666667%;
 }
 
+.w-\[48px\]{
+  width: 48px;
 .w-\[48px\]{
   width: 48px;
 }
@@ -1500,6 +1518,9 @@ select{
   padding: 1rem;
 }
 
+.py-8{
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 .py-8{
   padding-top: 2rem;
   padding-bottom: 2rem;

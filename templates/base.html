@@ -2,18 +2,19 @@
 <html lang="pt-br">
 
 {% load tailwind_tags %}
+{% load static %}
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/svg" href="{% static 'svg/favicon.svg' %}">
+
     <title>Achados e perdidos</title>
 
     {% tailwind_preload_css %}
     {% tailwind_css %}
 </head>
-
-{% load static %}
 
 <body class="grid grid-cols-view bg-background-color max-xl:grid-cols-none">
     <aside class="w-[320px]">
