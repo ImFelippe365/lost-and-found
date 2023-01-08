@@ -28,8 +28,13 @@
 
 <div id="card_{{ item.id }}"
     class="flex flex-row items-center gap-6 border-2 border-light-gray rounded-2xl mt-12 max-xl:hidden flex-1">
-    <img class="object-cover w-[260px] h-full rounded-tl-2xl rounded-bl-2xl" src="{% static item.image %}"
+    {% if item.image %}
+    <img class="object-cover w-[260px] !h-[260px] rounded-tl-2xl rounded-bl-2xl" src="{{ item.image.url }}"
         alt="Foto do item" />
+    {% else %}
+    sem imagem
+    {% endif %}
+
 
     <div class="flex-1 px-8 py-4">
         <section class="flex flex-row items-center justify-between w-full">
@@ -41,7 +46,8 @@
             {% endif %}">{{ item.status }}</span>
 
             <div class="flex flex-row items-center gap-2">
-                <button class="hover:bg-primary-hover rounded-full p-2 transition-all">
+                <button data-url="card_{{ item.id }}"
+                    class="hover:bg-primary-hover rounded-full p-2 transition-all shareButton">
                     <img class="fill-black w-6" src="{% static 'icon/carbon_share.svg' %}" />
                 </button>
 
@@ -54,7 +60,7 @@
             </div>
         </section>
 
-        <h4 class="font-bold text-black text-[28px] mb-4">{{ item.name }}</h4>
+        <h4 data-item-name="{{ item.name }}" class="font-bold text-black text-[28px] mb-4 item">{{ item.name }}</h4>
 
         <div class="flex flex-row items-start gap-y-4 relative">
 
@@ -70,19 +76,19 @@
                     <img class="w-5" src="{% static 'icon/carbon_chevron-right.svg' %}" />
                 </a>
                 {% else %}
-                <a href=""
+                <a href="{% url 'edit-item' item.id%}"
                     class="flex flex-row items-center justify-between w-full py-3 px-5 hover:bg-light-gray-hover transition-all">
                     Editar
                     <img class="w-5" src="{% static 'icon/carbon_chevron-right.svg' %}" />
                 </a>
 
-                <button
+                <a href="{% url 'delete' item.id %}"
                     class="flex flex-row items-center justify-between w-full text-error-color py-3 px-5 hover:bg-light-gray-hover transition-all">
                     Excluir
                     <img class="w-5" src="{% static 'icon/carbon_chevron-right-warning.svg' %}" />
-                </button>
+                </a>
 
-                <a href="{% url 'complete-delivery' %}"
+                <a href="{% url 'complete-delivery' item.id %}"
                     class="flex flex-row items-center justify-between w-full text-success-color py-3 px-5 hover:bg-light-gray-hover transition-all">
                     Definir como entregue
                     <img class="w-5" src="{% static 'icon/carbon_chevron-right-success.svg' %}" />
@@ -129,7 +135,7 @@
                         {% else %}
                         text-success-color
                     {% endif %}">Data limite para retirada:</strong>
-                            <p class="text-gray m-0 text-sm">23/10/2022</p>
+                            <p class="text-gray m-0 text-sm">{{ item.withdrawal_deadline }}</p>
                         </div>
                     </div>
                     <div class="flex flex-row items-center gap-3 w-[240px]">
@@ -159,7 +165,7 @@
         </div>
 
         <div class="flex flex-row items-center">
-            <button class="hover:bg-primary-hover rounded-full p-2 transition-all">
+            <button data-url="card_{{ item.id }}" class="hover:bg-primary-hover rounded-full p-2 transition-all shareButton">
                 <img class="fill-black w-5" src="{% static 'icon/carbon_share.svg' %}" />
             </button>
 
@@ -182,19 +188,19 @@
                 <img class="w-5" src="{% static 'icon/carbon_chevron-right.svg' %}" />
             </a>
             {% else %}
-            <a href=""
+            <a href="{% url 'edit-item' item.id%}"
                 class="flex flex-row items-center justify-between w-full py-3 px-5 hover:bg-light-gray-hover transition-all">
                 Editar
                 <img class="w-5" src="{% static 'icon/carbon_chevron-right.svg' %}" />
             </a>
 
-            <button
+            <a href="{% url 'delete' item.id %}"
                 class="flex flex-row items-center justify-between w-full text-error-color py-3 px-5 hover:bg-light-gray-hover transition-all">
                 Excluir
                 <img class="w-5" src="{% static 'icon/carbon_chevron-right-warning.svg' %}" />
-            </button>
+            </a>
 
-            <a href="{% url 'complete-delivery' %}"
+            <a href="{% url 'complete-delivery' item.id %}"
                 class="flex flex-row items-center justify-between w-full text-success-color py-3 px-5 hover:bg-light-gray-hover transition-all">
                 Definir como entregue
                 <img class="w-5" src="{% static 'icon/carbon_chevron-right-success.svg' %}" />
@@ -259,6 +265,8 @@
             class="bg-primary absolute bottom-12 right-[25%] text-black font-bold rounded-2xl px-8 py-1 shadow">
             Ver informações
         </button>
-        <img class="object-cover w-full h-full rounded-b-2xl" src="{% static item.image %}" alt="Foto do item" />
+        {% if item.image %}
+        <img class="object-cover w-full h-full rounded-b-2xl" src="{{ item.image.url }}" alt="Foto do item" />
+        {% endif %}
     </section>
 </div>

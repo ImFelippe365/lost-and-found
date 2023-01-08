@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+{%block main%}
+<section>
+    <h2 class="font-bold text-black text-3xl mb-5">Registros</h2>
+
+    <section class="flex flex-row items-center gap-6 justify-between flex-wrap">
+        <div
+            class="border-light-gray border-[1px] border-solid bg-white rounded-lg flex flex-row items-center gap-2 pl-6 flex-1 min-w-[200px]">
+            <img class="w-5" src="{% static 'icon/carbon_search.svg' %}" />
+            <input class="outline-none border-none bg-transparent w-full placeholder:text-gray" type="search"
+                placeholder="Pesquise pelo nome do item" />
+        </div>
+
+        <select class="border-light-gray rounded-lg pl-6 pr-16 text-gray ">
+            <option value="" disabled selected>Ordenar por</option>
+            <option value="recents">Mais recentes</option>
+            <option value="older">Mais antigos</option>
+        </select>
+    </section>
+</section>
+
+<section>
+
+</section>
+<div class="table mt-4">
+    <a class="table-row text-gray text-start font-bold text-sm">
+        <div class="table-cell align-middle pb-2">Status</div>
+        <div class="table-cell">Quem encontrou</div>
+        <div class="table-cell">Quando foi encontrado</div>
+        <div class="table-cell">Nome do item</div>
+        <div class="table-cell max-2xl:hidden">Local</div>
+        <div class="table-cell max-2xl:hidden">COADES</div>
+
+    </a>
+
+    {% for item in object_list %}
+    <a class="table-row {% cycle 'bg-primary-hover' 'bg-background-color' %}" href="{% url 'details' item.id %}">
+        <div class="h-full p-4 rounded-l-lg table-cell align-middle">
+            <div class="rounded-3xl inline font-bold text-xs text-white px-4 py-1 {% if item.status == 'Entregue' %} bg-success-color
+            {% elif item.status == 'Perdido' %}  
+            bg-error-color
+            {% else %}
+            bg-black
+        {% endif %}">
+                {{ item.status }}
+            </div>
+        </div>
+        <div class="text-black table-cell align-middle">{{ item.who_found }}</div>
+        <div class="text-black table-cell align-middle">{{ item.when_was_found }}</div>
+        <div class="text-black table-cell align-middle max-2xl:rounded-r-lg ">{{ item.name }}</div>
+        <div class="text-black table-cell align-middle max-2xl:hidden">{{ item.local_found }}</div>
+        <div class="text-black rounded-r-lg table-cell align-middle max-2xl:hidden">{{ item.pickup_location }}
+        </div>
+    </a>
+    {% endfor %}
+</div>
+{% endblock %}

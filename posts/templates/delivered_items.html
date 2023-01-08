@@ -2,7 +2,7 @@
 {% load static %}
 {%block main%}
 <section>
-    <h2 class="font-bold text-black text-3xl mb-5 max-xl:hidden">Itens expirados</h2>
+    <h2 class="font-bold text-black text-3xl mb-5 max-xl:hidden">Itens entregues</h2>
 
     <section class="flex flex-row items-center gap-6 justify-between flex-wrap">
         <div
@@ -12,7 +12,8 @@
                 placeholder="Pesquise pelo nome do item" />
         </div>
 
-        <select aria-placeholder="Ordenar por" class="border-light-gray rounded-lg pl-6 pr-16 text-gray">
+        <select class="border-light-gray rounded-lg pl-6 pr-16 text-gray ">
+            <option value="" disabled selected>Ordenar por</option>
             <option value="recents">Mais recentes</option>
             <option value="older">Mais antigos</option>
         </select>
@@ -20,10 +21,11 @@
 </section>
 
 <section>
-    {% for item in items %}
+    {% for item in object_list %}
     {% include 'card.html' %}
     {% endfor %}
 </section>
 
 
+<script src="{% static 'scripts/share.js'%}"></script>
 {% endblock %}

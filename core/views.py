@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .forms import LoginForm, ErrorList
 from django.http import HttpResponseRedirect
 from utils import suap_api
+from django.template import RequestContext
 
 
 def index(request):
@@ -32,3 +33,9 @@ def login(request):
         form = LoginForm()
 
     return render(request, 'login.html', { 'form': form })
+
+def page_not_found(request, exception = None):
+    response = render(request, 'page_not_found.html')
+
+    response.status_code = 404
+    return response

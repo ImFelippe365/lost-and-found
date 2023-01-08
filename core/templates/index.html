@@ -25,9 +25,14 @@
         <img class="w-32" src="{% static 'svg/logo.svg' %}" width="200" />
 
         {% if is_authenticated %}
-        <section>
-            <h3>Logado como <strong> {{ user.name }} </strong></h3>
-            <a href="{% url 'logout' %}" class="text-red">Sair</a>
+        <section class="flex flex-row items-center gap-4">
+
+            <img class="w-[48px] h-[48px] object-cover rounded-full" src="https://suap.ifrn.edu.br{{user.picture}}" />
+            <div class="leading-none">
+                <h3 class="text-sm">Logado como <strong> {{ user.name }} </strong></h3>
+                <a href="{% url 'logout' %}" class="text-error-color text-sm hover:underline transition-all">Sair</a>
+            </div>
+
         </section>
         {% else %}
         <a href="{% url 'login' %}"

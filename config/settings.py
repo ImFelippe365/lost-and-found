@@ -143,6 +143,11 @@ STATICFILES_DIRS = [
     ("lottie-files", "static/lottie-files"),
 ]
 
+STATIC_ROOT = Path.joinpath(BASE_DIR, 'staticfiles')
+
+MEDIA_URL = 'wmedia/'
+MEDIA_ROOT = Path.joinpath(BASE_DIR, 'media')
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+{% load tailwind_tags %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Lottie Files -->
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+    <title>Página não encontrada</title>
+
+    {% tailwind_preload_css %}
+    {% tailwind_css %}
+</head>
+
+{% load static %}
+
+<body class="h-[100vh] bg-background-color">
+    <header class="flex flex-row items-center justify-between w-[60%] mx-auto py-8 border-b-2 border-light-gray-hover">
+        <a href="{% url 'index' %}">
+            <h1>
+                <img class="w-32" src="{% static 'svg/logo.svg' %}" width="200" />
+            </h1>
+        </a>
+
+
+        {% if is_authenticated %}
+        <section class="flex flex-row items-center gap-4">
+
+            <img class="w-[48px] h-[48px] object-cover rounded-full" src="https://suap.ifrn.edu.br{{user.picture}}" />
+            <div class="leading-none">
+                <h3 class="text-sm">Logado como <strong> {{ user.name }} </strong></h3>
+                <a href="{% url 'logout' %}" class="text-error-color text-sm hover:underline transition-all">Sair</a>
+            </div>
+
+        </section>
+        {% else %}
+        <a href="{% url 'login' %}"
+            class="flex flex-row items-center justify-center gap-2 hover:bg-primary-hover py-3 px-5 rounded-lg hover:transition-all">
+            <img class="w-8" src="{% static 'icon/carbon_login.svg' %}" />
+            <div class="flex flex-col items-start text-black leading-none">
+                <span class="text-xs mb-[-6px]">É funcionário?</span>
+                <strong class="text-lg">Entrar</strong>
+            </div>
+        </a>
+        {% endif %}
+    </header>
+
+    <main class="mt-12">
+        <lottie-player src="https://assets5.lottiefiles.com/packages/lf20_ddiueysx.json" background="transparent"
+            speed="0.5" class="w-auto h-[40vh]" loop autoplay></lottie-player>
+
+        <section class="m-auto text-center mt-8">
+            <h2 class="text-black font-bold text-2xl">A página que você tentou acessar não existe</h2>
+            <p class="text-gray text-base mt-2">Não foi encontrada nenhuma página com o endereço requisitado. Você pode voltar para a página inicial <a
+                    href="{% url 'index' %}" class="underline font-semibold">clicando aqui</a></p>
+        </section>
+    </main>
+</body>
+
+</html>
