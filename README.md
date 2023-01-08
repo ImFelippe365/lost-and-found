@@ -38,17 +38,15 @@ A.P.O.O (Análise de Projeto Orientado a Objeto) e Desenvolvimento de Sistemas W
 - [x] Ajustar botões de cancelar dos formulários
 - [x] Inserir ícone do site
 - [ ] Configurar tipo de dado a ser pesquisado nos registros
+- [ ] Sistema de buscar e ordenar itens
+- [ ] Expirar itens de acordo com data
 - [x] Criar tela de confirmação para apagar item
 - [x] Mostrar avisos de erros e sucessos ao tentar logar
-- [ ] Compartilhar postagem
+- [x] Compartilhar postagem
 - [x] Criar página de erro 404
 - [x] Substitutir página padrão de erro 404
 - [ ] Inserir erro de não ter permissão para acessar a página no login
 - [x] Adicionar CPF a documentação e o campo do mesmo na página de "definir como entregue"
-
-## Ideias futuras
-
-- [ ] Criar página para gerenciar bolsistas
 
 ## Instalação
 
