@@ -916,10 +916,6 @@ select{
   margin-bottom: 1.5rem;
 }
 
-.ml-2{
-  margin-left: 0.5rem;
-}
-
 .block{
   display: block;
 }
@@ -1418,11 +1414,6 @@ select{
   border-color: rgb(103 103 103 / var(--tw-border-opacity));
 }
 
-.border-error-color{
-  --tw-border-opacity: 1;
-  border-color: rgb(201 42 42 / var(--tw-border-opacity));
-}
-
 .border-success-color{
   --tw-border-opacity: 1;
   border-color: rgb(88 174 48 / var(--tw-border-opacity));
@@ -1482,10 +1473,6 @@ select{
 
 .bg-transparent{
   background-color: transparent;
-}
-
-.bg-success-transparent-color{
-  background-color: rgba(152, 238, 111, 0.08);
 }
 
 .fill-black{

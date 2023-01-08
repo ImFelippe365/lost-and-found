@@ -148,6 +148,11 @@ class ItemDelete(DeleteView):
     success_url = reverse_lazy("items")
     template_name = "delete_post.html"
 
+    def form_valid(self, form):
+        self.object.delete()
+        messages.success(self.request, 'Sua ação foi realizada com êxito')
+        return redirect(reverse_lazy('items'))
+
 
 class CompleteDelivery(CreateView):
     model = DeliveredItem
