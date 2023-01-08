@@ -1475,6 +1475,10 @@ select{
   background-color: transparent;
 }
 
+.bg-success-transparent-color{
+  background-color: rgba(152, 238, 111, 0.08);
+}
+
 .fill-black{
   fill: #3D3D3D;
 }
