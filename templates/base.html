@@ -2,18 +2,19 @@
 <html lang="pt-br">
 
 {% load tailwind_tags %}
+{% load static %}
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/svg" href="{% static 'svg/favicon.svg' %}">
+
     <title>Achados e perdidos</title>
 
     {% tailwind_preload_css %}
     {% tailwind_css %}
 </head>
-
-{% load static %}
 
 <body class="grid grid-cols-view bg-background-color max-xl:grid-cols-none">
     <aside class="w-[320px]">
@@ -102,7 +103,8 @@
 
             <section class="flex flex-row items-center gap-4">
                 {% if is_authenticated %}
-                <img class="w-[48px] h-[48px] object-cover rounded-full" src="https://suap.ifrn.edu.br{{user.picture}}" />
+                <img class="w-[48px] h-[48px] object-cover rounded-full"
+                    src="https://suap.ifrn.edu.br{{user.picture}}" />
                 <a href="{% url 'logout' %}" class="hover:bg-error-transparent-color transition-all p-2 rounded-full">
                     <img class="w-6" src="{% static 'icon/carbon_logout.svg' %}" />
                 </a>

@@ -828,16 +828,6 @@ select{
   margin-bottom: 1.75rem;
 }
 
-.my-3{
-  margin-top: 0.75rem;
-  margin-bottom: 0.75rem;
-}
-
-.my-4{
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-}
-
 .mb-2{
   margin-bottom: 0.5rem;
 }
@@ -860,10 +850,6 @@ select{
 
 .mb-4{
   margin-bottom: 1rem;
-}
-
-.mb-\[-6px\]{
-  margin-bottom: -6px;
 }
 
 .mt-4{
@@ -898,10 +884,6 @@ select{
   margin-bottom: 0.25rem;
 }
 
-.mb-3{
-  margin-bottom: 0.75rem;
-}
-
 .mt-3{
   margin-top: 0.75rem;
 }
@@ -928,6 +910,10 @@ select{
 
 .mb-6{
   margin-bottom: 1.5rem;
+}
+
+.mb-3{
+  margin-bottom: 0.75rem;
 }
 
 .block{
@@ -982,6 +968,10 @@ select{
   height: 55px;
 }
 
+.h-\[48px\]{
+  height: 48px;
+}
+
 .h-full{
   height: 100%;
 }
@@ -1022,14 +1012,6 @@ select{
   height: 25vh;
 }
 
-.h-\[48px\]{
-  height: 48px;
-}
-
-.h-12{
-  height: 3rem;
-}
-
 .w-\[320px\]{
   width: 320px;
 }
@@ -1058,8 +1040,8 @@ select{
   width: 91.666667%;
 }
 
-.w-12{
-  width: 3rem;
+.w-\[48px\]{
+  width: 48px;
 }
 
 .w-4\/6{
@@ -1080,10 +1062,6 @@ select{
 
 .w-\[240px\]{
   width: 240px;
-}
-
-.w-8{
-  width: 2rem;
 }
 
 .w-\[60\%\]{
@@ -1132,22 +1110,6 @@ select{
 
 .w-\[90\%\]{
   width: 90%;
-}
-
-.w-\[80\%\]{
-  width: 80%;
-}
-
-.w-\[200px\]{
-  width: 200px;
-}
-
-.w-\[75\%\]{
-  width: 75%;
-}
-
-.w-\[48px\]{
-  width: 48px;
 }
 
 .w-\[80\%\]{
@@ -1325,16 +1287,8 @@ select{
   justify-self: center;
 }
 
-.overflow-hidden{
-  overflow: hidden;
-}
-
 .overflow-x-hidden{
   overflow-x: hidden;
-}
-
-.whitespace-nowrap{
-  white-space: nowrap;
 }
 
 .rounded-lg{
@@ -1501,9 +1455,9 @@ select{
   padding: 1rem;
 }
 
-.py-12{
-  padding-top: 3rem;
-  padding-bottom: 3rem;
+.py-8{
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 
 .px-6{
@@ -1566,11 +1520,6 @@ select{
   padding-bottom: 0px;
 }
 
-.py-8{
-  padding-top: 2rem;
-  padding-bottom: 2rem;
-}
-
 .px-12{
   padding-left: 3rem;
   padding-right: 3rem;
@@ -1581,23 +1530,8 @@ select{
   padding-bottom: 0.5rem;
 }
 
-.py-11{
-  padding-top: 2.75rem;
-  padding-bottom: 2.75rem;
-}
-
-.py-10{
-  padding-top: 2.5rem;
-  padding-bottom: 2.5rem;
- }
-  
 .pl-5{
   padding-left: 1.25rem;
-}
-
-.py-9{
-  padding-top: 2.25rem;
-  padding-bottom: 2.25rem;
 }
 
 .pr-3{
@@ -1632,10 +1566,6 @@ select{
   padding-bottom: 0.5rem;
 }
 
-.pt-12{
-  padding-top: 3rem;
-}
-
 .text-center{
   text-align: center;
 }
@@ -1663,14 +1593,14 @@ select{
   line-height: 1.25rem;
 }
 
-.text-2xl{
-  font-size: 1.5rem;
-  line-height: 2rem;
-}
-
 .text-xs{
   font-size: 0.75rem;
   line-height: 1rem;
+}
+
+.text-lg{
+  font-size: 1.125rem;
+  line-height: 1.75rem;
 }
 
 .text-\[28px\]{
@@ -1679,11 +1609,6 @@ select{
 
 .text-\[10px\]{
   font-size: 10px;
-}
-
-.text-lg{
-  font-size: 1.125rem;
-  line-height: 1.75rem;
 }
 
 .text-xl{

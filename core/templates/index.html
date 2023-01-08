@@ -2,11 +2,13 @@
 <html lang="en">
 
 {% load tailwind_tags %}
+{% load static %}
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg" href="{% static 'svg/favicon.svg' %}">
 
     <!-- Lottie Files -->
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
@@ -16,7 +18,6 @@
     {% tailwind_css %}
 </head>
 
-{% load static %}
 
 <body class="bg-background-color flex flex-col w-full overflow-x-hidden">
 

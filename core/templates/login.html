@@ -2,11 +2,13 @@
 <html lang="pt-br">
 
 {% load tailwind_tags %}
+{% load static %}
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg" href="{% static 'svg/favicon.svg' %}">
 
     <!-- Lottie Files -->
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
@@ -17,7 +19,6 @@
     {% tailwind_css %}
 </head>
 
-{% load static %}
 
 <body class="flex flex-row items-center h-[100vh]">
     <aside
@@ -44,22 +45,13 @@
             {% for field in form %}
             <label class="font-bold text-gray" for="{{ field.auto_id }}">{{ field.label }}</label>
             {{ field }}
-            {{ field.error }}
             {% endfor %}
-            <!-- <fieldset name="user" class="text-gray flex flex-col mb-3">
-                <label for="user" class="font-bold">Usuário</label>
-                <input class="border-light-gray rounded-lg px-4 placeholder:text-gray" type="number" id="user"
-                    placeholder="Insira sua matrícula" />
-            </fieldset>
-
-            <fieldset name="password" class="text-gray flex flex-col mb-2">
-                <label for="password" class="font-bold">Senha</label>
-                <input class="border-light-gray rounded-lg px-4 placeholder:text-gray" type="password" id="password"
-                    placeholder="Insira sua senha" />
-            </fieldset> -->
-
+            <p class="text-error-color text-xs mb-4">
+                {{ error }}
+            </p>
             <p class="text-gray">
-                <span class="font-bold">Importante:</span> O usuário e senha são os mesmos utilizados pelo SUAP
+                <span class="font-bold">Importante:</span> O usuário e senha são os mesmos utilizados pelo SUAP. Nós não
+                o armazenamos em nosso sistema.
             </p>
 
             <button
