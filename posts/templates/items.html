@@ -32,9 +32,9 @@
     </section>
 </header>
 
+{% include 'messages.html' %}
 <section id="itemsContainer">
 
-    {% include 'messages.html' %}
 
     {% for item in object_list %}
     {% include 'card.html' %}

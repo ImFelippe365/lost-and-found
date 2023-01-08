@@ -40,7 +40,6 @@ class ItemsView(ListView):
         context['object_list'] = context_list
         context.update({'activeTab': 'items'})
         messages.success(self.request, 'Sua ação foi realizada com êxito')
-
         return context
 
 
