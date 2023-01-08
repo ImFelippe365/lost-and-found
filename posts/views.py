@@ -39,6 +39,7 @@ class ItemsView(ListView):
 
         context['object_list'] = context_list
         context.update({'activeTab': 'items'})
+        messages.success(self.request, 'Sua ação foi realizada com êxito')
 
         return context
 
@@ -139,11 +140,17 @@ class UpdateItemView(UpdateView):
         item.withdrawal_deadline = item.withdrawal_deadline.strftime("%d/%m/%Y")
         item.image.name = item.image.name[6:]
 
+        if item.status == 'Delivered':
+            return redirect(reverse_lazy('items'))
+
         form = ItemModelForm(instance=item)
 
-        messages.success(self.request, 'Sua ação foi realizada com êxito')
-
         return render(request, 'create_post.html', {'form': form, 'item': item, 'activeTab': 'items', })
+
+    def form_valid(self, form):
+        self.object = form.save()
+        messages.success(self.request, 'Sua ação foi realizada com êxito')
+        return super().form_valid(form)
 
 
 class DeleteItemView(DeleteView):
