@@ -6,6 +6,7 @@ from core.models import User
 from django.urls import reverse_lazy
 from django.db import transaction
 from django.contrib import messages
+import datetime
 
 def isAuthenticated(request):
     token = request.session.get('token')
@@ -31,6 +32,7 @@ class ItemsView(ListView):
         context_list = context['object_list']
 
         for item in context_list:
+            #self.set_automatic_status(item.id)
             item.when_was_found = item.when_was_found.strftime("%d/%m/%Y")
             item.withdrawal_deadline = item.withdrawal_deadline.strftime(
                 "%d/%m/%Y")
@@ -39,8 +41,14 @@ class ItemsView(ListView):
 
         context['object_list'] = context_list
         context.update({'activeTab': 'items'})
-        messages.success(self.request, 'Sua ação foi realizada com êxito')
         return context
+
+    def set_automatic_status(self, pk):
+        with transaction.atomic():
+            item_expired = Item.objects.select_for_update().get(id=pk)
+            if datetime.date.today() > item_expired.withdrawal_deadline:
+                item_expired.status = 'Expired'
+                item_expired.save()
 
 
 class DeliveredItemsView(ListView):
@@ -111,7 +119,7 @@ class CreateItemView(CreateView):
         if (isAuthenticated(request)):
             return redirect(reverse_lazy('login'))
 
-        return render(request, 'create_post.html', {'form': self.get_form(), 'activeTab': 'items'})
+        return render(request, 'create_post.html', {'form': self.get_form(), 'activeTab': 'items', 'actionTitle':'Criar nova postagem'})
 
     def form_valid(self, form):
         instance = form.save(commit=False)
@@ -144,7 +152,7 @@ class UpdateItemView(UpdateView):
 
         form = ItemModelForm(instance=item)
 
-        return render(request, 'create_post.html', {'form': form, 'item': item, 'activeTab': 'items', })
+        return render(request, 'create_post.html', {'form': form, 'item': item, 'activeTab': 'items', 'actionTitle':'Editar postagem'})
 
     def form_valid(self, form):
         self.object = form.save()

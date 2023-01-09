@@ -70,13 +70,13 @@
                 bottom-[10%]
                 {% endif %}">
                 {% if item.status == 'Expirado' %}
-                <a href=""
+                <a href="{% url 'edit-item' item.id %}"
                     class="flex flex-row items-center justify-between w-full py-3 px-5 hover:bg-light-gray-hover transition-all">
                     Editar
                     <img class="w-5" src="{% static 'icon/carbon_chevron-right.svg' %}" />
                 </a>
                 {% else %}
-                <a href="{% url 'edit-item' item.id%}"
+                <a href="{% url 'edit-item' item.id %}"
                     class="flex flex-row items-center justify-between w-full py-3 px-5 hover:bg-light-gray-hover transition-all">
                     Editar
                     <img class="w-5" src="{% static 'icon/carbon_chevron-right.svg' %}" />
@@ -182,7 +182,7 @@
         <div id="options_mobile_{{ item.id }}"
             class="hidden bg-white w-[250px] shadow-lg rounded-lg absolute z-10 right-0 border-solid border-[1px] border-light-gray">
             {% if item.status == 'Expirado' %}
-            <a href=""
+            <a href="{% url 'edit-item' item.id%}"
                 class="flex flex-row items-center justify-between w-full py-3 px-5 hover:bg-light-gray-hover transition-all">
                 Editar
                 <img class="w-5" src="{% static 'icon/carbon_chevron-right.svg' %}" />
