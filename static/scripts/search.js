@@ -6,4 +6,10 @@ const container = document.getElementById('itemsContainer')
 
 
 console.log(search)
-search.addEventListener('change', ({ target }) => console.log({ target }))
+search.addEventListener('change', ({ target }) => {
+    const searchText = target.value;
+    const fullUrl = window.location.href
+    const link = fullUrl.includes('#') ? fullUrl.split('#')[0] + '#' + url : fullUrl + '#' + url
+    console.log(searchText)
+    console.log(window.location)
+})

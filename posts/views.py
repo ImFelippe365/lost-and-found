@@ -5,6 +5,7 @@ from .models import Item, DeliveredItem, Claimant
 from core.models import User
 from django.urls import reverse_lazy
 from django.db import transaction
+from django.db.models import Q
 from django.contrib import messages
 import datetime
 
@@ -41,6 +42,131 @@ class ItemsView(ListView):
 
         context['object_list'] = context_list
         context.update({'activeTab': 'items'})
+        return context
+
+    def set_automatic_status(self, pk):
+        with transaction.atomic():
+            item_expired = Item.objects.select_for_update().get(id=pk)
+            if datetime.date.today() > item_expired.withdrawal_deadline:
+                item_expired.status = 'Expired'
+                item_expired.save()
+
+class ItemsSeachResultsView(ListView):
+    template_name = 'items.html'
+    allow_empty = True
+    # queryset = Item.objects.all().filter(status='Lost')
+    ordering = ['-id']
+
+    STATUS_CHOICES = {
+        'Lost': 'Perdido',
+        'Delivered': 'Entregue',
+        'Expired': 'Expirado'
+    }
+
+    def get_queryset(self): 
+        query = self.request.GET.get("keyword")
+        object_list = Item.objects.filter(
+            Q(name__icontains=query) & Q(status='Lost')
+        )
+        return object_list
+
+    def get_context_data(self, **kwargs):
+        context = super(ItemsSeachResultsView, self).get_context_data(**kwargs)
+        context_list = context['object_list']
+
+        for item in context_list:
+            #self.set_automatic_status(item.id)
+            item.when_was_found = item.when_was_found.strftime("%d/%m/%Y")
+            item.withdrawal_deadline = item.withdrawal_deadline.strftime(
+                "%d/%m/%Y")
+            item.shift = item.shift
+            item.status = self.STATUS_CHOICES[item.status]
+
+        context['object_list'] = context_list
+        context.update({'activeTab': 'items'})
+        return context
+
+    def set_automatic_status(self, pk):
+        with transaction.atomic():
+            item_expired = Item.objects.select_for_update().get(id=pk)
+            if datetime.date.today() > item_expired.withdrawal_deadline:
+                item_expired.status = 'Expired'
+                item_expired.save()
+class DeliveredItemsSeachResultsView(ListView):
+    template_name = 'delivered_items.html'
+    allow_empty = True
+    # queryset = Item.objects.all().filter(status='Lost')
+    ordering = ['-id']
+
+    STATUS_CHOICES = {
+        'Lost': 'Perdido',
+        'Delivered': 'Entregue',
+        'Expired': 'Expirado'
+    }
+
+    def get_queryset(self): 
+        query = self.request.GET.get("keyword")
+        object_list = Item.objects.filter(
+            Q(name__icontains=query) & Q(status='Delivered')
+        )
+        return object_list
+
+    def get_context_data(self, **kwargs):
+        context = super(DeliveredItemsSeachResultsView, self).get_context_data(**kwargs)
+        context_list = context['object_list']
+
+        for item in context_list:
+            #self.set_automatic_status(item.id)
+            item.when_was_found = item.when_was_found.strftime("%d/%m/%Y")
+            item.withdrawal_deadline = item.withdrawal_deadline.strftime(
+                "%d/%m/%Y")
+            item.shift = item.shift
+            item.status = self.STATUS_CHOICES[item.status]
+
+        context['object_list'] = context_list
+        context.update({'activeTab': 'delivered-items'})
+        return context
+
+    def set_automatic_status(self, pk):
+        with transaction.atomic():
+            item_expired = Item.objects.select_for_update().get(id=pk)
+            if datetime.date.today() > item_expired.withdrawal_deadline:
+                item_expired.status = 'Expired'
+                item_expired.save()
+    
+class ExpiredItemsSeachResultsView(ListView):
+    template_name = 'expired_items.html'
+    allow_empty = True
+    # queryset = Item.objects.all().filter(status='Lost')
+    ordering = ['-id']
+
+    STATUS_CHOICES = {
+        'Lost': 'Perdido',
+        'Delivered': 'Entregue',
+        'Expired': 'Expirado'
+    }
+
+    def get_queryset(self): 
+        query = self.request.GET.get("keyword")
+        object_list = Item.objects.filter(
+            Q(name__icontains=query) & Q(status='Expired')
+        )
+        return object_list
+
+    def get_context_data(self, **kwargs):
+        context = super(ExpiredItemsSeachResultsView, self).get_context_data(**kwargs)
+        context_list = context['object_list']
+
+        for item in context_list:
+            #self.set_automatic_status(item.id)
+            item.when_was_found = item.when_was_found.strftime("%d/%m/%Y")
+            item.withdrawal_deadline = item.withdrawal_deadline.strftime(
+                "%d/%m/%Y")
+            item.shift = item.shift
+            item.status = self.STATUS_CHOICES[item.status]
+
+        context['object_list'] = context_list
+        context.update({'activeTab': 'expired-items'})
         return context
 
     def set_automatic_status(self, pk):
