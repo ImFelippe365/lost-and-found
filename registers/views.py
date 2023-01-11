@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView
 from posts.models import Item, User, DeliveredItem
+from django.db.models import Q
 
 def isAuthenticated(request):
     token = request.session.get('token')
@@ -20,6 +21,11 @@ class RegistersView(ListView):
         'Delivered': 'Entregue',
         'Expired': 'Expirado'
     }
+
+    def get_queryset(self):
+        query = self.request.GET.get('order')
+        order = '-id' if query == 'desc' else 'id'
+        return Item.objects.order_by(order) if query is not None else Item.objects.order_by('-id')
     
     def get_context_data(self, **kwargs):
         context = super(RegistersView, self).get_context_data(**kwargs)
@@ -61,6 +67,40 @@ class RegisterDetailsView(DetailView):
         
         context['object'] = context_object
         # context['object']['user'] = User.objects.get(registration=context_object.user_registration)
+        context.update({ 'activeTab': 'registers' })
+        
+        return context
+
+
+class RegistersSearchResultsView(ListView):
+    template_name = 'registers.html'
+    allow_empty = True
+    ordering = ['-id']
+
+    STATUS_CHOICES = {
+        'Lost': 'Perdido',
+        'Delivered': 'Entregue',
+        'Expired': 'Expirado'
+    }
+
+    def get_queryset(self): 
+        query = self.request.GET.get("keyword")
+        object_list = Item.objects.filter(
+            Q(name__icontains=query)
+        )
+        return object_list
+    
+    def get_context_data(self, **kwargs):
+        context = super(RegistersSearchResultsView, self).get_context_data(**kwargs)
+        context_list = context['object_list']
+
+        for item in context_list:
+            item.when_was_found = item.when_was_found.strftime("%d/%m/%Y")
+            item.withdrawal_deadline = item.withdrawal_deadline.strftime("%d/%m/%Y")
+            item.shift = item.shift
+            item.status = self.STATUS_CHOICES[item.status]
+        
+        context['object_list'] = context_list
         context.update({ 'activeTab': 'registers' })
         
         return context

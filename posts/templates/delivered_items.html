@@ -8,14 +8,17 @@
         <div
             class="border-light-gray border-[1px] border-solid bg-white rounded-lg flex flex-row items-center gap-2 pl-6 flex-1 min-w-[200px]">
             <img class="w-5" src="{% static 'icon/carbon_search.svg' %}" />
-            <input class="outline-none border-none bg-transparent w-full placeholder:text-gray" type="search"
-                placeholder="Pesquise pelo nome do item" />
+            <form class="w-full" action="{% url 'delivered_items-search' %}" method="get">
+                <input id="searchBar" name="keyword"
+                    class="outline-none border-none bg-transparent w-full placeholder:text-gray" type="search"
+                    placeholder="Pesquise pelo nome do item" />
+            </form>
         </div>
 
-        <select class="border-light-gray rounded-lg pl-6 pr-16 text-gray ">
+        <select id="orderId" class="border-light-gray rounded-lg pl-6 pr-16 text-gray ">
             <option value="" disabled selected>Ordenar por</option>
-            <option value="recents">Mais recentes</option>
-            <option value="older">Mais antigos</option>
+            <option value="desc">Mais recentes</option>
+            <option value="asc">Mais antigos</option>
         </select>
     </section>
 </section>
@@ -28,4 +31,5 @@
 
 
 <script src="{% static 'scripts/share.js'%}"></script>
+<script src="{% static 'scripts/search.js'%}"></script>
 {% endblock %}
