@@ -28,6 +28,11 @@ class ItemsView(ListView):
         'Expired': 'Expirado'
     }
 
+    def get_queryset(self):
+        query = self.request.GET.get('order')
+        order = '-id' if query == 'desc' else 'id'
+        return Item.objects.filter(status='Lost').order_by(order) if query is not None else Item.objects.filter(status='Lost').order_by('-id')
+
     def get_context_data(self, **kwargs):
         context = super(ItemsView, self).get_context_data(**kwargs)
         context_list = context['object_list']
@@ -41,7 +46,7 @@ class ItemsView(ListView):
             item.status = self.STATUS_CHOICES[item.status]
 
         context['object_list'] = context_list
-        context.update({'activeTab': 'items'})
+        context.update({'activeTab': 'items', 'order': self.request.GET.get('order')})
         return context
 
     def set_automatic_status(self, pk):
@@ -188,6 +193,11 @@ class DeliveredItemsView(ListView):
         'Delivered': 'Entregue',
         'Expired': 'Expirado'
     }
+
+    def get_queryset(self):
+        query = self.request.GET.get('order')
+        order = '-id' if query == 'desc' else 'id'
+        return Item.objects.filter(status='Delivered').order_by(order) if query is not None else Item.objects.filter(status='Delivered').order_by('-id')
 
     def get_context_data(self, **kwargs):
         context = super(DeliveredItemsView, self).get_context_data(**kwargs)

@@ -21,10 +21,10 @@
 
 
         <div class="flex justify-between flex-row gap-4">
-            <select class="border-light-gray rounded-lg pl-6 pr-16 text-gray ">
+            <select id="orderId" class="border-light-gray rounded-lg pl-6 pr-16 text-gray ">
                 <option value="" disabled selected>Ordenar por</option>
-                <option value="recents">Mais recentes</option>
-                <option value="older">Mais antigos</option>
+                <option value="desc">Mais recentes</option>
+                <option value="asc">Mais antigos</option>
             </select>
 
             {% if is_authenticated %}
