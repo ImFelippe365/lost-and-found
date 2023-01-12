@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_browser_reload',
+    'django_cron',
     'tailwind',
     'theme',
     'core',
@@ -63,6 +64,10 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django_browser_reload.middleware.BrowserReloadMiddleware',
+]
+
+CRON_CLASSES = [
+    'posts.cron.update_status',
 ]
 
 ROOT_URLCONF = 'config.urls'

@@ -91,12 +91,14 @@ class ItemsSeachResultsView(ListView):
         context.update({'activeTab': 'items'})
         return context
 
-    def set_automatic_status(self, pk):
+    """ def set_automatic_status(self, pk):
         with transaction.atomic():
             item_expired = Item.objects.select_for_update().get(id=pk)
             if datetime.date.today() > item_expired.withdrawal_deadline:
                 item_expired.status = 'Expired'
-                item_expired.save()
+                item_expired.save() """
+
+
 class DeliveredItemsSeachResultsView(ListView):
     template_name = 'delivered_items.html'
     allow_empty = True
@@ -132,12 +134,12 @@ class DeliveredItemsSeachResultsView(ListView):
         context.update({'activeTab': 'delivered-items'})
         return context
 
-    def set_automatic_status(self, pk):
+    """ def set_automatic_status(self, pk):
         with transaction.atomic():
             item_expired = Item.objects.select_for_update().get(id=pk)
             if datetime.date.today() > item_expired.withdrawal_deadline:
                 item_expired.status = 'Expired'
-                item_expired.save()
+                item_expired.save() """
     
 class ExpiredItemsSeachResultsView(ListView):
     template_name = 'expired_items.html'
@@ -174,12 +176,12 @@ class ExpiredItemsSeachResultsView(ListView):
         context.update({'activeTab': 'expired-items'})
         return context
 
-    def set_automatic_status(self, pk):
+    """ def set_automatic_status(self, pk):
         with transaction.atomic():
             item_expired = Item.objects.select_for_update().get(id=pk)
             if datetime.date.today() > item_expired.withdrawal_deadline:
                 item_expired.status = 'Expired'
-                item_expired.save()
+                item_expired.save() """
 
 
 class DeliveredItemsView(ListView):
