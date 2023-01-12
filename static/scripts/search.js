@@ -1,4 +1,3 @@
-console.log("teste")
 const search = document.getElementById('searchBar')
 const items = document.getElementsByClassName('item')
 const container = document.getElementById('itemsContainer')
@@ -13,22 +12,37 @@ search.addEventListener('change', ({ target }) => {
 
 
 const order = document.getElementById('orderId')
-console.log(order)
+const selects = [...order.children]
+
+if (window.location.href.includes('order')) {
+    const orderValue = window.location.href.includes('asc') ? 'asc' : 'desc'
+    selects.forEach(select => {
+        if (select.value === orderValue) {
+            select.selected = true
+        } else {
+            select.selected = false
+        }
+    });
+}
+
 order.addEventListener('change', ({ target }) => {
     const searchText = target.value;
-    const fullUrl = window.location.href
-    // const link = fullUrl.includes('#') ? fullUrl.split('#')[0] + '#' + url : fullUrl + '#' + url
+    const url = window.location.href
 
-    if (window.location.href.includes('order')) {
+    hasOrder = url.includes('order');
+
+    if (hasOrder) {
+        if (url.includes('keyword')) {
+            url.replace('?order', '&order')
+        }
+
         const hrefOrdering =
-            window.location.href.includes('asc') ?
-                window.location.href.replace('asc', searchText) :
-                window.location.href.replace('desc', searchText)
+            url.includes('asc') ?
+                url.replace('asc', searchText) :
+                url.replace('desc', searchText)
 
         window.location.href = hrefOrdering
     } else {
-        window.location.href = window.location.href + '?order=' + searchText
+        window.location.href = url.includes('keyword') ? url + '&order=' + searchText : url + '?order=' + searchText
     }
-    console.log(searchText)
-    console.log(window.location)
 })

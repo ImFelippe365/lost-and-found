@@ -88,7 +88,7 @@ class ItemsSeachResultsView(ListView):
             item.status = self.STATUS_CHOICES[item.status]
 
         context['object_list'] = context_list
-        context.update({'activeTab': 'items'})
+        context.update({'activeTab': 'items', 'search': self.request.GET.get('keyword') })
         return context
 
     def set_automatic_status(self, pk):
@@ -97,6 +97,7 @@ class ItemsSeachResultsView(ListView):
             if datetime.date.today() > item_expired.withdrawal_deadline:
                 item_expired.status = 'Expired'
                 item_expired.save()
+
 class DeliveredItemsSeachResultsView(ListView):
     template_name = 'delivered_items.html'
     allow_empty = True
@@ -129,7 +130,7 @@ class DeliveredItemsSeachResultsView(ListView):
             item.status = self.STATUS_CHOICES[item.status]
 
         context['object_list'] = context_list
-        context.update({'activeTab': 'delivered-items'})
+        context.update({'activeTab': 'delivered-items', 'search': self.request.GET.get('keyword') })
         return context
 
     def set_automatic_status(self, pk):
@@ -171,7 +172,7 @@ class ExpiredItemsSeachResultsView(ListView):
             item.status = self.STATUS_CHOICES[item.status]
 
         context['object_list'] = context_list
-        context.update({'activeTab': 'expired-items'})
+        context.update({'activeTab': 'expired-items', 'search': self.request.GET.get('keyword') })
         return context
 
     def set_automatic_status(self, pk):

@@ -12,7 +12,7 @@
 
 
             <form class="w-full" action="{% url 'items-search' %}" method="get">
-                <input id="searchBar" name="keyword"
+                <input value="{{ search }}" id="searchBar" name="keyword"
                     class="outline-none border-none bg-transparent w-full placeholder:text-gray" type="search"
                     placeholder="Pesquise pelo nome do item" />
             </form>

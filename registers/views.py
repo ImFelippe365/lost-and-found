@@ -101,6 +101,6 @@ class RegistersSearchResultsView(ListView):
             item.status = self.STATUS_CHOICES[item.status]
         
         context['object_list'] = context_list
-        context.update({ 'activeTab': 'registers' })
+        context.update({ 'activeTab': 'registers','search': self.request.GET.get('keyword')  })
         
         return context
