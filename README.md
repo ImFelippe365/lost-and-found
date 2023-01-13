@@ -38,7 +38,7 @@ A.P.O.O (Análise de Projeto Orientado a Objeto) e Desenvolvimento de Sistemas W
 - [x] Ajustar botões de cancelar dos formulários
 - [x] Inserir ícone do site
 - [ ] Configurar tipo de dado a ser pesquisado nos registros
-- [ ] Sistema de buscar e ordenar itens
+- [x] Sistema de buscar e ordenar itens
 - [ ] Expirar itens de acordo com data
 - [x] Criar tela de confirmação para apagar item
 - [x] Mostrar avisos de erros e sucessos ao tentar logar
@@ -47,7 +47,7 @@ A.P.O.O (Análise de Projeto Orientado a Objeto) e Desenvolvimento de Sistemas W
 - [x] Substitutir página padrão de erro 404
 - [ ] Inserir erro de não ter permissão para acessar a página no login
 - [x] Adicionar CPF a documentação e o campo do mesmo na página de "definir como entregue"
-- [ ] Criar imagem no figma e implementar para os itens que não tem foto
+- [x] Criar imagem no figma e implementar para os itens que não tem foto
 - [ ] Restringir acesso apenas para os funcionários
 - [ ] Resolver bug de acessar edição do item já entregue
 - [ ] Alterar estilo da data de limite para retirada
