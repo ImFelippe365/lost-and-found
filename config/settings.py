@@ -67,7 +67,7 @@ MIDDLEWARE = [
 ]
 
 CRON_CLASSES = [
-    'posts.cron.update_status',
+    'posts.cron.UpdateStatus',
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -97,10 +97,8 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME':  env('DATABASE_NAME'),
-        'USER':  env('DATABASE_USER'),
-        'PASSWORD':  env('DATABASE_PASS'),
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
