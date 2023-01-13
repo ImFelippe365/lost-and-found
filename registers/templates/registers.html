@@ -5,15 +5,7 @@
     <h2 class="font-bold text-black text-3xl mb-5">Registros</h2>
 
     <section class="flex flex-row items-center gap-6 justify-between flex-wrap">
-        <div
-            class="border-light-gray border-[1px] border-solid bg-white rounded-lg flex flex-row items-center gap-2 pl-6 flex-1 min-w-[200px]">
-            <img class="w-5" src="{% static 'icon/carbon_search.svg' %}" />
-            <form class="w-full" action="{% url 'registers-search' %}" method="get">
-                <input value="{{ search }}" id="searchBar" name="keyword"
-                    class="outline-none border-none bg-transparent w-full placeholder:text-gray" type="search"
-                    placeholder="Pesquise pelo nome do item" />
-            </form>
-        </div>
+        {% include 'search.html' with search_results_url='registers-search' %}
 
         <select id="orderId" class="border-light-gray rounded-lg pl-6 pr-16 text-gray ">
             <option value="" disabled selected>Ordenar por</option>
