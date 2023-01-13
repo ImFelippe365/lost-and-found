@@ -32,7 +32,8 @@
     <img class="object-cover w-[260px] !h-[260px] rounded-tl-2xl rounded-bl-2xl" src="{{ item.image.url }}"
         alt="Foto do item" />
     {% else %}
-    sem imagem
+    <img class="object-cover w-[260px] !h-[260px] rounded-tl-2xl rounded-bl-2xl"
+        src="{% static 'image/without-image.jpg'  %}" alt="Foto do item" />
     {% endif %}
 
 
@@ -165,7 +166,8 @@
         </div>
 
         <div class="flex flex-row items-center">
-            <button data-url="card_{{ item.id }}" class="hover:bg-primary-hover rounded-full p-2 transition-all shareButton">
+            <button data-url="card_{{ item.id }}"
+                class="hover:bg-primary-hover rounded-full p-2 transition-all shareButton">
                 <img class="fill-black w-5" src="{% static 'icon/carbon_share.svg' %}" />
             </button>
 
