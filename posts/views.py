@@ -44,8 +44,6 @@ class ItemsView(ListView):
                 "%d/%m/%Y")
             item.shift = item.shift
             item.status = self.STATUS_CHOICES[item.status]
-        
-        #set_item_status()
 
         context['object_list'] = context_list
         context.update(
@@ -89,13 +87,6 @@ class ItemsSeachResultsView(ListView):
             {'activeTab': 'items', 'search': self.request.GET.get('keyword')})
         return context
 
-    def set_automatic_status(self, pk):
-        with transaction.atomic():
-            item_expired = Item.objects.select_for_update().get(id=pk)
-            if datetime.date.today() > item_expired.withdrawal_deadline:
-                item_expired.status = 'Expired'
-                item_expired.save()
-
 
 class DeliveredItemsSeachResultsView(ListView):
     template_name = 'delivered_items.html'
@@ -134,13 +125,6 @@ class DeliveredItemsSeachResultsView(ListView):
                        'search': self.request.GET.get('keyword')})
         return context
 
-    def set_automatic_status(self, pk):
-        with transaction.atomic():
-            item_expired = Item.objects.select_for_update().get(id=pk)
-            if datetime.date.today() > item_expired.withdrawal_deadline:
-                item_expired.status = 'Expired'
-                item_expired.save()
-
 
 class ExpiredItemsSeachResultsView(ListView):
     template_name = 'expired_items.html'
@@ -178,13 +162,6 @@ class ExpiredItemsSeachResultsView(ListView):
         context.update({'activeTab': 'expired-items',
                        'search': self.request.GET.get('keyword')})
         return context
-
-    def set_automatic_status(self, pk):
-        with transaction.atomic():
-            item_expired = Item.objects.select_for_update().get(id=pk)
-            if datetime.date.today() > item_expired.withdrawal_deadline:
-                item_expired.status = 'Expired'
-                item_expired.save()
 
 
 class DeliveredItemsView(ListView):

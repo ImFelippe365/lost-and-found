@@ -4,7 +4,6 @@ from django.http import HttpResponseRedirect
 from utils import suap_api
 from django.template import RequestContext
 from posts.models import Item
-from django.shortcuts import get_object_or_404
 
 
 def index(request):
