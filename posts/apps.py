@@ -7,5 +7,5 @@ class PostsConfig(AppConfig):
 
     def ready(self):
         from .item_scheduler import updater
-        print('starting scheduler')
+        #print('starting scheduler')
         updater.start()

@@ -3,10 +3,22 @@ from .forms import LoginForm, ErrorList
 from django.http import HttpResponseRedirect
 from utils import suap_api
 from django.template import RequestContext
+from posts.models import Item
+from django.shortcuts import get_object_or_404
 
 
 def index(request):
-    return render(request, 'index.html')
+    lost_items = len(Item.objects.filter(status='Lost'))
+    delivered_items = len(Item.objects.filter(status='Delivered'))
+    expired_items = len(Item.objects.filter(status='Expired'))
+    
+    context = {
+        'lost_items': lost_items,
+        'delivered_items': delivered_items,
+        'expired_items': expired_items,
+    }
+
+    return render(request, 'index.html', context)
 
 def login(request):
     form = LoginForm()

@@ -81,7 +81,7 @@
                     <img class="w-24" src="{% static 'icon/carbon_box.svg' %}" />
                     <label class="font-bold text-black text-xl">Itens perdidos</label>
                 </div>
-                <strong class="text-5xl text-black">83</strong>
+                <strong class="text-5xl text-black">{{lost_items}}</strong>
             </div>
             <div class="flex flex-col items-center gap-2">
                 <div class="relative flex flex-col items-center">
@@ -90,7 +90,7 @@
                     <img class="w-24" src="{% static 'icon/carbon_box.svg' %}" />
                     <label class="font-bold text-black text-xl">Itens expirados</label>
                 </div>
-                <strong class="text-5xl text-black">83</strong>
+                <strong class="text-5xl text-black">{{expired_items}}</strong>
             </div>
             <div class="flex flex-col items-center gap-2">
                 <div class="relative flex flex-col items-center">
@@ -99,7 +99,7 @@
                     <img class="w-24" src="{% static 'icon/carbon_box.svg' %}" />
                     <label class="font-bold text-black text-xl">Itens entregues</label>
                 </div>
-                <strong class="text-5xl text-black">83</strong>
+                <strong class="text-5xl text-black">{{delivered_items}}</strong>
             </div>
         </section>
 
