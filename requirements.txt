@@ -1,3 +1,4 @@
+APScheduler==3.9.1.post1
 asgiref==3.5.2
 certifi==2022.12.7
 charset-normalizer==2.1.1
@@ -8,7 +9,11 @@ django-tailwind==3.4.0
 idna==3.4
 Pillow==9.3.0
 psycopg2==2.9.5
+pytz==2022.7
+pytz-deprecation-shim==0.1.0.post0
 requests==2.28.1
+six==1.16.0
 sqlparse==0.4.3
 tzdata==2022.6
+tzlocal==4.2
 urllib3==1.26.13

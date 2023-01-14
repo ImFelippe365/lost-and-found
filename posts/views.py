@@ -9,6 +9,7 @@ from django.db.models import Q
 from django.contrib import messages
 import datetime
 
+
 def isAuthenticated(request):
     token = request.session.get('token')
     if (token is None):
@@ -38,23 +39,19 @@ class ItemsView(ListView):
         context_list = context['object_list']
 
         for item in context_list:
-            #self.set_automatic_status(item.id)
             item.when_was_found = item.when_was_found.strftime("%d/%m/%Y")
             item.withdrawal_deadline = item.withdrawal_deadline.strftime(
                 "%d/%m/%Y")
             item.shift = item.shift
             item.status = self.STATUS_CHOICES[item.status]
+        
+        #set_item_status()
 
         context['object_list'] = context_list
-        context.update({'activeTab': 'items', 'order': self.request.GET.get('order')})
+        context.update(
+            {'activeTab': 'items', 'order': self.request.GET.get('order')})
         return context
 
-    def set_automatic_status(self, pk):
-        with transaction.atomic():
-            item_expired = Item.objects.select_for_update().get(id=pk)
-            if datetime.date.today() > item_expired.withdrawal_deadline:
-                item_expired.status = 'Expired'
-                item_expired.save()
 
 class ItemsSeachResultsView(ListView):
     template_name = 'items.html'
@@ -68,7 +65,7 @@ class ItemsSeachResultsView(ListView):
         'Expired': 'Expirado'
     }
 
-    def get_queryset(self): 
+    def get_queryset(self):
         query = self.request.GET.get("keyword")
         object_list = Item.objects.filter(
             Q(name__icontains=query) & Q(status='Lost')
@@ -80,7 +77,7 @@ class ItemsSeachResultsView(ListView):
         context_list = context['object_list']
 
         for item in context_list:
-            #self.set_automatic_status(item.id)
+            # self.set_automatic_status(item.id)
             item.when_was_found = item.when_was_found.strftime("%d/%m/%Y")
             item.withdrawal_deadline = item.withdrawal_deadline.strftime(
                 "%d/%m/%Y")
@@ -88,7 +85,8 @@ class ItemsSeachResultsView(ListView):
             item.status = self.STATUS_CHOICES[item.status]
 
         context['object_list'] = context_list
-        context.update({'activeTab': 'items', 'search': self.request.GET.get('keyword') })
+        context.update(
+            {'activeTab': 'items', 'search': self.request.GET.get('keyword')})
         return context
 
     def set_automatic_status(self, pk):
@@ -97,6 +95,7 @@ class ItemsSeachResultsView(ListView):
             if datetime.date.today() > item_expired.withdrawal_deadline:
                 item_expired.status = 'Expired'
                 item_expired.save()
+
 
 class DeliveredItemsSeachResultsView(ListView):
     template_name = 'delivered_items.html'
@@ -110,7 +109,7 @@ class DeliveredItemsSeachResultsView(ListView):
         'Expired': 'Expirado'
     }
 
-    def get_queryset(self): 
+    def get_queryset(self):
         query = self.request.GET.get("keyword")
         object_list = Item.objects.filter(
             Q(name__icontains=query) & Q(status='Delivered')
@@ -118,11 +117,12 @@ class DeliveredItemsSeachResultsView(ListView):
         return object_list
 
     def get_context_data(self, **kwargs):
-        context = super(DeliveredItemsSeachResultsView, self).get_context_data(**kwargs)
+        context = super(DeliveredItemsSeachResultsView,
+                        self).get_context_data(**kwargs)
         context_list = context['object_list']
 
         for item in context_list:
-            #self.set_automatic_status(item.id)
+            # self.set_automatic_status(item.id)
             item.when_was_found = item.when_was_found.strftime("%d/%m/%Y")
             item.withdrawal_deadline = item.withdrawal_deadline.strftime(
                 "%d/%m/%Y")
@@ -130,7 +130,8 @@ class DeliveredItemsSeachResultsView(ListView):
             item.status = self.STATUS_CHOICES[item.status]
 
         context['object_list'] = context_list
-        context.update({'activeTab': 'delivered-items', 'search': self.request.GET.get('keyword') })
+        context.update({'activeTab': 'delivered-items',
+                       'search': self.request.GET.get('keyword')})
         return context
 
     def set_automatic_status(self, pk):
@@ -139,7 +140,8 @@ class DeliveredItemsSeachResultsView(ListView):
             if datetime.date.today() > item_expired.withdrawal_deadline:
                 item_expired.status = 'Expired'
                 item_expired.save()
-    
+
+
 class ExpiredItemsSeachResultsView(ListView):
     template_name = 'expired_items.html'
     allow_empty = True
@@ -152,7 +154,7 @@ class ExpiredItemsSeachResultsView(ListView):
         'Expired': 'Expirado'
     }
 
-    def get_queryset(self): 
+    def get_queryset(self):
         query = self.request.GET.get("keyword")
         object_list = Item.objects.filter(
             Q(name__icontains=query) & Q(status='Expired')
@@ -160,11 +162,12 @@ class ExpiredItemsSeachResultsView(ListView):
         return object_list
 
     def get_context_data(self, **kwargs):
-        context = super(ExpiredItemsSeachResultsView, self).get_context_data(**kwargs)
+        context = super(ExpiredItemsSeachResultsView,
+                        self).get_context_data(**kwargs)
         context_list = context['object_list']
 
         for item in context_list:
-            #self.set_automatic_status(item.id)
+            # self.set_automatic_status(item.id)
             item.when_was_found = item.when_was_found.strftime("%d/%m/%Y")
             item.withdrawal_deadline = item.withdrawal_deadline.strftime(
                 "%d/%m/%Y")
@@ -172,7 +175,8 @@ class ExpiredItemsSeachResultsView(ListView):
             item.status = self.STATUS_CHOICES[item.status]
 
         context['object_list'] = context_list
-        context.update({'activeTab': 'expired-items', 'search': self.request.GET.get('keyword') })
+        context.update({'activeTab': 'expired-items',
+                       'search': self.request.GET.get('keyword')})
         return context
 
     def set_automatic_status(self, pk):
@@ -256,12 +260,13 @@ class CreateItemView(CreateView):
         if (isAuthenticated(request)):
             return redirect(reverse_lazy('login'))
 
-        return render(request, 'create_post.html', {'form': self.get_form(), 'activeTab': 'items', 'actionTitle':'Criar nova postagem'})
+        return render(request, 'create_post.html', {'form': self.get_form(), 'activeTab': 'items', 'actionTitle': 'Criar nova postagem'})
 
     def form_valid(self, form):
         instance = form.save(commit=False)
         user_object = self.request.session.get('user')
-        user, user_created = User.objects.get_or_create(registration=user_object['registration'], defaults=user_object)
+        user, user_created = User.objects.get_or_create(
+            registration=user_object['registration'], defaults=user_object)
         instance.created_by = user
 
         messages.success(self.request, 'Sua ação foi realizada com êxito')
@@ -281,7 +286,8 @@ class UpdateItemView(UpdateView):
 
         item = get_object_or_404(Item, pk=pk)
         item.when_was_found = item.when_was_found.strftime("%d/%m/%Y")
-        item.withdrawal_deadline = item.withdrawal_deadline.strftime("%d/%m/%Y")
+        item.withdrawal_deadline = item.withdrawal_deadline.strftime(
+            "%d/%m/%Y")
         item.image.name = item.image.name[6:]
 
         if item.status == 'Delivered':
@@ -289,7 +295,7 @@ class UpdateItemView(UpdateView):
 
         form = ItemModelForm(instance=item)
 
-        return render(request, 'create_post.html', {'form': form, 'item': item, 'activeTab': 'items', 'actionTitle':'Editar postagem'})
+        return render(request, 'create_post.html', {'form': form, 'item': item, 'activeTab': 'items', 'actionTitle': 'Editar postagem'})
 
     def form_valid(self, form):
         self.object = form.save()
@@ -316,10 +322,10 @@ class DeleteItemView(DeleteView):
             return redirect(reverse_lazy('items'))
 
         item.when_was_found = item.when_was_found.strftime("%d/%m/%Y")
-        
+
         form = self.get_form()
 
-        return render(request, 'delete_post.html', { 'form': form, 'activeTab': 'items', 'object': item })
+        return render(request, 'delete_post.html', {'form': form, 'activeTab': 'items', 'object': item})
 
 
 class CompleteDeliveryView(CreateView):
@@ -335,11 +341,14 @@ class CompleteDeliveryView(CreateView):
 
         user_object = self.request.session.get('user')
 
-        claimant, claimant_created = Claimant.objects.get_or_create(cpf=cpf, defaults={'name': name})
-        user, user_created = User.objects.get_or_create(registration=user_object['registration'], defaults=user_object)
-        
+        claimant, claimant_created = Claimant.objects.get_or_create(
+            cpf=cpf, defaults={'name': name})
+        user, user_created = User.objects.get_or_create(
+            registration=user_object['registration'], defaults=user_object)
+
         with transaction.atomic():
-            itemDelivered = Item.objects.select_for_update().get(id=self.kwargs['pk'])
+            itemDelivered = Item.objects.select_for_update().get(
+                id=self.kwargs['pk'])
             itemDelivered.status = 'Delivered'
             itemDelivered.save()
 
@@ -357,7 +366,7 @@ class CompleteDeliveryView(CreateView):
             return redirect(reverse_lazy('items'))
 
         item.when_was_found = item.when_was_found.strftime("%d/%m/%Y")
-        
+
         form = self.get_form()
 
-        return render(request, 'complete_delivery.html', { 'form': form, 'activeTab': 'items', 'item': item })
+        return render(request, 'complete_delivery.html', {'form': form, 'activeTab': 'items', 'item': item})
