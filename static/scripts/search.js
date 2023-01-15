@@ -1,13 +1,21 @@
 const search = document.getElementById('searchBar')
-const items = document.getElementsByClassName('item')
-const container = document.getElementById('itemsContainer')
+let url = window.location;
 
 search.addEventListener('change', ({ target }) => {
     const searchText = target.value;
-    const fullUrl = window.location.href
-    const link = fullUrl.includes('#') ? fullUrl.split('#')[0] + '#' + url : fullUrl + '#' + url
-    console.log(searchText)
-    console.log(window.location)
+
+    const params = new Proxy(new URLSearchParams(window.location.search), {
+        get: (searchParams, prop) => searchParams.get(prop),
+    });
+
+    if (params?.keyword) {
+        window.location.href = url.href.replace(params.keyword, searchText)
+    } else {
+        window.location.href = url.href.includes('order') ?
+            url.origin + url.pathname + '/search?keyword=' + searchText + url.search.replace('?', '&') :
+            url.href + '/search?keyword=' + searchText
+    }
+
 })
 
 
@@ -27,22 +35,21 @@ if (window.location.href.includes('order')) {
 
 order.addEventListener('change', ({ target }) => {
     const searchText = target.value;
-    const url = window.location.href
 
-    hasOrder = url.includes('order');
+    hasOrder = url.href.includes('order');
 
     if (hasOrder) {
-        if (url.includes('keyword')) {
-            url.replace('?order', '&order')
+        if (url.href.includes('keyword')) {
+            url.href.replace('?order', '&order')
         }
 
         const hrefOrdering =
-            url.includes('asc') ?
-                url.replace('asc', searchText) :
-                url.replace('desc', searchText)
+            url.href.includes('asc') ?
+                url.href.replace('asc', searchText) :
+                url.href.replace('desc', searchText)
 
         window.location.href = hrefOrdering
     } else {
-        window.location.href = url.includes('keyword') ? url + '&order=' + searchText : url + '?order=' + searchText
+        window.location.href = url.href.includes('keyword') ? url.href + '&order=' + searchText : url.href + '?order=' + searchText
     }
 })
