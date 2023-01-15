@@ -276,7 +276,16 @@ class UpdateItemView(UpdateView):
 
     def form_valid(self, form):
         self.object = form.save()
+
+        if self.object.withdrawal_deadline > datetime.date.today():
+            with transaction.atomic():
+                self.object.status = 'Lost'
+                item = Item.objects.select_for_update().get(
+                    id=self.kwargs['pk'])
+                item.save()
+        
         messages.success(self.request, 'Sua ação foi realizada com êxito')
+        
         return super().form_valid(form)
 
 
