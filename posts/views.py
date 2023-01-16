@@ -304,7 +304,7 @@ class DeleteItemView(DeleteView):
             return redirect(reverse_lazy('login'))
 
         item = get_object_or_404(Item, pk=pk)
-        if item.status == 'Delivered':
+        if item.status == 'Delivered' or item.status == 'Expired':
             return redirect(reverse_lazy('items'))
 
         item.when_was_found = item.when_was_found.strftime("%d/%m/%Y")
