@@ -7,13 +7,15 @@ search.addEventListener('change', ({ target }) => {
     const params = new Proxy(new URLSearchParams(window.location.search), {
         get: (searchParams, prop) => searchParams.get(prop),
     });
+    console.log(params.page)
 
     if (params?.keyword) {
         window.location.href = url.href.replace(params.keyword, searchText)
     } else {
+        const prefix = url.origin + url.pathname
         window.location.href = url.href.includes('order') ?
-            url.origin + url.pathname + '/search?keyword=' + searchText + url.search.replace('?', '&') :
-            url.href + '/search?keyword=' + searchText
+            prefix + '/search?keyword=' + searchText + url.search.replace('?', '&') :
+            prefix + '/search?keyword=' + searchText
     }
 
 })
@@ -50,6 +52,6 @@ order.addEventListener('change', ({ target }) => {
 
         window.location.href = hrefOrdering
     } else {
-        window.location.href = url.href.includes('keyword') ? url.href + '&order=' + searchText : url.href + '?order=' + searchText
+        window.location.href = url.href.includes('keyword') || url.href.includes('page') ? url.href + '&order=' + searchText : url.href + '?order=' + searchText
     }
 })
