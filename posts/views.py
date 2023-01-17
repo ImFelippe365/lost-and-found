@@ -8,7 +8,7 @@ from django.db import transaction
 from django.db.models import Q
 from django.contrib import messages
 import datetime
-
+from django.forms import ValidationError
 
 def isAuthenticated(request):
     token = request.session.get('token')
@@ -121,8 +121,7 @@ class DeliveredItemsSeachResultsView(ListView):
             item.status = self.STATUS_CHOICES[item.status]
 
         context['object_list'] = context_list
-        context.update({'activeTab': 'delivered-items',
-                       'search': self.request.GET.get('keyword')})
+        context.update({'activeTab': 'delivered-items', 'search': self.request.GET.get('keyword')})
         return context
 
 
@@ -240,6 +239,19 @@ class CreateItemView(CreateView):
         return render(request, 'create_post.html', {'form': self.get_form(), 'activeTab': 'items', 'actionTitle': 'Criar nova postagem'})
 
     def form_valid(self, form):
+        today = datetime.date.today()
+        when_was_found = form.cleaned_data['when_was_found']
+        withdrawal_deadline = form.cleaned_data['withdrawal_deadline']
+
+        if not when_was_found <= today:
+            form.add_error("when_was_found", ValidationError("Insira uma data válida", code="invalid"))
+        
+        if not withdrawal_deadline >= today:
+            form.add_error("withdrawal_deadline", ValidationError("Insira uma data válida", code="invalid"))
+
+        if (not withdrawal_deadline >= today or not when_was_found <= today):
+            return render(self.request, 'create_post.html', {'form': form, 'activeTab': 'items', 'actionTitle': 'Criar nova postagem'})
+        
         instance = form.save(commit=False)
         user_object = self.request.session.get('user')
         user, user_created = User.objects.get_or_create(
@@ -247,7 +259,7 @@ class CreateItemView(CreateView):
         instance.created_by = user
 
         messages.success(self.request, 'Sua ação foi realizada com êxito')
-
+            
         return super(CreateItemView, self).form_valid(form)
 
 
@@ -275,6 +287,20 @@ class UpdateItemView(UpdateView):
         return render(request, 'create_post.html', {'form': form, 'item': item, 'activeTab': 'items', 'actionTitle': 'Editar postagem'})
 
     def form_valid(self, form):
+        today = datetime.date.today()
+        when_was_found = form.cleaned_data['when_was_found']
+        withdrawal_deadline = form.cleaned_data['withdrawal_deadline']
+        
+        if not when_was_found <= today:
+            form.add_error("when_was_found", ValidationError("Insira uma data válida", code="invalid"))
+        
+        if not withdrawal_deadline >= today:
+            form.add_error("withdrawal_deadline", ValidationError("Insira uma data válida", code="invalid"))
+
+        if (not withdrawal_deadline >= today or not when_was_found <= today):
+            item = get_object_or_404(Item, pk=self.kwargs['pk'])
+            return render(self.request, 'create_post.html', {'form': form,'item': item, 'activeTab': 'items', 'actionTitle': 'Editrar postagem'})
+
         self.object = form.save()
 
         if self.object.withdrawal_deadline > datetime.date.today():
