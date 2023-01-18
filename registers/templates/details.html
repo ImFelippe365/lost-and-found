@@ -27,6 +27,12 @@
                 <img class="rounded-full object-cover h-[320px]" src="{{ object.image.url }}">
             </div>
         </div>
+        {% else %}
+        <div>
+            <div class="mx-auto">
+                <img class="rounded-full object-cover" src="{% static 'image/without-image.jpg' %}">
+            </div>
+        </div>
         {% endif %}
 
         <div class="flex flex-col flex-wrap gap-3 mx-9 my-7 w-[80%]">

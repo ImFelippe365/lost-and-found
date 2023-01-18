@@ -10,7 +10,7 @@ search.addEventListener('change', ({ target }) => {
     console.log(params.page)
 
     if (params?.keyword) {
-        window.location.href = url.href.replace(params.keyword, searchText)
+        window.location.href = url.href.replace("keyword=" + params.keyword, "keyword=" + searchText)
     } else {
         const prefix = url.origin + url.pathname
         window.location.href = url.href.includes('order') ?
