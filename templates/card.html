@@ -269,6 +269,9 @@
         </button>
         {% if item.image %}
         <img class="object-cover w-full h-full rounded-b-2xl" src="{{ item.image.url }}" alt="Foto do item" />
+        {% else %}
+        <img class="object-cover w-full !h-full rounded-tl-2xl rounded-bl-2xl"
+            src="{% static 'image/without-image.jpg'  %}" alt="Foto do item" />
         {% endif %}
     </section>
 </div>
