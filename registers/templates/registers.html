@@ -48,19 +48,49 @@
     {% endfor %}
 
 </div>
-<div>
+<div class="flex flex-row gap-2 mt-6 self-end">
+    {% if page_obj.paginator.num_pages > 1 %}
+
     {% if page_obj.has_previous %}
-    <a href="?page=1">&laquo; first</a>
-    <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+    <div>
+        <a href="?page={{ page_obj.previous_page_number }}" class="flex flex-row flex-nowrap text-black">
+            <img src="{% static 'icon/carbon_chevron-left-black.svg' %}">
+            Anterior
+        </a>
+    </div>
     {% endif %}
 
-    <span>
-        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-    </span>
+    <div>
+        {% if page_obj.number == page_obj.paginator.num_pages %}
+        <a href="?page=1"
+            class="hover:bg-primary-hover py-1 px-2 rounded-full transition-all font-bold text-black">1</a>
+        <span class="font-bold text-black">...</span>
+        {% endif %}
+        <span
+            class="bg-primary py-1 px-2 rounded-t-full rounded-r-full rounded-b-full text-black font-bold">{{ page_obj.number }}</span>
+    </div>
 
     {% if page_obj.has_next %}
-    <a href="?page={{ page_obj.next_page_number }}">next</a>
-    <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+
+    <div class="text-black font-bold">
+        {% if page_obj.next_page_number != page_obj.paginator.num_pages %}
+        <a href="?page={{ page_obj.next_page_number }}"
+            class="hover:bg-primary-hover py-1 px-2 rounded-full transition-all">{{ page_obj.next_page_number }}</a>
+        {% endif %}
+        ...
+        <a href="?page={{ page_obj.paginator.num_pages }}"
+            class="hover:bg-primary-hover py-1 px-2 rounded-full transition-all">{{ page_obj.paginator.num_pages }}</a>
+    </div>
+
+    <div>
+
+        <a href="?page={{ page_obj.next_page_number }}" class="flex flex-row flex-nowrap text-black">
+            Próxima
+            <img src="{% static 'icon/carbon_chevron-right-black.svg' %}">
+        </a>
+    </div>
+
+    {% endif %}
     {% endif %}
 </div>
 

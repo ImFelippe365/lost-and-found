@@ -77,6 +77,7 @@ class RegistersSearchResultsView(ListView):
     template_name = 'registers.html'
     allow_empty = True
     ordering = ['-id']
+    paginate_by = 10
 
     STATUS_CHOICES = {
         'Lost': 'Perdido',
