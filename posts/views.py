@@ -185,9 +185,9 @@ class DeliveredItemsView(ListView):
         context_list = context['object_list']
 
         for item in context_list:
-            item.when_was_found = item.when_was_found.strftime("%m/%d/%Y")
+            item.when_was_found = item.when_was_found.strftime("%d/%m/%Y")
             item.withdrawal_deadline = item.withdrawal_deadline.strftime(
-                "%m/%d/%Y")
+                "%d/%m/%Y")
             item.shift = item.shift
             item.status = self.STATUS_CHOICES[item.status]
 
@@ -209,14 +209,19 @@ class ExpiredItemsView(ListView):
         'Expired': 'Expirado'
     }
 
+    def get_queryset(self):
+        query = self.request.GET.get('order')
+        order = '-id' if query == 'desc' else 'id'
+        return Item.objects.filter(status='Expired').order_by(order) if query is not None else Item.objects.filter(status='Expired').order_by('-id')
+
     def get_context_data(self, **kwargs):
         context = super(ExpiredItemsView, self).get_context_data(**kwargs)
         context_list = context['object_list']
 
         for item in context_list:
-            item.when_was_found = item.when_was_found.strftime("%m/%d/%Y")
+            item.when_was_found = item.when_was_found.strftime("%d/%m/%Y")
             item.withdrawal_deadline = item.withdrawal_deadline.strftime(
-                "%m/%d/%Y")
+                "%d/%m/%Y")
             item.shift = item.shift
             item.status = self.STATUS_CHOICES[item.status]
 
@@ -332,8 +337,6 @@ class DeleteItemView(DeleteView):
         item = get_object_or_404(Item, pk=pk)
         if item.status == 'Delivered' or item.status == 'Expired':
             return redirect(reverse_lazy('items'))
-
-        item.when_was_found = item.when_was_found.strftime("%d/%m/%Y")
 
         form = self.get_form()
 

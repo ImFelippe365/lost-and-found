@@ -7,10 +7,10 @@
     <section class="flex flex-row items-center gap-6 justify-between flex-wrap">
         {% include 'search.html' %}
 
-        <select class="border-light-gray rounded-lg pl-6 pr-16 text-gray ">
+        <select id="orderId" class="border-light-gray rounded-lg pl-6 pr-16 text-gray ">
             <option value="" disabled selected>Ordenar por</option>
-            <option value="recents">Mais recentes</option>
-            <option value="older">Mais antigos</option>
+            <option value="desc">Mais recentes</option>
+            <option value="asc">Mais antigos</option>
         </select>
     </section>
 </section>
@@ -23,4 +23,5 @@
 
 
 <script src="{% static 'scripts/share.js'%}"></script>
+<script src="{% static 'scripts/search.js'%}"></script>
 {% endblock %}
