@@ -31,15 +31,15 @@ def login(request):
             
             suap = suap_api.Suap()
             isAuthenticated = suap.authenticate(username, password)
-
-            if not (isAuthenticated):
-                error = "Usuário e/ou senha incorreto(s). Tente novamente"
+            print(isAuthenticated)
+            if not (isAuthenticated['success']):
+                error = "Usuário e/ou senha incorreto(s). Tente novamente" if isAuthenticated['message'] == 'Credenciais inválidas' else isAuthenticated['message']
                 form.add_error("password","Usuário e/ou senha incorreto(s). Tente novamente")
                 return render(request, 'login.html', {'form': form, 'error': error})
             else:
                 request.session['token'] = isAuthenticated['access']
                 request.session['refresh_token'] = isAuthenticated['refresh']
-                return HttpResponseRedirect('items/')
+                return HttpResponseRedirect('items')
     else:
         form = LoginForm()
 

@@ -18,15 +18,22 @@ class Suap:
         }
 
         response = requests.post(url, data=params)
-        data = False
+        data = {
+            'success': False,
+            'message': "Usuário e/ou senha incorreto(s). Tente novamente"
+        }
 
         if response.status_code == 200:
             data = response.json()
+            data['success'] = True
             self.setToken(data['access']) 
             self.setRefreshToken(data['refresh'])
             print(data['access'])
         else:
+            data['message'] = response.json()['detail']
+            print("->>>>>>",data)
             print('(!) Não foi possível logar, erro: ', response)
+        
         return data
     
     def setToken(self, token):
@@ -56,6 +63,7 @@ class Suap:
             'picture': response['url_foto_75x100'],
             'department': response['tipo_vinculo'],
             'registration': response['matricula'],
+            'success': True
         }
 
         return data
