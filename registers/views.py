@@ -15,7 +15,7 @@ class RegistersView(ListView):
     allow_empty = True
     queryset = Item.objects.all()
     ordering = ['-id']
-    paginate_by = 10
+    paginate_by = 1
 
     STATUS_CHOICES = {
         'Lost': 'Perdido',
