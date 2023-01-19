@@ -7,10 +7,17 @@ search.addEventListener('change', ({ target }) => {
     const params = new Proxy(new URLSearchParams(window.location.search), {
         get: (searchParams, prop) => searchParams.get(prop),
     });
-    console.log(params.page)
+    console.log(params.keyword)
+    console.log(decodeURI(url.href))
+    console.log(decodeURI(url.href).replace("keyword=" + params.keyword, "keyword=" + searchText))
 
-    if (params?.keyword) {
-        window.location.href = url.href.replace(params.keyword, searchText)
+    if (url.href.includes('keyword')) {
+        if (params?.keyword) {
+            const defaultUrl = params?.order ? url.href.replace('&order', '?order') : url.href;
+            window.location.href = decodeURI(defaultUrl).replace("/search?keyword=" + params.keyword, "")
+        } else {
+            window.location.href = decodeURI(url.href).replace("keyword=" + params.keyword, "keyword=" + searchText)
+        }
     } else {
         const prefix = url.origin + url.pathname
         window.location.href = url.href.includes('order') ?

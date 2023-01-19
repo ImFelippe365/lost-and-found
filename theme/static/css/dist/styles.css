@@ -1511,6 +1511,11 @@ select{
      object-fit: cover;
 }
 
+.object-right{
+  -o-object-position: right;
+     object-position: right;
+}
+
 .p-2{
   padding: 0.5rem;
 }
@@ -1787,10 +1792,6 @@ select{
 .outline-none{
   outline: 2px solid transparent;
   outline-offset: 2px;
-}
-
-.outline{
-  outline-style: solid;
 }
 
 .filter{

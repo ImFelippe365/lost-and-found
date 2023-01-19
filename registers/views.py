@@ -85,10 +85,19 @@ class RegistersSearchResultsView(ListView):
     }
 
     def get_queryset(self): 
-        query = self.request.GET.get("keyword")
+        search_query = self.request.GET.get("keyword")
+        order_query = self.request.GET.get("order")
+        order = '-id' if order_query == 'desc' else 'id'
+
         object_list = Item.objects.filter(
-            Q(name__icontains=query)
+            Q(name__icontains=search_query)
         )
+
+        if search_query is None or search_query == '':
+            object_list = Item.objects.filter(status='Lost')
+        
+        if order_query is not None:
+            object_list = object_list.order_by(order)
         return object_list
     
     def get_context_data(self, **kwargs):

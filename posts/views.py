@@ -64,10 +64,19 @@ class ItemsSearchResultsView(ListView):
     }
 
     def get_queryset(self):
-        query = self.request.GET.get("keyword")
+        search_query = self.request.GET.get("keyword")
+        order_query = self.request.GET.get("order")
+        order = '-id' if order_query == 'desc' else 'id'
+
         object_list = Item.objects.filter(
-            Q(name__icontains=query) & Q(status='Lost')
+            Q(name__icontains=search_query) & Q(status='Lost')
         )
+
+        if search_query is None or search_query == '':
+            object_list = Item.objects.filter(status='Lost')
+        
+        if order_query is not None:
+            object_list = object_list.order_by(order)
         return object_list
 
     def get_context_data(self, **kwargs):
@@ -101,12 +110,21 @@ class DeliveredItemsSearchResultsView(ListView):
     }
 
     def get_queryset(self):
-        query = self.request.GET.get("keyword")
-        object_list = Item.objects.filter(
-            Q(name__icontains=query) & Q(status='Delivered')
-        )
-        return object_list
+        search_query = self.request.GET.get("keyword")
+        order_query = self.request.GET.get("order")
+        order = '-id' if order_query == 'desc' else 'id'
 
+        object_list = Item.objects.filter(
+            Q(name__icontains=search_query) & Q(status='Delivered')
+        )
+
+        if search_query is None or search_query == '':
+            object_list = Item.objects.filter(status='Delivered')
+        
+        if order_query is not None:
+            object_list = object_list.order_by(order)
+        return object_list
+    
     def get_context_data(self, **kwargs):
         context = super(DeliveredItemsSearchResultsView,
                         self).get_context_data(**kwargs)
@@ -138,10 +156,19 @@ class ExpiredItemsSearchResultsView(ListView):
     }
 
     def get_queryset(self):
-        query = self.request.GET.get("keyword")
+        search_query = self.request.GET.get("keyword")
+        order_query = self.request.GET.get("order")
+        order = '-id' if order_query == 'desc' else 'id'
+
         object_list = Item.objects.filter(
-            Q(name__icontains=query) & Q(status='Expired')
+            Q(name__icontains=search_query) & Q(status='Expired')
         )
+
+        if search_query is None or search_query == '':
+            object_list = Item.objects.filter(status='Expired')
+        
+        if order_query is not None:
+            object_list = object_list.order_by(order)
         return object_list
 
     def get_context_data(self, **kwargs):
@@ -158,8 +185,7 @@ class ExpiredItemsSearchResultsView(ListView):
             item.status = self.STATUS_CHOICES[item.status]
 
         context['object_list'] = context_list
-        context.update({'activeTab': 'expired-items',
-                       'search': self.request.GET.get('keyword')})
+        context.update({'activeTab': 'expired-items','search': self.request.GET.get('keyword')})
         return context
 
 
