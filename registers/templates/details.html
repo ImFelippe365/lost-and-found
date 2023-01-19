@@ -22,17 +22,12 @@
 <section class="w-full mt-6">
     <div class="flex items-center flex-wrap md:flex-nowrap">
         {% if object.image %}
-        <div>
-            <div class="mx-auto">
-                <img class="rounded-full object-cover h-[320px]" src="{{ object.image.url }}">
-            </div>
+        <div class="mx-auto">
+            <img class="rounded-full object-cover w-[320px] h-[320px] mx-auto" src="{{ object.image.url }}">
         </div>
         {% else %}
-        <div>
-            <div class="mx-auto">
-                <img class="rounded-full object-cover" src="{% static 'image/without-image.jpg' %}">
-            </div>
-        </div>
+        <img class="object-cover w-[260px] !h-[260px] rounded-full mx-auto"
+            src="{% static 'image/without-image.jpg'  %}" alt="Foto do item" />
         {% endif %}
 
         <div class="flex flex-col flex-wrap gap-3 mx-9 my-7 w-[80%]">

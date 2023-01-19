@@ -51,7 +51,7 @@ class ItemsView(ListView):
         return context
 
 
-class ItemsSeachResultsView(ListView):
+class ItemsSearchResultsView(ListView):
     template_name = 'items.html'
     allow_empty = True
     # queryset = Item.objects.all().filter(status='Lost')
@@ -80,7 +80,7 @@ class ItemsSeachResultsView(ListView):
         return object_list
 
     def get_context_data(self, **kwargs):
-        context = super(ItemsSeachResultsView, self).get_context_data(**kwargs)
+        context = super(ItemsSearchResultsView, self).get_context_data(**kwargs)
         context_list = context['object_list']
 
         for item in context_list:
@@ -97,7 +97,7 @@ class ItemsSeachResultsView(ListView):
         return context
 
 
-class DeliveredItemsSeachResultsView(ListView):
+class DeliveredItemsSearchResultsView(ListView):
     template_name = 'delivered_items.html'
     allow_empty = True
     # queryset = Item.objects.all().filter(status='Lost')
@@ -126,7 +126,7 @@ class DeliveredItemsSeachResultsView(ListView):
         return object_list
     
     def get_context_data(self, **kwargs):
-        context = super(DeliveredItemsSeachResultsView,
+        context = super(DeliveredItemsSearchResultsView,
                         self).get_context_data(**kwargs)
         context_list = context['object_list']
 
@@ -143,7 +143,7 @@ class DeliveredItemsSeachResultsView(ListView):
         return context
 
 
-class ExpiredItemsSeachResultsView(ListView):
+class ExpiredItemsSearchResultsView(ListView):
     template_name = 'expired_items.html'
     allow_empty = True
     # queryset = Item.objects.all().filter(status='Lost')
@@ -172,7 +172,7 @@ class ExpiredItemsSeachResultsView(ListView):
         return object_list
 
     def get_context_data(self, **kwargs):
-        context = super(ExpiredItemsSeachResultsView,
+        context = super(ExpiredItemsSearchResultsView,
                         self).get_context_data(**kwargs)
         context_list = context['object_list']
 
