@@ -24,9 +24,6 @@
                 <div class="flex flex-col w-full sm:w-[45%]">
                     <label class="text-gray font-semibold" for="{{ form.when_was_found.id_for_label }}."> {{ form.when_was_found.label }}</label>
                     {{form.when_was_found}}
-                    {% if item.when_was_found %}
-                    <p class="text-gray text-sm mt-1">Data atual: <i>{{item.when_was_found}}</i></p>
-                    {% endif %}
                     {% for error in form.errors.as_data.when_was_found %}
                         <p class="text-error-color text-sm mt-1">>> {{error.message}}</p>
                     {% endfor %}
@@ -82,9 +79,6 @@
                 <div class="flex flex-col w-full sm:w-[45%]">
                     <label for="{{ form.withdrawal_deadline.id_for_label }}" class="text-gray font-semibold">{{ form.withdrawal_deadline.label }}</label>
                     {{form.withdrawal_deadline}}
-                    {% if item.withdrawal_deadline %}
-                    <p class="text-gray text-sm mt-1">Data atual: <i>{{item.withdrawal_deadline}}</i></p>
-                    {% endif %}
                     {% for error in form.errors.as_data.withdrawal_deadline %}
                         <p class="text-error-color text-sm mt-1">>> {{error.message}}</p>
                     {% endfor %}

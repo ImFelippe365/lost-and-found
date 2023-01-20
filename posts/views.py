@@ -305,9 +305,9 @@ class UpdateItemView(UpdateView):
             return redirect(reverse_lazy('login'))
 
         item = get_object_or_404(Item, pk=pk)
-        item.when_was_found = item.when_was_found.strftime("%d/%m/%Y")
+        item.when_was_found = item.when_was_found.strftime("%Y-%m-%d")
         item.withdrawal_deadline = item.withdrawal_deadline.strftime(
-            "%d/%m/%Y")
+            "%Y-%m-%d")
         item.image.name = item.image.name[6:]
 
         if item.status == 'Delivered':
