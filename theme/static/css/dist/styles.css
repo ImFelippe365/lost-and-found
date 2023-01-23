@@ -791,6 +791,78 @@ select{
   left: 54%;
 }
 
+.right-\[50px\]{
+  right: 50px;
+}
+
+.right-\[100px\]{
+  right: 100px;
+}
+
+.right-\[200px\]{
+  right: 200px;
+}
+
+.right-24{
+  right: 6rem;
+}
+
+.right-20{
+  right: 5rem;
+}
+
+.right-16{
+  right: 4rem;
+}
+
+.right-12{
+  right: 3rem;
+}
+
+.right-32{
+  right: 8rem;
+}
+
+.right-36{
+  right: 9rem;
+}
+
+.right-3{
+  right: 0.75rem;
+}
+
+.right-8{
+  right: 2rem;
+}
+
+.right-\[\]{
+  right: ;
+}
+
+.right-\[10rem\]{
+  right: 10rem;
+}
+
+.right-\[9rem\]{
+  right: 9rem;
+}
+
+.left-0{
+  left: 0px;
+}
+
+.right-1\/2{
+  right: 50%;
+}
+
+.left-1\/2{
+  left: 50%;
+}
+
+.-left-1\/2{
+  left: -50%;
+}
+
 .z-10{
   z-index: 10;
 }
@@ -828,6 +900,46 @@ select{
   margin-bottom: 1.75rem;
 }
 
+.mx-32{
+  margin-left: 8rem;
+  margin-right: 8rem;
+}
+
+.mx-36{
+  margin-left: 9rem;
+  margin-right: 9rem;
+}
+
+.mx-\[100\%\]{
+  margin-left: 100%;
+  margin-right: 100%;
+}
+
+.mx-\[46px\]{
+  margin-left: 46px;
+  margin-right: 46px;
+}
+
+.mx-\[42px\]{
+  margin-left: 42px;
+  margin-right: 42px;
+}
+
+.mx-\[38px\]{
+  margin-left: 38px;
+  margin-right: 38px;
+}
+
+.mx-\[36px\]{
+  margin-left: 36px;
+  margin-right: 36px;
+}
+
+.mx-40{
+  margin-left: 10rem;
+  margin-right: 10rem;
+}
+
 .mb-2{
   margin-bottom: 0.5rem;
 }
@@ -850,6 +962,10 @@ select{
 
 .mb-4{
   margin-bottom: 1rem;
+}
+
+.mt-2{
+  margin-top: 0.5rem;
 }
 
 .mt-4{
@@ -882,10 +998,6 @@ select{
 
 .mb-1{
   margin-bottom: 0.25rem;
-}
-
-.mt-2{
-  margin-top: 0.5rem;
 }
 
 .mt-3{
@@ -950,6 +1062,14 @@ select{
 
 .hidden{
   display: none;
+}
+
+.aspect-1{
+  aspect-ratio: 1;
+}
+
+.aspect-\[1\/1\]{
+  aspect-ratio: 1/1;
 }
 
 .h-screen{
@@ -1022,6 +1142,10 @@ select{
 
 .h-\[280px\]{
   height: 280px;
+}
+
+.h-\[260px\]{
+  height: 260px;
 }
 
 .h-\[320px\]{
@@ -1138,6 +1262,14 @@ select{
 
 .w-\[100\%\]{
   width: 100%;
+}
+
+.w-16{
+  width: 4rem;
+}
+
+.w-20{
+  width: 5rem;
 }
 
 .min-w-\[200px\]{
@@ -1378,6 +1510,10 @@ select{
   border-bottom-left-radius: 1rem;
 }
 
+.rounded-br-2xl{
+  border-bottom-right-radius: 1rem;
+}
+
 .border-\[1px\]{
   border-width: 1px;
 }
@@ -1475,6 +1611,11 @@ select{
 
 .bg-transparent{
   background-color: transparent;
+}
+
+.bg-light-gray{
+  --tw-bg-opacity: 1;
+  background-color: rgb(217 217 217 / var(--tw-bg-opacity));
 }
 
 .bg-black{
@@ -1779,10 +1920,6 @@ select{
 .outline-none{
   outline: 2px solid transparent;
   outline-offset: 2px;
-}
-
-.outline{
-  outline-style: solid;
 }
 
 .filter{

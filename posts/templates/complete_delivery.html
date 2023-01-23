@@ -14,10 +14,12 @@
     <h3 class="font-bold text-black text-xl">Dados do objeto</h3>
     <div class="bg-primary rounded-2xl flex justify-evenly p-2 mt-3 flex-wrap md:flex-nowrap">
         {% if item.image %}
-        <div>
-            <div class="my-6 ml-6">
-                <img class="rounded-full object-cover h-[280px]" src="{{item.image.url}}">
-            </div>
+        <div class="my-6 ml-6">
+            <img class="rounded-full object-cover h-[280px]" src="{{item.image.url}}">
+        </div>
+        {% else %}
+        <div class="w-[260px] h-[260px] p-2">
+            {% include 'without_image.html' with class='rounded-full' %}
         </div>
         {% endif %}
 

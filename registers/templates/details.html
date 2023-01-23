@@ -26,8 +26,9 @@
             <img class="rounded-full object-cover w-[320px] h-[320px] mx-auto" src="{{ object.image.url }}">
         </div>
         {% else %}
-        <img class="object-cover w-[260px] !h-[260px] rounded-full mx-auto"
-            src="{% static 'image/without-image.jpg'  %}" alt="Foto do item" />
+        <div class="w-[260px] h-[260px] p-2 mx-auto">
+            {% include 'without_image.html' with class='rounded-full' %}
+        </div>
         {% endif %}
 
         <div class="flex flex-col flex-wrap gap-3 mx-9 my-7 w-[80%]">
