@@ -9,6 +9,8 @@ from django.db.models import Q
 from django.contrib import messages
 import datetime
 from django.forms import ValidationError
+import re
+
 
 def isAuthenticated(request):
     token = request.session.get('token')
@@ -131,7 +133,6 @@ class DeliveredItemsSearchResultsView(ListView):
         context_list = context['object_list']
 
         for item in context_list:
-            # self.set_automatic_status(item.id)
             item.when_was_found = item.when_was_found.strftime("%d/%m/%Y")
             item.withdrawal_deadline = item.withdrawal_deadline.strftime(
                 "%d/%m/%Y")
@@ -379,6 +380,9 @@ class CompleteDeliveryView(CreateView):
         item = get_object_or_404(Item, id=self.kwargs['pk'])
         name = form.cleaned_data['name']
         cpf = form.cleaned_data['cpf']
+        cpf = re.sub(r'\.|\-', '', cpf)
+
+        '''verificar se apenas números foram inseridos'''
 
         user_object = self.request.session.get('user')
 
