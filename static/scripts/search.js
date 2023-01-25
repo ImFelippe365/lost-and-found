@@ -1,29 +1,47 @@
+function teste() {
+    console.log('1111111111')
+}
+
 const search = document.getElementById('searchBar')
 let url = window.location;
 
-search.addEventListener('change', ({ target }) => {
-    const searchText = target.value;
+search.addEventListener('keypress', ({ target }) => {
+    const searchText = target.value.toUpperCase();
+    const items = document.getElementById('itemsContainer');
+    const children = [...items.children]
 
-    const params = new Proxy(new URLSearchParams(window.location.search), {
-        get: (searchParams, prop) => searchParams.get(prop),
-    });
-    console.log(params.keyword)
-    console.log(decodeURI(url.href))
-    console.log(decodeURI(url.href).replace("keyword=" + params.keyword, "keyword=" + searchText))
-
-    if (url.href.includes('keyword')) {
-        if (params?.keyword) {
-            const defaultUrl = params?.order ? url.href.replace('&order', '?order') : url.href;
-            window.location.href = decodeURI(defaultUrl).replace("/search?keyword=" + params.keyword, "")
+    children.forEach(item => {
+        itemName = item.getAttribute('data-name');
+        
+        if (itemName.toUpperCase().includes(searchText)) {
+            item.setAttribute('style', 'display: block;')
         } else {
-            window.location.href = decodeURI(url.href).replace("keyword=" + params.keyword, "keyword=" + searchText)
+            item.setAttribute('style', 'display: none;')
         }
-    } else {
-        const prefix = url.origin + url.pathname
-        window.location.href = url.href.includes('order') ?
-            prefix + '/search?keyword=' + searchText + url.search.replace('?', '&') :
-            prefix + '/search?keyword=' + searchText
-    }
+    });
+
+
+
+    // const params = new Proxy(new URLSearchParams(window.location.search), {
+    //     get: (searchParams, prop) => searchParams.get(prop),
+    // });
+    // console.log(params.keyword)
+    // console.log(decodeURI(url.href))
+    // console.log(decodeURI(url.href).replace("keyword=" + params.keyword, "keyword=" + searchText))
+
+    // if (url.href.includes('keyword')) {
+    //     if (params?.keyword) {
+    //         const defaultUrl = params?.order ? url.href.replace('&order', '?order') : url.href;
+    //         window.location.href = decodeURI(defaultUrl).replace("/search?keyword=" + params.keyword, "")
+    //     } else {
+    //         window.location.href = decodeURI(url.href).replace("keyword=" + params.keyword, "keyword=" + searchText)
+    //     }
+    // } else {
+    //     const prefix = url.origin + url.pathname
+    //     window.location.href = url.href.includes('order') ?
+    //         prefix + '/search?keyword=' + searchText + url.search.replace('?', '&') :
+    //         prefix + '/search?keyword=' + searchText
+    // }
 
 })
 

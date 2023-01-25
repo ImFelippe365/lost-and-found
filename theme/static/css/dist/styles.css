@@ -775,8 +775,12 @@ select{
   bottom: 3rem;
 }
 
-.right-\[25\%\]{
-  right: 25%;
+.left-1\/2{
+  left: 50%;
+}
+
+.-left-1\/2{
+  left: -50%;
 }
 
 .right-\[54\%\]{
@@ -791,78 +795,6 @@ select{
   left: 54%;
 }
 
-.right-\[50px\]{
-  right: 50px;
-}
-
-.right-\[100px\]{
-  right: 100px;
-}
-
-.right-\[200px\]{
-  right: 200px;
-}
-
-.right-24{
-  right: 6rem;
-}
-
-.right-20{
-  right: 5rem;
-}
-
-.right-16{
-  right: 4rem;
-}
-
-.right-12{
-  right: 3rem;
-}
-
-.right-32{
-  right: 8rem;
-}
-
-.right-36{
-  right: 9rem;
-}
-
-.right-3{
-  right: 0.75rem;
-}
-
-.right-8{
-  right: 2rem;
-}
-
-.right-\[\]{
-  right: ;
-}
-
-.right-\[10rem\]{
-  right: 10rem;
-}
-
-.right-\[9rem\]{
-  right: 9rem;
-}
-
-.left-0{
-  left: 0px;
-}
-
-.right-1\/2{
-  right: 50%;
-}
-
-.left-1\/2{
-  left: 50%;
-}
-
-.-left-1\/2{
-  left: -50%;
-}
-
 .z-10{
   z-index: 10;
 }
@@ -873,6 +805,18 @@ select{
 
 .m-auto{
   margin: auto;
+}
+
+.m-8{
+  margin: 2rem;
+}
+
+.m-4{
+  margin: 1rem;
+}
+
+.m-6{
+  margin: 1.5rem;
 }
 
 .mx-auto{
@@ -900,44 +844,14 @@ select{
   margin-bottom: 1.75rem;
 }
 
-.mx-32{
-  margin-left: 8rem;
-  margin-right: 8rem;
+.mx-4{
+  margin-left: 1rem;
+  margin-right: 1rem;
 }
 
-.mx-36{
-  margin-left: 9rem;
-  margin-right: 9rem;
-}
-
-.mx-\[100\%\]{
-  margin-left: 100%;
-  margin-right: 100%;
-}
-
-.mx-\[46px\]{
-  margin-left: 46px;
-  margin-right: 46px;
-}
-
-.mx-\[42px\]{
-  margin-left: 42px;
-  margin-right: 42px;
-}
-
-.mx-\[38px\]{
-  margin-left: 38px;
-  margin-right: 38px;
-}
-
-.mx-\[36px\]{
-  margin-left: 36px;
-  margin-right: 36px;
-}
-
-.mx-40{
-  margin-left: 10rem;
-  margin-right: 10rem;
+.my-4{
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 .mb-2{
@@ -962,10 +876,6 @@ select{
 
 .mb-4{
   margin-bottom: 1rem;
-}
-
-.mt-2{
-  margin-top: 0.5rem;
 }
 
 .mt-4{
@@ -1000,6 +910,10 @@ select{
   margin-bottom: 0.25rem;
 }
 
+.mt-2{
+  margin-top: 0.5rem;
+}
+
 .mt-3{
   margin-top: 0.75rem;
 }
@@ -1022,6 +936,18 @@ select{
 
 .mb-6{
   margin-bottom: 1.5rem;
+}
+
+.ml-2{
+  margin-left: 0.5rem;
+}
+
+.ml-7{
+  margin-left: 1.75rem;
+}
+
+.ml-8{
+  margin-left: 2rem;
 }
 
 .block{
@@ -1064,10 +990,6 @@ select{
   display: none;
 }
 
-.aspect-1{
-  aspect-ratio: 1;
-}
-
 .aspect-\[1\/1\]{
   aspect-ratio: 1/1;
 }
@@ -1092,16 +1014,16 @@ select{
   height: 260px !important;
 }
 
+.h-\[260px\]{
+  height: 260px;
+}
+
 .h-5{
   height: 1.25rem;
 }
 
 .h-full{
   height: 100%;
-}
-
-.\!h-full{
-  height: 100% !important;
 }
 
 .h-\[70vh\]{
@@ -1142,10 +1064,6 @@ select{
 
 .h-\[280px\]{
   height: 280px;
-}
-
-.h-\[260px\]{
-  height: 260px;
 }
 
 .h-\[320px\]{
@@ -1202,6 +1120,10 @@ select{
 
 .w-\[240px\]{
   width: 240px;
+}
+
+.w-20{
+  width: 5rem;
 }
 
 .w-\[60\%\]{
@@ -1262,14 +1184,6 @@ select{
 
 .w-\[100\%\]{
   width: 100%;
-}
-
-.w-16{
-  width: 4rem;
-}
-
-.w-20{
-  width: 5rem;
 }
 
 .min-w-\[200px\]{
@@ -1656,6 +1570,10 @@ select{
   padding: 1rem;
 }
 
+.p-6{
+  padding: 1.5rem;
+}
+
 .py-8{
   padding-top: 2rem;
   padding-bottom: 2rem;
@@ -1739,6 +1657,11 @@ select{
 .py-5{
   padding-top: 1.25rem;
   padding-bottom: 1.25rem;
+}
+
+.py-6{
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
 }
 
 .pl-5{
