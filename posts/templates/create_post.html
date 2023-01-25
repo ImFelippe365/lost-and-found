@@ -60,12 +60,9 @@
                         <img src="{% static 'icon/carbon_upload.svg' %}" class="w-5" />
                         Clique para fazer o upload
                     </label>
-                    {{ form.image }}
-                    {% if item.image %}
-                    <p class="text-gray text-sm mt-1">Arquivo atual: <i>{{item.image.name}}</i></p>
-                    {% endif %}
+                    {{ form.image }} 
+                    <span id="image_name" class="text-gray text-sm mt-1"></span>
                 </div>
-
 
             </fieldset>
 
@@ -93,4 +90,7 @@
         </form>
     </section>
 </section>
+
+<script src="{% static 'scripts/imageInput.js'%}"></script>
+
 {% endblock %}
