@@ -12,15 +12,15 @@ search.addEventListener('keypress', ({ target }) => {
 
     children.forEach(item => {
         itemName = item.getAttribute('data-name');
-        
+
         if (itemName.toUpperCase().includes(searchText)) {
-            item.setAttribute('style', 'display: block;')
+            item.setAttribute('style', 'display: flex;')
         } else {
             item.setAttribute('style', 'display: none;')
         }
     });
 
-
+    items.innerHTML = children
 
     // const params = new Proxy(new URLSearchParams(window.location.search), {
     //     get: (searchParams, prop) => searchParams.get(prop),
