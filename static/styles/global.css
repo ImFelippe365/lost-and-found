@@ -1,0 +1,18 @@
+.mobileItemsList {
+    display: none;
+    
+}
+
+.desktopItemsList {
+    display: block;
+}
+
+@media not all and (min-width: 1280px) {
+    .mobileItemsList {
+        display: block !important;
+    }
+
+    .desktopItemsList {
+        display: none !important;
+    }
+}

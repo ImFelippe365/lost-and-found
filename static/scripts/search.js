@@ -2,18 +2,29 @@ const search = document.getElementById('searchBar')
 let url = window.location;
 
 search.addEventListener('input', ({ target }) => {
-    const searchText = target.value.normalize('NFC').toUpperCase();
-    const items = document.getElementById('itemsContainer').children;
+    let searchText = target.value.normalize('NFC').toUpperCase();
+    const itemsContainer = document.getElementsByClassName('itemsContainer');
+    let afterDisplay = ''
 
-    console.log(searchText)
+    let items = itemsContainer[0].children
+    if (itemsContainer.length > 1) {
+        if (getComputedStyle(itemsContainer[0], null).display == 'none') {
+            items = itemsContainer[1].children;
+            afterDisplay = 'block';
+        } else {
+            items = itemsContainer[0].children;
+            afterDisplay = 'flex';
+        }
+    }
+
     for (let index = 0; index < items.length; index++) {
         const item = items[index];
         let itemName = item.getAttribute('data-name');
         let isRegister = item.getAttribute('data-page') === 'register';
         itemName = itemName.normalize('NFC').toUpperCase();
-
+        console.log(itemName.normalize('NFD').toUpperCase())
         if (itemName.includes(searchText)) {
-            item.style.display = isRegister ? 'table-row' : 'flex'
+            item.style.display = isRegister ? 'table-row' : afterDisplay
         } else {
             item.style.display = 'none'
         }
@@ -60,7 +71,7 @@ if (window.location.href.includes('order')) {
 order.addEventListener('change', ({ target }) => {
     const selectText = target.value;
     const items = document.getElementById('itemsContainer');
-    
+
     const itemsList = [...items.children]
 
     itemsList.sort((a, b) => {
