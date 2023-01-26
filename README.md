@@ -31,23 +31,15 @@ A.P.O.O (Análise de Projeto Orientado a Objeto) e Desenvolvimento de Sistemas W
 
 ## A fazer
 
-- [x] Criar formulários usando Django
-- [x] Organizar melhor as aplicações
-- [x] Autenticação via SUAP
-- [x] Configurar permissões do usuário (entrar nas páginas)
-- [x] Ajustar botões de cancelar dos formulários
-- [x] Inserir ícone do site
-- [x] Sistema de buscar e ordenar itens
-- [x] Criar tela de confirmação para apagar item
-- [x] Mostrar avisos de erros e sucessos ao tentar logar
-- [x] Compartilhar postagem
-- [x] Criar página de erro 404
-- [x] Substitutir página padrão de erro 404
-- [x] Adicionar CPF a documentação e o campo do mesmo na página de "definir como entregue"
-- [x] Criar imagem no figma e implementar para os itens que não tem foto
 - [ ] Restringir acesso apenas para os funcionários
 - [ ] Alterar estilo da data de limite para retirada
-- [ ] Expirar itens de acordo com data
+
+## Futuras possíveis melhorias
+
+- [ ] Adicionar mais opções de ordenação
+- [ ] Mais opções de pesquisas pelo dado do item nos registros
+- [ ] Adicionar página para instruções de como achar o item (ou um FAQ)
+- [ ] Gerenciamento de acesso para alunos bolsistas
 
 ## Instalação
 
