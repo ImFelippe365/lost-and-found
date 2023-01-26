@@ -2,7 +2,7 @@ const search = document.getElementById('searchBar')
 let url = window.location;
 
 search.addEventListener('input', ({ target }) => {
-    let searchText = target.value.normalize('NFC').toUpperCase();
+    let searchText = target.value.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toUpperCase();
     const itemsContainer = document.getElementsByClassName('itemsContainer');
     let afterDisplay = ''
 
@@ -19,10 +19,9 @@ search.addEventListener('input', ({ target }) => {
 
     for (let index = 0; index < items.length; index++) {
         const item = items[index];
-        let itemName = item.getAttribute('data-name');
+        let itemName = item.getAttribute('data-name').normalize('NFD').replace(/[\u0300-\u036f]/g, "").toUpperCase();
         let isRegister = item.getAttribute('data-page') === 'register';
-        itemName = itemName.normalize('NFC').toUpperCase();
-        console.log(itemName.normalize('NFD').toUpperCase())
+
         if (itemName.includes(searchText)) {
             item.style.display = isRegister ? 'table-row' : afterDisplay
         } else {
@@ -44,7 +43,6 @@ order.addEventListener('change', ({ target }) => {
         itemsList = [...items[1].children];
         platform = '#mobileItemsList'
     }
-    console.log(itemsList)
 
     itemsList.sort((a, b) => {
         let a_date = new Date(a.getAttribute('data-date'));
