@@ -1,82 +1,68 @@
-function teste() {
-    console.log('1111111111')
-}
-
 const search = document.getElementById('searchBar')
 let url = window.location;
 
-search.addEventListener('keypress', ({ target }) => {
-    const searchText = target.value.toUpperCase();
-    const items = document.getElementById('itemsContainer');
-    const children = [...items.children]
+search.addEventListener('input', ({ target }) => {
+    let searchText = target.value.normalize('NFC').toUpperCase();
+    const itemsContainer = document.getElementsByClassName('itemsContainer');
+    let afterDisplay = ''
 
-    children.forEach(item => {
-        itemName = item.getAttribute('data-name');
-
-        if (itemName.toUpperCase().includes(searchText)) {
-            item.setAttribute('style', 'display: flex;')
+    let items = itemsContainer[0].children
+    if (itemsContainer.length > 1) {
+        if (getComputedStyle(itemsContainer[0], null).display == 'none') {
+            items = itemsContainer[1].children;
+            afterDisplay = 'block';
         } else {
-            item.setAttribute('style', 'display: none;')
+            items = itemsContainer[0].children;
+            afterDisplay = 'flex';
         }
-    });
+    }
 
-    items.innerHTML = children
-
-    // const params = new Proxy(new URLSearchParams(window.location.search), {
-    //     get: (searchParams, prop) => searchParams.get(prop),
-    // });
-    // console.log(params.keyword)
-    // console.log(decodeURI(url.href))
-    // console.log(decodeURI(url.href).replace("keyword=" + params.keyword, "keyword=" + searchText))
-
-    // if (url.href.includes('keyword')) {
-    //     if (params?.keyword) {
-    //         const defaultUrl = params?.order ? url.href.replace('&order', '?order') : url.href;
-    //         window.location.href = decodeURI(defaultUrl).replace("/search?keyword=" + params.keyword, "")
-    //     } else {
-    //         window.location.href = decodeURI(url.href).replace("keyword=" + params.keyword, "keyword=" + searchText)
-    //     }
-    // } else {
-    //     const prefix = url.origin + url.pathname
-    //     window.location.href = url.href.includes('order') ?
-    //         prefix + '/search?keyword=' + searchText + url.search.replace('?', '&') :
-    //         prefix + '/search?keyword=' + searchText
-    // }
+    for (let index = 0; index < items.length; index++) {
+        const item = items[index];
+        let itemName = item.getAttribute('data-name');
+        let isRegister = item.getAttribute('data-page') === 'register';
+        itemName = itemName.normalize('NFC').toUpperCase();
+        console.log(itemName.normalize('NFD').toUpperCase())
+        if (itemName.includes(searchText)) {
+            item.style.display = isRegister ? 'table-row' : afterDisplay
+        } else {
+            item.style.display = 'none'
+        }
+    }
 
 })
 
 
 const order = document.getElementById('orderId')
-const selects = [...order.children]
-
-if (window.location.href.includes('order')) {
-    const orderValue = window.location.href.includes('asc') ? 'asc' : 'desc'
-    selects.forEach(select => {
-        if (select.value === orderValue) {
-            select.selected = true
-        } else {
-            select.selected = false
-        }
-    });
-}
 
 order.addEventListener('change', ({ target }) => {
-    const searchText = target.value;
+    const selectText = target.value;
+    const items = document.getElementsByClassName('itemsContainer');
+    let itemsList = [...items[0].children]
+    let platform = '#desktopItemsList'
+    if (items.length > 1 && getComputedStyle(items[0], null).display == 'none') {
+        itemsList = [...items[1].children];
+        platform = '#mobileItemsList'
+    }
+    console.log(itemsList)
 
-    hasOrder = url.href.includes('order');
+    itemsList.sort((a, b) => {
+        let a_date = new Date(a.getAttribute('data-date'));
+        let b_date = new Date(b.getAttribute('data-date'));
 
-    if (hasOrder) {
-        if (url.href.includes('keyword')) {
-            url.href.replace('?order', '&order')
+        console.log(a_date, b_date)
+        if (a_date < b_date) {
+            return selectText == 'desc' ? 1 : -1
+        }
+        if (b_date < a_date) {
+            return selectText == 'desc' ? -1 : 1
         }
 
-        const hrefOrdering =
-            url.href.includes('asc') ?
-                url.href.replace('asc', searchText) :
-                url.href.replace('desc', searchText)
+        return 0
+    })
 
-        window.location.href = hrefOrdering
-    } else {
-        window.location.href = url.href.includes('keyword') || url.href.includes('page') ? url.href + '&order=' + searchText : url.href + '?order=' + searchText
-    }
+    var itemsContainer = document.querySelector(platform);
+    itemsList.forEach(item => {
+        itemsContainer.appendChild(item);
+    });
 })

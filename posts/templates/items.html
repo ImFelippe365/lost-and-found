@@ -28,15 +28,21 @@
 </header>
 
 {% include 'messages.html' %}
-<section id="itemsContainer">
+<section data-platform="desktop" class="itemsContainer desktopItemsList" id="desktopItemsList">
     {% for item in object_list %}
     {% include 'card.html' %}
     {% endfor %}
 </section>
 
-<script src="{% static 'scripts/search.js'%}"></script>
+<section class="itemsContainer mobileItemsList" id="mobileItemsList">
+    {% for item in object_list %}
+    {% include 'card_mobile.html' %}
+    {% endfor %}
+</section>
+
 <script src="{% static 'scripts/share.js'%}"></script>
 <script src="{% static 'scripts/modal.js' %}"></script>
+<script src="{% static 'scripts/search.js'%}"></script>
 
 <script>
     function toggleMenu(id) {

@@ -15,9 +15,15 @@
     </section>
 </section>
 
-<section>
+<section data-platform="desktop" class="itemsContainer desktopItemsList" id="desktopItemsList">
     {% for item in object_list %}
     {% include 'card.html' %}
+    {% endfor %}
+</section>
+
+<section class="itemsContainer mobileItemsList" id="mobileItemsList">
+    {% for item in object_list %}
+    {% include 'card_mobile.html' %}
     {% endfor %}
 </section>
 
