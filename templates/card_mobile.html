@@ -1,6 +1,6 @@
 {% load static %}
 
-<div data-name="{{ item.name }}" data-date="{{ item.created_at }}" class="mt-8">
+<div data-name="{{ item.name }}" data-date="{{ item.updated_at }}" id="card_{{ item.id }}" class="mt-8">
     <section class="flex flex-row items-center justify-between border-[1px] border-light-gray rounded-t-lg px-2 py-1">
         <div class="flex flex-row gap-2 items-center">
             <span class="rounded-3xl font-bold text-[10px] text-white text-center h-5 px-3 py-0.5 {% if item.status == 'Entregue' %} bg-success-color

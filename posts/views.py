@@ -53,144 +53,6 @@ class ItemsView(ListView):
             {'activeTab': 'items', 'order': self.request.GET.get('order')})
         return context
 
-
-class ItemsSearchResultsView(ListView):
-    template_name = 'items.html'
-    allow_empty = True
-    # queryset = Item.objects.all().filter(status='Lost')
-    ordering = ['-id']
-
-    STATUS_CHOICES = {
-        'Lost': 'Perdido',
-        'Delivered': 'Entregue',
-        'Expired': 'Expirado'
-    }
-
-    def get_queryset(self):
-        search_query = self.request.GET.get("keyword")
-        order_query = self.request.GET.get("order")
-        order = '-id' if order_query == 'desc' else 'id'
-
-        object_list = Item.objects.filter(
-            Q(name__icontains=search_query) & Q(status='Lost')
-        )
-
-        if search_query is None or search_query == '':
-            object_list = Item.objects.filter(status='Lost')
-        
-        if order_query is not None:
-            object_list = object_list.order_by(order)
-        return object_list
-
-    def get_context_data(self, **kwargs):
-        context = super(ItemsSearchResultsView, self).get_context_data(**kwargs)
-        context_list = context['object_list']
-
-        for item in context_list:
-            # self.set_automatic_status(item.id)
-            item.when_was_found = item.when_was_found.strftime("%d/%m/%Y")
-            item.withdrawal_deadline = item.withdrawal_deadline.strftime(
-                "%d/%m/%Y")
-            item.shift = item.shift
-            item.status = self.STATUS_CHOICES[item.status]
-
-        context['object_list'] = context_list
-        context.update(
-            {'activeTab': 'items', 'search': self.request.GET.get('keyword')})
-        return context
-
-
-class DeliveredItemsSearchResultsView(ListView):
-    template_name = 'delivered_items.html'
-    allow_empty = True
-    # queryset = Item.objects.all().filter(status='Lost')
-    ordering = ['-id']
-
-    STATUS_CHOICES = {
-        'Lost': 'Perdido',
-        'Delivered': 'Entregue',
-        'Expired': 'Expirado'
-    }
-
-    def get_queryset(self):
-        search_query = self.request.GET.get("keyword")
-        order_query = self.request.GET.get("order")
-        order = '-id' if order_query == 'desc' else 'id'
-
-        object_list = Item.objects.filter(
-            Q(name__icontains=search_query) & Q(status='Delivered')
-        )
-
-        if search_query is None or search_query == '':
-            object_list = Item.objects.filter(status='Delivered')
-        
-        if order_query is not None:
-            object_list = object_list.order_by(order)
-        return object_list
-    
-    def get_context_data(self, **kwargs):
-        context = super(DeliveredItemsSearchResultsView,
-                        self).get_context_data(**kwargs)
-        context_list = context['object_list']
-
-        for item in context_list:
-            item.when_was_found = item.when_was_found.strftime("%d/%m/%Y")
-            item.withdrawal_deadline = item.withdrawal_deadline.strftime(
-                "%d/%m/%Y")
-            item.shift = item.shift
-            item.status = self.STATUS_CHOICES[item.status]
-
-        context['object_list'] = context_list
-        context.update({'activeTab': 'delivered-items', 'search': self.request.GET.get('keyword')})
-        return context
-
-
-class ExpiredItemsSearchResultsView(ListView):
-    template_name = 'expired_items.html'
-    allow_empty = True
-    # queryset = Item.objects.all().filter(status='Lost')
-    ordering = ['-id']
-
-    STATUS_CHOICES = {
-        'Lost': 'Perdido',
-        'Delivered': 'Entregue',
-        'Expired': 'Expirado'
-    }
-
-    def get_queryset(self):
-        search_query = self.request.GET.get("keyword")
-        order_query = self.request.GET.get("order")
-        order = '-id' if order_query == 'desc' else 'id'
-
-        object_list = Item.objects.filter(
-            Q(name__icontains=search_query) & Q(status='Expired')
-        )
-
-        if search_query is None or search_query == '':
-            object_list = Item.objects.filter(status='Expired')
-        
-        if order_query is not None:
-            object_list = object_list.order_by(order)
-        return object_list
-
-    def get_context_data(self, **kwargs):
-        context = super(ExpiredItemsSearchResultsView,
-                        self).get_context_data(**kwargs)
-        context_list = context['object_list']
-
-        for item in context_list:
-            # self.set_automatic_status(item.id)
-            item.when_was_found = item.when_was_found.strftime("%d/%m/%Y")
-            item.withdrawal_deadline = item.withdrawal_deadline.strftime(
-                "%d/%m/%Y")
-            item.shift = item.shift
-            item.status = self.STATUS_CHOICES[item.status]
-
-        context['object_list'] = context_list
-        context.update({'activeTab': 'expired-items','search': self.request.GET.get('keyword')})
-        return context
-
-
 class DeliveredItemsView(ListView):
     template_name = 'delivered_items.html'
     allow_empty = True
@@ -225,7 +87,6 @@ class DeliveredItemsView(ListView):
 
         return context
 
-
 class ExpiredItemsView(ListView):
     template_name = 'expired_items.html'
     allow_empty = True
@@ -259,7 +120,6 @@ class ExpiredItemsView(ListView):
         context.update({'activeTab': 'expired-items'})
 
         return context
-
 
 class CreateItemView(CreateView):
     model = Item

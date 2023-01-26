@@ -31,12 +31,15 @@
             class="itemsContainer table-row {% cycle 'bg-primary-hover' 'bg-background-color' %}"
             href="{% url 'details' item.id %}">
             <div class="h-full p-4 rounded-l-lg table-cell align-middle">
-                <div class="rounded-3xl inline font-bold text-xs text-white px-4 py-1 {% if item.status == 'Entregue' %} bg-success-color
-            {% elif item.status == 'Perdido' %}  
-            bg-error-color
-            {% else %}
-            bg-black
-        {% endif %}">
+                <div class="rounded-3xl inline font-bold text-xs text-white px-4 py-1 
+                    {% if item.status == 'Entregue' %} 
+                    bg-success-color
+                    {% elif item.status == 'Perdido' %}  
+                    bg-error-color
+                    {% else %}
+                    bg-black
+                    {% endif %}"
+                >
                     {{ item.status }}
                 </div>
             </div>
@@ -69,8 +72,8 @@
             class="hover:bg-primary-hover py-1 px-2 rounded-full transition-all font-bold text-black">1</a>
         <span class="font-bold text-black">...</span>
         {% endif %}
-        <span class="bg-primary py-1 px-2 rounded-t-full rounded-r-full rounded-b-full text-black font-bold">{{
-            page_obj.number }}</span>
+        <span class="bg-primary py-1 px-2 rounded-t-full rounded-r-full rounded-b-full text-black font-bold">
+            {{ page_obj.number }}</span>
     </div>
 
     {% if page_obj.has_next %}
