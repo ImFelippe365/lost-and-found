@@ -61,6 +61,7 @@ class CompleteDeliveryModelForm(forms.ModelForm):
             }),
             'cpf': forms.TextInput(attrs={
                 'class': "text-gray border-light-gray rounded-lg px-4",
-                'placeholder': 'Insira apenas números'
+                'placeholder': 'Insira apenas números',
+                'pattern': '[0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2}'
             }),
         }
