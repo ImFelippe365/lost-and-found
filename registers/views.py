@@ -33,6 +33,8 @@ class RegistersView(ListView):
         context_list = context['object_list']
 
         for item in context_list:
+            item.created_at = item.created_at.strftime("%Y/%m/%d")
+            item.updated_at = item.updated_at.strftime("%Y/%m/%d")
             item.when_was_found = item.when_was_found.strftime("%d/%m/%Y")
             item.withdrawal_deadline = item.withdrawal_deadline.strftime("%d/%m/%Y")
             item.shift = item.shift
@@ -65,7 +67,7 @@ class RegisterDetailsView(DetailView):
         context_object.withdrawal_deadline = context_object.withdrawal_deadline.strftime("%d/%m/%Y")
         context_object.shift = context_object.shift
         context_object.status = self.STATUS_CHOICES[context_object.status]
-        
+
         context['object'] = context_object
         # context['object']['user'] = User.objects.get(registration=context_object.user_registration)
         context.update({ 'activeTab': 'registers' })

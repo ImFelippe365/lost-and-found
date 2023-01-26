@@ -28,9 +28,15 @@
 </header>
 
 {% include 'messages.html' %}
-<section id="itemsContainer">
+<section class="max-xl:hidden" id="itemsContainer">
     {% for item in object_list %}
     {% include 'card.html' %}
+    {% endfor %}
+</section>
+
+<section class="hidden max-xl:block" id="itemsContainer">
+    {% for item in object_list %}
+    {% include 'card_mobile.html' %}
     {% endfor %}
 </section>
 

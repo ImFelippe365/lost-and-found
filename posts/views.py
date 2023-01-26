@@ -41,6 +41,7 @@ class ItemsView(ListView):
         context_list = context['object_list']
 
         for item in context_list:
+            item.updated_at = item.updated_at.strftime("%Y/%m/%d")
             item.when_was_found = item.when_was_found.strftime("%d/%m/%Y")
             item.withdrawal_deadline = item.withdrawal_deadline.strftime(
                 "%d/%m/%Y")
@@ -212,6 +213,7 @@ class DeliveredItemsView(ListView):
         context_list = context['object_list']
 
         for item in context_list:
+            item.updated_at = item.updated_at.strftime("%Y/%m/%d")
             item.when_was_found = item.when_was_found.strftime("%d/%m/%Y")
             item.withdrawal_deadline = item.withdrawal_deadline.strftime(
                 "%d/%m/%Y")
@@ -246,6 +248,7 @@ class ExpiredItemsView(ListView):
         context_list = context['object_list']
 
         for item in context_list:
+            item.updated_at = item.updated_at.strftime("%Y/%m/%d")
             item.when_was_found = item.when_was_found.strftime("%d/%m/%Y")
             item.withdrawal_deadline = item.withdrawal_deadline.strftime(
                 "%d/%m/%Y")

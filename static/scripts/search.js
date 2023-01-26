@@ -1,26 +1,23 @@
-function teste() {
-    console.log('1111111111')
-}
-
 const search = document.getElementById('searchBar')
 let url = window.location;
 
-search.addEventListener('keypress', ({ target }) => {
-    const searchText = target.value.toUpperCase();
-    const items = document.getElementById('itemsContainer');
-    const children = [...items.children]
+search.addEventListener('input', ({ target }) => {
+    const searchText = target.value.normalize('NFC').toUpperCase();
+    const items = document.getElementById('itemsContainer').children;
 
-    children.forEach(item => {
-        itemName = item.getAttribute('data-name');
+    console.log(searchText)
+    for (let index = 0; index < items.length; index++) {
+        const item = items[index];
+        let itemName = item.getAttribute('data-name');
+        let isRegister = item.getAttribute('data-page') === 'register';
+        itemName = itemName.normalize('NFC').toUpperCase();
 
-        if (itemName.toUpperCase().includes(searchText)) {
-            item.setAttribute('style', 'display: flex;')
+        if (itemName.includes(searchText)) {
+            item.style.display = isRegister ? 'table-row' : 'flex'
         } else {
-            item.setAttribute('style', 'display: none;')
+            item.style.display = 'none'
         }
-    });
-
-    items.innerHTML = children
+    }
 
     // const params = new Proxy(new URLSearchParams(window.location.search), {
     //     get: (searchParams, prop) => searchParams.get(prop),
@@ -61,22 +58,58 @@ if (window.location.href.includes('order')) {
 }
 
 order.addEventListener('change', ({ target }) => {
-    const searchText = target.value;
+    const selectText = target.value;
+    const items = document.getElementById('itemsContainer');
+    
+    const itemsList = [...items.children]
 
-    hasOrder = url.href.includes('order');
+    itemsList.sort((a, b) => {
+        let a_date = new Date(a.getAttribute('data-date'));
+        let b_date = new Date(b.getAttribute('data-date'));
 
-    if (hasOrder) {
-        if (url.href.includes('keyword')) {
-            url.href.replace('?order', '&order')
+        console.log(a_date, b_date)
+        if (a_date < b_date) {
+            return selectText == 'desc' ? 1 : -1
+        }
+        if (b_date < a_date) {
+            return selectText == 'desc' ? -1 : 1
         }
 
-        const hrefOrdering =
-            url.href.includes('asc') ?
-                url.href.replace('asc', searchText) :
-                url.href.replace('desc', searchText)
+        return 0
+    })
 
-        window.location.href = hrefOrdering
-    } else {
-        window.location.href = url.href.includes('keyword') || url.href.includes('page') ? url.href + '&order=' + searchText : url.href + '?order=' + searchText
-    }
+    var itemsContainer = document.querySelector('#itemsContainer');
+    itemsList.forEach(item => {
+        itemsContainer.appendChild(item);
+    });
+    // console.log(selectText)
+    // for (let index = 0; index < items.length; index++) {
+    //     const item = items[index];
+    //     let itemName = item.getAttribute('data-date');
+    //     itemName = itemName.normalize('NFC').toUpperCase();
+
+    //     if (itemName.includes(selectText)) {
+    //         item.style.display = 'flex'
+    //     } else {
+    //         item.style.display = 'none'
+    //     }
+    // }
+    // const searchText = target.value;
+
+    // hasOrder = url.href.includes('order');
+
+    // if (hasOrder) {
+    //     if (url.href.includes('keyword')) {
+    //         url.href.replace('?order', '&order')
+    //     }
+
+    //     const hrefOrdering =
+    //         url.href.includes('asc') ?
+    //             url.href.replace('asc', searchText) :
+    //             url.href.replace('desc', searchText)
+
+    //     window.location.href = hrefOrdering
+    // } else {
+    //     window.location.href = url.href.includes('keyword') || url.href.includes('page') ? url.href + '&order=' + searchText : url.href + '?order=' + searchText
+    // }
 })
