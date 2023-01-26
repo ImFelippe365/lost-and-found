@@ -58,11 +58,15 @@
                     <img class="w-5" src="{% static 'icon/carbon_chevron-right.svg' %}" />
                 </a>
 
-                <a href="{% url 'delete' item.id %}"
-                    class="flex flex-row items-center justify-between w-full text-error-color py-3 px-5 hover:bg-light-gray-hover transition-all">
+                
+                <button onclick="showDialog()"
+                    class="openDialog flex flex-row items-center justify-between w-full text-error-color py-3 px-5 hover:bg-light-gray-hover transition-all">
                     Excluir
                     <img class="w-5" src="{% static 'icon/carbon_chevron-right-warning.svg' %}" />
-                </a>
+                </button>
+                
+
+                
 
                 <a href="{% url 'complete-delivery' item.id %}"
                     class="flex flex-row items-center justify-between w-full text-success-color py-3 px-5 hover:bg-light-gray-hover transition-all">
@@ -171,11 +175,13 @@
                 <img class="w-5" src="{% static 'icon/carbon_chevron-right.svg' %}" />
             </a>
 
-            <a href="{% url 'delete' item.id %}"
-                class="flex flex-row items-center justify-between w-full text-error-color py-3 px-5 hover:bg-light-gray-hover transition-all">
+            <button
+                class="openDialog flex flex-row items-center justify-between w-full text-error-color py-3 px-5 hover:bg-light-gray-hover transition-all">
                 Excluir
                 <img class="w-5" src="{% static 'icon/carbon_chevron-right-warning.svg' %}" />
-            </a>
+            </button>
+
+            
 
             <a href="{% url 'complete-delivery' item.id %}"
                 class="flex flex-row items-center justify-between w-full text-success-color py-3 px-5 hover:bg-light-gray-hover transition-all">
@@ -239,10 +245,10 @@
         </div>
         <div class="absolute bottom-12 left-1/2">
             <button id="show_information_button_{{ item.id }}"
-            onclick="showCardInformations(`informations_{{ item.id }}`, `show_information_button_{{ item.id }}`)"
-            class="bg-primary relative -left-1/2 mx-auto text-black font-bold rounded-2xl px-8 py-1 shadow">
-            Ver informações
-        </button>
+                onclick="showCardInformations(`informations_{{ item.id }}`, `show_information_button_{{ item.id }}`)"
+                class="bg-primary relative -left-1/2 mx-auto text-black font-bold rounded-2xl px-8 py-1 shadow">
+                Ver informações
+            </button>
         </div>
         {% if item.image %}
         <img class="object-cover w-full h-full rounded-b-2xl" src="{{ item.image.url }}" alt="Foto do item" />
@@ -253,3 +259,5 @@
         {% endif %}
     </section>
 </div>
+
+{% include 'delete_post.html' %}
