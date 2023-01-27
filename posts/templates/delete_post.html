@@ -1,16 +1,17 @@
 {% load static %}
 
-<dialog class="modal shadow-lg rounded-lg backdrop:bg-background-black-transparent" onclick="showDialog()">
+<dialog class="modal shadow-lg rounded-lg backdrop:bg-background-black-transparent">
     <div class="flex flex-col m-auto px-12 py-8 w-[100%]">
         <h3 class="font-bold text-2xl text-black mb-2">Excluir postagem</h3>
         <p class="text-gray text-base">Tem certeza que deseja apagar
-            <strong>{{ item.name }}</strong>?<br/>Essa ação não poderá ser revertida.
+            <strong>{{ item.name }}</strong>?<br />Essa ação não poderá ser revertida.
         </p>
 
         <form action="{% url 'delete' item.id %}" method="post" class="flex gap-4 self-end mt-4">
             {% csrf_token %}
             <button class="bg-primary-hover text-success-color px-8 py-2 rounded text-base" type="submit">Sim</button>
-            <button onclick="closeDialog()" class="closeModal bg-error-transparent-color text-error-color px-8 py-2 rounded text-base"
+            <button onclick="closeDialog()"
+                class="closeModal bg-error-transparent-color text-error-color px-8 py-2 rounded text-base z-10"
                 type="reset">Não</button>
         </form>
     </div>

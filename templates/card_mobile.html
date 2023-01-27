@@ -43,11 +43,11 @@
                 <img class="w-5" src="{% static 'icon/carbon_chevron-right.svg' %}" />
             </a>
 
-            <a href="{% url 'delete' item.id %}"
-                class="flex flex-row items-center justify-between w-full text-error-color py-3 px-5 hover:bg-light-gray-hover transition-all">
+            <button onclick="showDialog()"
+                class="openDialog flex flex-row items-center justify-between w-full text-error-color py-3 px-5 hover:bg-light-gray-hover transition-all">
                 Excluir
                 <img class="w-5" src="{% static 'icon/carbon_chevron-right-warning.svg' %}" />
-            </a>
+            </button>
 
             <a href="{% url 'complete-delivery' item.id %}"
                 class="flex flex-row items-center justify-between w-full text-success-color py-3 px-5 hover:bg-light-gray-hover transition-all">
@@ -125,3 +125,5 @@
         {% endif %}
     </section>
 </div>
+
+{% include 'delete_post.html' %}

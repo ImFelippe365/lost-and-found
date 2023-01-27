@@ -1,6 +1,4 @@
-const search = document.getElementById('searchBar')
-let url = window.location;
-
+const search = document.getElementById('searchBar');
 search.addEventListener('input', ({ target }) => {
     let searchText = target.value.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toUpperCase();
     const itemsContainer = document.getElementsByClassName('itemsContainer');
