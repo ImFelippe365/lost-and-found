@@ -5,7 +5,13 @@ const modal = document.querySelector('.modal');
 
 var total_items = buttonShowModal.length;
 
-function showDialog() {
+function showDialog(id, name) {
+    const itemName = document.querySelector('#modalItemName');
+    const deleteForm = document.querySelector('#deleteForm');
+
+    itemName.innerText = name
+    deleteForm.setAttribute('action', `items/${id}/delete/`)
+    
     modal.showModal();
 }
 

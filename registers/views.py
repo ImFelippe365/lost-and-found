@@ -74,7 +74,6 @@ class RegisterDetailsView(DetailView):
         
         return context
 
-
 class RegistersSearchResultsView(ListView):
     template_name = 'registers.html'
     allow_empty = True
@@ -116,3 +115,27 @@ class RegistersSearchResultsView(ListView):
         context.update({ 'activeTab': 'registers','search': self.request.GET.get('keyword')  })
         
         return context
+
+def searchRegister(request, text):
+    print("TEXTO RECEBIDO -> ", text)
+    registers = Item.objects.filter(name__icontains=text)
+
+    STATUS_CHOICES = {
+        'Lost': 'Perdido',
+        'Delivered': 'Entregue',
+        'Expired': 'Expirado'
+    }
+
+    for item in registers:
+            item.created_at = item.created_at.strftime("%Y/%m/%d")
+            item.updated_at = item.updated_at.strftime("%Y/%m/%d")
+            item.when_was_found = item.when_was_found.strftime("%d/%m/%Y")
+            item.withdrawal_deadline = item.withdrawal_deadline.strftime("%d/%m/%Y")
+            item.shift = item.shift
+            item.status = STATUS_CHOICES[item.status]
+            
+    print(registers)
+    for i in registers:
+        print("->", i)
+    return render(request, 'item_register.html', { 'object_list': registers  })
+
