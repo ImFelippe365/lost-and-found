@@ -1,14 +1,14 @@
-const buttonCloseDialog = document.getElementById("closeModalMessage");
-const modal = document.getElementById('modalMessage');
+const buttonCloseMessage = document.getElementById("closeModalMessage");
+const modalMessage = document.getElementById('modalMessage');
 
 function closeMessage(){
-    modal.close()
+    modalMessage.close()
 }
 
-modal.showModal()
+modalMessage.showModal()
 
 setTimeout(() => {
     closeMessage()
-}, 5000);
+}, 4000);
 
-buttonCloseDialog.addEventListener('click', closeMessage)
+buttonCloseMessage.addEventListener('click', closeMessage)

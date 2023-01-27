@@ -936,10 +936,6 @@ select{
   display: table-cell;
 }
 
-.table-column{
-  display: table-column;
-}
-
 .table-footer-group{
   display: table-footer-group;
 }
@@ -1156,10 +1152,6 @@ select{
   width: 80%;
 }
 
-.w-\[500px\]{
-  width: 500px;
-}
-
 .min-w-\[200px\]{
   min-width: 200px;
 }
@@ -1244,10 +1236,6 @@ select{
 
 .items-start{
   align-items: flex-start;
-}
-
-.items-end{
-  align-items: flex-end;
 }
 
 .items-center{
@@ -1504,13 +1492,6 @@ select{
 .bg-success-transparent-color{
   background-color: rgba(152, 238, 111, 0.08);
 }
-.bg-primary-hover{
-  background-color: #98EE6F50;
-}
-
-.bg-error-transparent-color{
-  background-color: rgba(201, 42, 42, 0.1);
-}
 
 .bg-transparent{
   background-color: transparent;
@@ -1532,10 +1513,6 @@ select{
 
 .bg-error-transparent-color{
   background-color: rgba(201, 42, 42, 0.1);
-}
-
-.bg-success-transparent-color{
-  background-color: rgba(152, 238, 111, 0.08);
 }
 
 .fill-black{
@@ -1637,16 +1614,6 @@ select{
   padding-bottom: 1.25rem;
 }
 
-.px-12{
-  padding-left: 3rem;
-  padding-right: 3rem;
-}
-
-.py-6{
-  padding-top: 1.5rem;
-  padding-bottom: 1.5rem;
-}
-
 .py-2{
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
@@ -1657,9 +1624,9 @@ select{
   padding-right: 3rem;
 }
 
-.py-5{
-  padding-top: 1.25rem;
-  padding-bottom: 1.25rem;
+.py-6{
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
 }
 
 .pl-5{
@@ -1847,6 +1814,12 @@ select{
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 
+.backdrop-blur-sm{
+  --tw-backdrop-blur: blur(4px);
+  -webkit-backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
+          backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
+}
+
 .transition-all{
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -1989,21 +1962,15 @@ select{
 }
 
 @media (min-width: 768px){
-  .md\:w-\[45\%\]{
-    width: 45%;
-  }
-
   .md\:w-\[500px\]{
     width: 500px;
   }
 
+  .md\:w-\[45\%\]{
+    width: 45%;
+  }
+
   .md\:flex-nowrap{
     flex-wrap: nowrap;
-  }
-}
-
-@media (min-width: 1024px){
-  .lg\:w-\[500px\]{
-    width: 500px;
   }
 }
