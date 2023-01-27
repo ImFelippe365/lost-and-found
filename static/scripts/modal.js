@@ -1,16 +1,18 @@
 const buttonShowModal = document.querySelector('.openDialog');
-//const buttonCloseDialog = document.querySelector("closeModal");
-const modal = document.querySelectorAll('.modal');
-console.log(buttonShowModal)
-console.log(modal)
+const buttonCloseDialog = document.querySelector('.closeModal');
 
-function showDialog(){
+const modal = document.querySelector('.modal');
+
+function showDialog(id, name) {
+    const itemName = document.querySelector('#modalItemName');
+    const deleteForm = document.querySelector('#deleteForm');
+
+    itemName.innerText = name
+    deleteForm.setAttribute('action', `items/${id}/delete/`)
+    
     modal.showModal();
 }
 
-function closeDialog(){
+function closeDialog() {
     modal.close()
 }
-
-//buttonShowModal.addEventListener('click', showDialog)
-//buttonCloseDialog.addEventListener('click', closeDialog)

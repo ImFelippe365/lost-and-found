@@ -936,6 +936,10 @@ select{
   display: table-cell;
 }
 
+.table-column{
+  display: table-column;
+}
+
 .table-footer-group{
   display: table-footer-group;
 }
@@ -1500,6 +1504,13 @@ select{
 .bg-success-transparent-color{
   background-color: rgba(152, 238, 111, 0.08);
 }
+.bg-primary-hover{
+  background-color: #98EE6F50;
+}
+
+.bg-error-transparent-color{
+  background-color: rgba(201, 42, 42, 0.1);
+}
 
 .bg-transparent{
   background-color: transparent;
@@ -1521,6 +1532,10 @@ select{
 
 .bg-error-transparent-color{
   background-color: rgba(201, 42, 42, 0.1);
+}
+
+.bg-success-transparent-color{
+  background-color: rgba(152, 238, 111, 0.08);
 }
 
 .fill-black{
@@ -1627,9 +1642,24 @@ select{
   padding-right: 3rem;
 }
 
+.py-6{
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
 .py-2{
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
+}
+
+.px-12{
+  padding-left: 3rem;
+  padding-right: 3rem;
+}
+
+.py-5{
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
 }
 
 .pl-5{
@@ -1815,12 +1845,6 @@ select{
 
 .filter{
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
-}
-
-.backdrop-blur-sm{
-  --tw-backdrop-blur: blur(4px);
-  -webkit-backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
-          backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
 }
 
 .transition-all{

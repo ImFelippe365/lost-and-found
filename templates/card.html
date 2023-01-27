@@ -58,7 +58,8 @@
                     <img class="w-5" src="{% static 'icon/carbon_chevron-right.svg' %}" />
                 </a>
 
-                <button onclick="showDialog()"
+
+                <button onclick="showDialog(`{{ item.id }}`, `{{ item.name }}`)"
                     class="openDialog flex flex-row items-center justify-between w-full text-error-color py-3 px-5 hover:bg-light-gray-hover transition-all">
                     Excluir
                     <img class="w-5" src="{% static 'icon/carbon_chevron-right-warning.svg' %}" />
@@ -127,5 +128,3 @@
         </div>
     </div>
 </div>
-
-{% include 'delete_post.html' %}
