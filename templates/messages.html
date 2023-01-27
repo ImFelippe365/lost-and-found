@@ -1,0 +1,31 @@
+{% load static %}
+
+{% if messages %}
+{% for message in messages %}
+{% if message.tags == 'success' %}
+<dialog id="modalMessage"
+    class="backdrop:bg-background-black-transparent rounded-xl backdrop-blur-sm bg-white !p-0 md:w-[500px]">
+    <div class="flex justify-center bg-success-transparent-color">
+        <div
+            class="rounded-xl flex flex-row flex-nowrap gap-3 items-center border-solid border-2 border-success-color py-5 px-4 w-[100%] justify-between">
+            <div class="ml-3 flex gap-4 py-2">
+                <img src="{% static 'icon/success-icon.svg' %}">
+                <div>
+                    <h2 class="text-success-color text-2xl font-bold">
+                        Sucesso
+                    </h2>
+                    <p class="text-gray">{{message}}</p>
+                </div>
+            </div>
+            <button type="submit" id="closeModalMessage"
+                class="hover:bg-primary-hover rounded-full w-[32px] outline-none self-start">
+                <img src="{% static 'icon/carbon_close.svg' %}" class="">
+            </button>
+        </div>
+    </div>
+</dialog>
+
+{% endif %}
+{% endfor %}
+<script src="{% static 'scripts/modalMessage.js' %}"></script>
+{% endif %}

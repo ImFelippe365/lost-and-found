@@ -1,10 +1,8 @@
 const buttonShowModal = document.querySelector('.openDialog');
-const buttonCloseDialog = document.querySelector("closeModal");
-const modal = document.querySelector('.modal');
+//const buttonCloseDialog = document.querySelector("closeModal");
+const modal = document.querySelectorAll('.modal');
 console.log(buttonShowModal)
 console.log(modal)
-
-var total_items = buttonShowModal.length; 
 
 function showDialog(){
     modal.showModal();
