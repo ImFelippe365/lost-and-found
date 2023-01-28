@@ -21,7 +21,7 @@
 
 <body class="bg-background-color flex flex-col w-full overflow-x-hidden">
 
-    <header class="flex flex-row items-center justify-between w-[60%] mx-auto py-8">
+    <header class="flex flex-row items-center justify-between w-[60%] mx-auto py-8 max-xl:w-[90%] max-lg:bg-primary">
         <img class="w-32" src="{% static 'svg/logo.svg' %}" width="200" />
 
         {% if is_authenticated %}
@@ -47,14 +47,15 @@
     </header>
 
     <main>
-        <section class="flex flex-row items-center justify-between w-[60%] h-[70vh] mx-auto max-xl:w-[90%]">
-            <div class="min-w-[400px]">
-                <h1 class="text-black font-bold text-5xl">
+        <section
+            class="flex flex-row items-center justify-between w-[60%] h-[70vh] mx-auto max-xl:w-[90%] max-lg:flex-col-reverse">
+            <div class="min-w-[400px] mx-auto max-md:min-w-0">
+                <h1 class="text-black font-bold text-5xl max-lg:text-3xl">
                     Perdeu algo?<br>
                     Nós encontramos<br> para você
                 </h1>
                 <p class="text-black mt-4">
-                    Pesquise itens que foram perdidos dentro do Instituto<br> Federal do Rio Grande do Norte - Campus
+                    Pesquise itens que foram perdidos dentro do Instituto<br class="max-md:hidden"> Federal do Rio Grande do Norte - Campus
                     Pau
                     dos ferros.
                 </p>
@@ -68,44 +69,44 @@
             </div>
 
             <lottie-player src="https://assets10.lottiefiles.com/packages/lf20_hpdv2lor.json" background="transparent"
-                speed="0.5" class="w-auto h-auto" loop autoplay></lottie-player>
+                speed="0.5" class="w-auto h-auto max-lg:max-w-2xl" loop autoplay></lottie-player>
         </section>
 
         <!-- <img class="w-full h-1/2 rotate-[359deg] mb-[-18px]" src="{% static 'svg/waves.svg' %}" />         -->
         <img class="w-full" src="{% static 'svg/waves.svg' %}" />
-        <section class="bg-primary mx-auto flex flex-row items-baseline justify-center gap-48 h-[30vh]">
+        <section class="bg-primary mx-auto flex flex-row items-baseline justify-evenly h-[30vh] max-lg:h-auto max-lg:py-6">
             <div class="flex flex-col items-center gap-2">
                 <div class="relative flex flex-col items-center">
                     <img class="w-8 absolute bottom-3/6 self-end mr-3"
                         src="{% static 'icon/carbon_close-filled.svg' %}" />
-                    <img class="w-24" src="{% static 'icon/carbon_box.svg' %}" />
-                    <label class="font-bold text-black text-xl">Itens perdidos</label>
+                    <img class="w-24 max-lg:w-16" src="{% static 'icon/carbon_box.svg' %}" />
+                    <label class="font-bold text-black text-xl max-lg:text-base">Itens perdidos</label>
                 </div>
-                <strong class="text-5xl text-black">{{lost_items}}</strong>
+                <strong class="text-5xl text-black max-lg:text-2xl">{{lost_items}}</strong>
             </div>
             <div class="flex flex-col items-center gap-2">
                 <div class="relative flex flex-col items-center">
                     <img class="w-8 absolute bottom-3/6 self-end mr-3"
                         src="{% static 'icon/carbon_twotone-access-time-filled.svg' %}" />
-                    <img class="w-24" src="{% static 'icon/carbon_box.svg' %}" />
-                    <label class="font-bold text-black text-xl">Itens expirados</label>
+                    <img class="w-24 max-lg:w-16" src="{% static 'icon/carbon_box.svg' %}" />
+                    <label class="font-bold text-black text-xl max-lg:text-base">Itens expirados</label>
                 </div>
-                <strong class="text-5xl text-black">{{expired_items}}</strong>
+                <strong class="text-5xl text-black max-lg:text-2xl">{{expired_items}}</strong>
             </div>
             <div class="flex flex-col items-center gap-2">
                 <div class="relative flex flex-col items-center">
                     <img class="w-8 absolute bottom-3/6 self-end mr-3"
                         src="{% static 'icon/carbon_checkmark-filled.svg' %}" />
-                    <img class="w-24" src="{% static 'icon/carbon_box.svg' %}" />
-                    <label class="font-bold text-black text-xl">Itens entregues</label>
+                    <img class="w-24 max-lg:w-16" src="{% static 'icon/carbon_box.svg' %}" />
+                    <label class="font-bold text-black text-xl max-lg:text-base">Itens entregues</label>
                 </div>
-                <strong class="text-5xl text-black">{{delivered_items}}</strong>
+                <strong class="text-5xl text-black max-lg:text-2xl">{{delivered_items}}</strong>
             </div>
         </section>
 
         <img class="w-full rotate-[180deg] -mt-1" src="{% static 'svg/waves.svg' %}" />
         <section class="flex flex-row gap-14 justify-center w-[60%] h-[70vh] mx-auto max-xl:w-[90%]">
-            <img width="40%" src="{% static 'lottie-files/about-system-illustration.svg' %}" />
+            <img width="40%" class="max-md:hidden" src="{% static 'lottie-files/about-system-illustration.svg' %}" />
 
             <article class="text-black flex flex-col justify-center gap-2 max-w-[400px]">
                 <h2 class="font-bold text-4xl">Nosso sistema</h2>
@@ -145,12 +146,13 @@
                 </article>
 
                 <lottie-player src="{% static 'lottie-files/team.json' %}" background="transparent" speed="1"
-                    class="h-auto w-auto max-w-[500px]" loop autoplay></lottie-player>
+                    class="h-auto w-auto max-w-[500px] max-md:hidden" loop autoplay></lottie-player>
             </div>
 
-            <section class="flex flex-row items-center gap-16 justify-center">
+            <section
+                class="flex flex-row items-center w-full gap-16 justify-center absolute max-md:static max-md:flex-col max-md:left-0">
                 <div
-                    class="bg-primary rounded-2xl w-[280px] h-[380px] flex flex-col items-center justify-between pt-8 pb-12 absolute right-[54%] top-[75%]">
+                    class="bg-primary rounded-2xl w-[280px] h-[380px] flex flex-col items-center justify-between pt-8 pb-12  max-md:left-0">
 
                     <section class="text-center text-black flex flex-col items-center">
                         <img class="w-36 rounded-full" src="https://github.com/ImFelippe365.png" />
@@ -171,7 +173,7 @@
                     </section>
                 </div>
                 <div
-                    class="bg-primary rounded-2xl w-[280px] h-[380px] flex flex-col items-center justify-between pt-8 pb-12 absolute left-[54%] top-[75%]">
+                    class="bg-primary rounded-2xl w-[280px] h-[380px] flex flex-col items-center justify-between pt-8 pb-12  max-md:left-0">
 
                     <section class="text-center text-black flex flex-col items-center">
                         <img class="w-36 rounded-full" src="https://github.com/brunamariap.png" />
@@ -192,12 +194,11 @@
                     </section>
                 </div>
             </section>
-
         </section>
 
         <section class="flex flex-row items-center justify-center gap-14 w-[50%] h-[70vh] mx-auto mt-36 max-xl:w-[90%]">
 
-            <img class="w-[280px] h-[330px]" src="{% static 'image/ifrn-pdf-logo.png' %}" />
+            <img class="w-[280px] h-[330px] max-md:hidden" src="{% static 'image/ifrn-pdf-logo.png' %}" />
 
             <article class="text-black flex flex-col justify-center gap-2 max-w-[400px]">
                 <h2 class="font-bold text-4xl">Sobre a instituição</h2>
@@ -216,7 +217,7 @@
     </main>
 
     <footer class="bg-black py-8">
-        <div class="flex flex-row items-center justify-between w-[50%] h-[25vh] m-auto">
+        <div class="flex flex-row items-center justify-between w-[50%] h-[25vh] m-auto max-xl:w-[70%] max-md:w-[85%]">
             <img class="w-56" src="{% static 'svg/logo-colorful.svg' %}" width="200" />
 
             <article class="text-white flex flex-col gap-3">

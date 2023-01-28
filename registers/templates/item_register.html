@@ -1,6 +1,6 @@
 {% for item in object_list %}
 <a data-page="register" data-name="{{ item.name }}" data-date="{{ item.created_at }}"
-    class="itemsContainer table-row {% cycle 'bg-primary-hover' 'bg-background-color' %}"
+    class="table-row {% cycle 'bg-primary-hover' 'bg-background-color' %}"
     href="{% url 'details' item.id %}">
     <div class="h-full p-4 rounded-l-lg table-cell align-middle">
         <div class="rounded-3xl inline font-bold text-xs text-white px-4 py-1 

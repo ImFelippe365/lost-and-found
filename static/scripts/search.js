@@ -1,6 +1,5 @@
-const search = document.getElementById('searchBar');
-search.addEventListener('input', ({ target }) => {
-    let searchText = target.value.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toUpperCase();
+function onChangeSearch(inputSearch) {
+    let searchText = inputSearch.value.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toUpperCase();
     const itemsContainer = document.getElementsByClassName('itemsContainer');
     let afterDisplay = ''
 
@@ -26,8 +25,8 @@ search.addEventListener('input', ({ target }) => {
             item.style.display = 'none'
         }
     }
+}
 
-})
 
 
 const order = document.getElementById('orderId')
@@ -46,7 +45,6 @@ order.addEventListener('change', ({ target }) => {
         let a_date = new Date(a.getAttribute('data-date'));
         let b_date = new Date(b.getAttribute('data-date'));
 
-        console.log(a_date, b_date)
         if (a_date < b_date) {
             return selectText == 'desc' ? 1 : -1
         }
