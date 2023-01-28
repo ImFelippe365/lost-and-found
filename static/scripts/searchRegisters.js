@@ -1,17 +1,16 @@
 $(() => {
-    const table = $("#itemsContainer").html();
+    const table = $("#desktopItemsList").html();
     const searchBar = $('#registerSearchBar');
-    const [headerTagOpen, headerTagClose] = ['<span class="table-footer-group" id="itemsContainer">', '</span>']
+    const [headerTagOpen, headerTagClose] = ['<span class="table-footer-group" id="desktopItemsList">', '</span>']
 
     $(searchBar).keyup(() => {
-        const searchText = searchBar.val(); 
+        const searchText = searchBar.val();
         if (searchText.length === 0) {
-            $('#itemsContainer').replaceWith(headerTagOpen + table + headerTagClose)
+            $('#desktopItemsList').replaceWith(headerTagOpen + table + headerTagClose)
         } else {
-            $.get(`search/${searchText}`, (response) =>
-                $('#itemsContainer').replaceWith(headerTagOpen + response + headerTagClose)
-            )
-
+            $.get(`search/${searchText}`, (response) => {
+                $('#desktopItemsList').replaceWith(headerTagOpen + response + headerTagClose)
+            })
         }
     })
 })

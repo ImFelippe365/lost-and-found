@@ -135,7 +135,5 @@ def searchRegister(request, text):
             item.status = STATUS_CHOICES[item.status]
             
     print(registers)
-    for i in registers:
-        print("->", i)
     return render(request, 'item_register.html', { 'object_list': registers  })
 
