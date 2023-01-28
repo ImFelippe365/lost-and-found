@@ -21,18 +21,22 @@
 
 <body class="bg-background-color flex flex-col w-full overflow-x-hidden">
 
-    <header class="flex flex-row items-center justify-between w-[60%] mx-auto py-8 max-xl:w-[90%] max-lg:bg-primary">
+    <header class="flex flex-row items-center justify-between w-[60%] mx-auto py-8 max-xl:w-[90%]">
         <img class="w-32" src="{% static 'svg/logo.svg' %}" width="200" />
 
         {% if is_authenticated %}
-        <section class="flex flex-row items-center gap-4">
-
+        <section class="flex flex-row items-center gap-4 max-xl:hidden">
             <img class="w-[48px] h-[48px] object-cover rounded-full" src="https://suap.ifrn.edu.br{{user.picture}}" />
             <div class="leading-none">
                 <h3 class="text-sm">Logado como <strong> {{ user.name }} </strong></h3>
                 <a href="{% url 'logout' %}" class="text-error-color text-sm hover:underline transition-all">Sair</a>
             </div>
-
+        </section>
+        <section class="flex-row hidden max-xl:flex gap-2 items-center">
+            <img class="w-[48px] h-[48px] object-cover rounded-full" src="https://suap.ifrn.edu.br{{user.picture}}" />
+            <a href="{% url 'logout' %}" class="hover:bg-error-transparent-color transition-all p-2 rounded-full">
+                <img class="w-6" src="{% static 'icon/carbon_logout.svg' %}" />
+            </a>
         </section>
         {% else %}
         <a href="{% url 'login' %}"
@@ -48,14 +52,15 @@
 
     <main>
         <section
-            class="flex flex-row items-center justify-between w-[60%] h-[70vh] mx-auto max-xl:w-[90%] max-lg:flex-col-reverse">
+            class="flex flex-row items-center justify-between w-[60%] h-[70vh] mx-auto max-xl:w-[90%] max-lg:flex-col-reverse max-md:mb-8">
             <div class="min-w-[400px] mx-auto max-md:min-w-0">
                 <h1 class="text-black font-bold text-5xl max-lg:text-3xl">
                     Perdeu algo?<br>
                     Nós encontramos<br> para você
                 </h1>
                 <p class="text-black mt-4">
-                    Pesquise itens que foram perdidos dentro do Instituto<br class="max-md:hidden"> Federal do Rio Grande do Norte - Campus
+                    Pesquise itens que foram perdidos dentro do Instituto<br class="max-md:hidden"> Federal do Rio
+                    Grande do Norte - Campus
                     Pau
                     dos ferros.
                 </p>
@@ -69,12 +74,12 @@
             </div>
 
             <lottie-player src="https://assets10.lottiefiles.com/packages/lf20_hpdv2lor.json" background="transparent"
-                speed="0.5" class="w-auto h-auto max-lg:max-w-2xl" loop autoplay></lottie-player>
+                speed="0.5" class="w-auto max-lg:w-[28rem]" loop autoplay></lottie-player>
         </section>
 
-        <!-- <img class="w-full h-1/2 rotate-[359deg] mb-[-18px]" src="{% static 'svg/waves.svg' %}" />         -->
         <img class="w-full" src="{% static 'svg/waves.svg' %}" />
-        <section class="bg-primary mx-auto flex flex-row items-baseline justify-evenly h-[30vh] max-lg:h-auto max-lg:py-6">
+        <section
+            class="bg-primary mx-auto flex flex-row items-baseline justify-evenly h-[40vh] max-lg:h-auto max-lg:py-6">
             <div class="flex flex-col items-center gap-2">
                 <div class="relative flex flex-col items-center">
                     <img class="w-8 absolute bottom-3/6 self-end mr-3"
@@ -105,7 +110,7 @@
         </section>
 
         <img class="w-full rotate-[180deg] -mt-1" src="{% static 'svg/waves.svg' %}" />
-        <section class="flex flex-row gap-14 justify-center w-[60%] h-[70vh] mx-auto max-xl:w-[90%]">
+        <section class="flex flex-row gap-14 justify-center w-[60%] h-[36rem] mx-auto max-xl:w-[90%]">
             <img width="40%" class="max-md:hidden" src="{% static 'lottie-files/about-system-illustration.svg' %}" />
 
             <article class="text-black flex flex-col justify-center gap-2 max-w-[400px]">
@@ -127,7 +132,7 @@
         </section>
 
         <section class="bg-black relative pb-32">
-            <div class="w-[60%] mx-auto flex flex-row justify-between h-[70vh] max-xl:w-[90%]">
+            <div class="w-[60%] mx-auto flex flex-row justify-between h-[32rem] max-xl:w-[90%]">
                 <article class="text-white flex flex-col justify-center gap-2 max-w-[400px]">
                     <h2 class="font-bold text-4xl">Quem somos nós?</h2>
 
@@ -137,7 +142,7 @@
                     </p>
                     <p class="mt-4">
                         Nos chamamos Felippe Rian e Bruna Maria e estamos no 4° período. Esse sistema foi documentado,
-                        projetado e codificado durante a disciplina de Desenvolvimento de Projetos I.
+                        projetado e desenvolvido durante a disciplina de Desenvolvimento de Projetos I.
                     </p>
                     <p class="mt-4">
                         Desenvolvemos essa plataforma como forma de alertar ao público que perdeu algo de forma mais
@@ -196,7 +201,8 @@
             </section>
         </section>
 
-        <section class="flex flex-row items-center justify-center gap-14 w-[50%] h-[70vh] mx-auto mt-36 max-xl:w-[90%]">
+        <section
+            class="flex flex-row items-center justify-center gap-14 w-[50%] h-[32rem] mx-auto mt-64 max-xl:w-[90%] max-md:mt-0">
 
             <img class="w-[280px] h-[330px] max-md:hidden" src="{% static 'image/ifrn-pdf-logo.png' %}" />
 
@@ -217,11 +223,12 @@
     </main>
 
     <footer class="bg-black py-8">
-        <div class="flex flex-row items-center justify-between w-[50%] h-[25vh] m-auto max-xl:w-[70%] max-md:w-[85%]">
+        <div
+            class="flex flex-row items-center justify-between w-[50%] h-[35vh] m-auto max-xl:w-[70%] max-md:w-[85%] max-md:flex-col">
             <img class="w-56" src="{% static 'svg/logo-colorful.svg' %}" width="200" />
 
             <article class="text-white flex flex-col gap-3">
-                <h3 class="font-bold text-light-gray text-3xl">Contato</h3>
+                <h3 class="font-bold text-light-gray text-3xl max-md:text-center">Contatos</h3>
 
                 <ul class="flex flex-col gap-1">
                     <li>
@@ -252,7 +259,7 @@
 
             </article>
         </div>
-        <h4 class="text-center text-light-gray w-full">Copyright &copy; Todos os direitos reservados</h4>
+        <h4 class="text-center text-light-gray w-full mt-6">Copyright &copy; Todos os direitos reservados</h4>
     </footer>
 </body>
 
