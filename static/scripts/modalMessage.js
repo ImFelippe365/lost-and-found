@@ -9,6 +9,6 @@ modalMessage.showModal()
 
 setTimeout(() => {
     closeMessage()
-}, 4000);
+}, 3000);
 
 buttonCloseMessage.addEventListener('click', closeMessage)

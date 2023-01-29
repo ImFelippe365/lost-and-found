@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView
-from posts.models import Item, User, DeliveredItem
+from posts.models import Item, User, DeliveredItem, Claimant
 from django.db.models import Q
 
 def isAuthenticated(request):
@@ -67,6 +67,9 @@ class RegisterDetailsView(DetailView):
         context_object.withdrawal_deadline = context_object.withdrawal_deadline.strftime("%d/%m/%Y")
         context_object.shift = context_object.shift
         context_object.status = self.STATUS_CHOICES[context_object.status]
+        cpf = context_object.withdrawal_data.claimant.cpf
+        cpf = f'{cpf[:3]}.{cpf[3:6]}.{cpf[6:9]}-{cpf[9:11]}'
+        context_object.withdrawal_data.claimant.cpf = cpf
 
         context['object'] = context_object
         # context['object']['user'] = User.objects.get(registration=context_object.user_registration)
