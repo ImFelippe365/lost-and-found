@@ -22,6 +22,7 @@ def isAuthenticated(request):
         return { 'is_authenticated': True, 'user': user, 'logout': onLogout }
     elif (user is None and token is not None):
         user = auth.getUserData(token)
+        user.pop('success')
         request.session['user'] = user
         return { 'is_authenticated': True, 'user': user, 'logout': onLogout }
     

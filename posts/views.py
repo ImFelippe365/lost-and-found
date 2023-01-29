@@ -152,7 +152,6 @@ class CreateItemView(CreateView):
         user, user_created = User.objects.get_or_create(
             registration=user_object['registration'], defaults=user_object)
         instance.created_by = user
-
         messages.success(self.request, 'Sua ação foi realizada com êxito')
             
         return super(CreateItemView, self).form_valid(form)
