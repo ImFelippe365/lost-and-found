@@ -28,12 +28,13 @@ class Suap:
             data['success'] = True
             self.setToken(data['access']) 
             self.setRefreshToken(data['refresh'])
-            print(data['access'])
+            data = self.getUserData(data['access'])
+            print("DEPOIS DE SE LOGAR ->" , data)
         else:
             data['message'] = response.json()['detail']
             print("->>>>>>",data)
             print('(!) Não foi possível logar, erro: ', response)
-        
+
         return data
     
     def setToken(self, token):
@@ -58,6 +59,7 @@ class Suap:
     def getUserData(self, token):
         url = self.endpoint+'minhas-informacoes/meus-dados/'
         response = self.doGETRequest(url, token)
+        print("INFORMAÇÕES DO USUÁRIO -> ",response)
         data = {
             'name': response['nome_usual'],
             'picture': response['url_foto_75x100'],
@@ -66,7 +68,15 @@ class Suap:
             'success': True
         }
 
-        return data
+        error = {
+            'message': 'Você não tem permissão para acessar o sistema.',
+            'success': False
+        }
+        
+        if 'setor_suap' in response['vinculo'] and response['vinculo']['setor_suap'] == 'COAPAC/PF':
+            return data
+        
+        return error
 
     def doGETRequest(self, url, token):
         response = requests.get(url, headers={'Authorization': f'Bearer {token}'})

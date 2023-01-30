@@ -37,8 +37,8 @@ def login(request):
                 form.add_error("password","Usuário e/ou senha incorreto(s). Tente novamente")
                 return render(request, 'login.html', {'form': form, 'error': error})
             else:
-                request.session['token'] = isAuthenticated['access']
-                request.session['refresh_token'] = isAuthenticated['refresh']
+                isAuthenticated.pop('success')
+                request.session['user'] = isAuthenticated
                 return HttpResponseRedirect('items')
     else:
         form = LoginForm()
