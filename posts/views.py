@@ -13,7 +13,7 @@ import re
 
 
 def isAuthenticated(request):
-    token = request.session.get('token')
+    token = request.session.get('user')
     if (token is None):
         return True
     return False
