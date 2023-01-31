@@ -73,7 +73,7 @@ class Suap:
             'success': False
         }
         
-        if 'setor_suap' in response['vinculo'] and response['vinculo']['setor_suap'] == 'COAPAC/PF' or response['vinculo']['setor_suap'] == 'COADES/PF':
+        if 'setor_suap' in response['vinculo'] and (response['vinculo']['setor_suap'] == 'COAPAC/PF' or response['vinculo']['setor_suap'] == 'COADES/PF'):
             return data
         
         return error

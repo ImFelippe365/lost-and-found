@@ -31,7 +31,7 @@ class ItemModelForm(forms.ModelForm):
                 'class': "text-gray border-light-gray rounded-lg px-4",
                 'placeholder': 'Ex: Garrafa'
             }),
-            'description': forms.TextInput(attrs={
+            'description': forms.Textarea(attrs={
                 'class': "text-gray border-light-gray rounded-lg px-4",
                 'placeholder': 'Ex: Garrafa de plástico vermelha'
             }),
