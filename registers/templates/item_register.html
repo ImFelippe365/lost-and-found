@@ -1,5 +1,5 @@
 {% for item in object_list %}
-<a data-page="register" data-name="{{ item.name }}" data-date="{{ item.created_at }}"
+<a data-page="register" data-name="{{ item.name }}" data-date="{{ item.updated_at }}"
     class="table-row {% cycle 'bg-primary-hover' 'bg-background-color' %}"
     href="{% url 'details' item.id %}">
     <div class="h-full p-4 rounded-l-lg table-cell align-middle">

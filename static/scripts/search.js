@@ -54,9 +54,16 @@ order.addEventListener('change', ({ target }) => {
 
         return 0
     })
-
-    var itemsContainer = document.querySelector(platform);
-    itemsList.forEach(item => {
+    var isRegisterPage = items[0].getAttribute('data-page') == 'register'
+    var itemsContainer = document.querySelector(isRegisterPage ? '#itemsContainer' : platform);
+    itemsList.forEach((item, index) => {
+        if (isRegisterPage) {
+            if (index % 2 == 0) {
+                item.className = item.className.replace('bg-background-color', 'bg-primary-hover')
+            } else {
+                item.className = item.className.replace('bg-primary-hover', 'bg-background-color')
+            }
+        }
         itemsContainer.appendChild(item);
     });
 })

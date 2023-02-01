@@ -240,10 +240,10 @@ class CompleteDeliveryView(CreateView):
 
     def form_valid(self, form):
         item = get_object_or_404(Item, id=self.kwargs['pk'])
+
         name = form.cleaned_data['name']
         cpf = form.cleaned_data['cpf']
         cpf = re.sub(r'\.|\-', '', cpf)
-
         '''verificar se apenas números foram inseridos'''
 
         user_object = self.request.session.get('user')
@@ -258,7 +258,7 @@ class CompleteDeliveryView(CreateView):
                 id=self.kwargs['pk'])
             itemDelivered.status = 'Delivered'
             itemDelivered.save()
-
+        
         DeliveredItem.objects.create(item=item, claimant=claimant, user=user)
         messages.success(self.request, 'Sua ação foi realizada com êxito')
 

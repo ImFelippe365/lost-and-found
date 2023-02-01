@@ -14,7 +14,7 @@ class RegistersView(ListView):
     template_name = 'registers.html'
     allow_empty = True
     queryset = Item.objects.all()
-    ordering = ['-id']
+    ordering = ['-updated_at']
     paginate_by = 10
 
     STATUS_CHOICES = {
@@ -22,11 +22,6 @@ class RegistersView(ListView):
         'Delivered': 'Entregue',
         'Expired': 'Expirado'
     }
-
-    def get_queryset(self):
-        query = self.request.GET.get('order')
-        order = '-id' if query == 'desc' else 'id'
-        return Item.objects.order_by(order) if query is not None else Item.objects.order_by('-id')
     
     def get_context_data(self, **kwargs):
         context = super(RegistersView, self).get_context_data(**kwargs)
@@ -61,16 +56,16 @@ class RegisterDetailsView(DetailView):
         context_object = context['object']
         if (context_object.status == 'Delivered'):
             context_object.withdrawal_data = DeliveredItem.objects.get(item=context_object.id)
+            cpf = context_object.withdrawal_data.claimant.cpf
+            cpf = f'{cpf[:3]}.{cpf[3:6]}.{cpf[6:9]}-{cpf[9:11]}'
+            context_object.withdrawal_data.claimant.cpf = cpf
 
         # context_object.created_at = context_object.created_at.strftime("%d/%m/%Y, %H:%M")
         context_object.when_was_found = context_object.when_was_found.strftime("%d/%m/%Y")
         context_object.withdrawal_deadline = context_object.withdrawal_deadline.strftime("%d/%m/%Y")
         context_object.shift = context_object.shift
         context_object.status = self.STATUS_CHOICES[context_object.status]
-        cpf = context_object.withdrawal_data.claimant.cpf
-        cpf = f'{cpf[:3]}.{cpf[3:6]}.{cpf[6:9]}-{cpf[9:11]}'
-        context_object.withdrawal_data.claimant.cpf = cpf
-
+        
         context['object'] = context_object
         # context['object']['user'] = User.objects.get(registration=context_object.user_registration)
         context.update({ 'activeTab': 'registers' })
