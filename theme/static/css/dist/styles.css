@@ -896,6 +896,10 @@ select{
   margin-bottom: 1.5rem;
 }
 
+.mt-5{
+  margin-top: 1.25rem;
+}
+
 .block{
   display: block;
 }
@@ -1715,6 +1719,10 @@ select{
 
 .text-\[1\.6rem\]{
   font-size: 1.6rem;
+}
+
+.text-\[2\.6rem\]{
+  font-size: 2.6rem;
 }
 
 .font-bold{

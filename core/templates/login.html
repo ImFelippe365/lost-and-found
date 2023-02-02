@@ -26,15 +26,23 @@
 
         <lottie-player src="https://assets1.lottiefiles.com/packages/lf20_fzqg1yye.json" background="transparent"
             speed="1" class="h-auto w-auto" loop autoplay></lottie-player>
-
+        {% if not is_authenticated %}
         <h3 class="text-[1.6rem] text-black font-bold">Apenas funcionários precisam se autenticar</h3>
         <p class="text-lg text-black text-center mt-1 w-[60%] mb-24">
             A autenticação é destinada ao pessoal autorizado, tal como os funcionários da COAPAC e COADES da instituição.
             Qualquer autenticação
             via SUAP por mais que válida, não será reconhecida pelo sistema se for um aluno.
         </p>
+        {% else %}
+        <h3 class="text-[1.6rem] text-black font-bold">Você está autenticado!</h3>
+        <p class="text-lg text-black text-center mt-1 w-[60%] mb-24">
+            Já é possível utilizar todas as funcionalidades do sistema.
+        </p>
+        {% endif %}
     </aside>
 
+    {% if not is_authenticated %}
+        
     <main class="bg-white flex-0 w-[40%] mx-auto max-xl:w-[80%]">
 
         <form action="" method="post" class="max-w-[400px] mx-auto" autocomplete="off">
@@ -59,6 +67,7 @@
                 type="submit">Continuar</button>
         </form>
     </main>
+    {% endif %}
 </body>
 
 </html>
