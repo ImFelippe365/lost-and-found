@@ -1758,6 +1758,10 @@ select{
   font-size: 1.6rem;
 }
 
+.text-\[2\.6rem\]{
+  font-size: 2.6rem;
+}
+
 .font-bold{
   font-weight: 700;
 }
