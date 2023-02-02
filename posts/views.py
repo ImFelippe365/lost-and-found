@@ -55,7 +55,7 @@ class ItemsView(ListView):
 
         context['object_list'] = context_list
         context.update(
-            {'activeTab': 'items', 'difference_date': difference_date, 'num_days': 5, 'order': self.request.GET.get('order')})
+            {'activeTab': 'items', 'order': self.request.GET.get('order')})
         return context
 
 class DeliveredItemsView(ListView):
