@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% load static %}
+{%block main%}
+<section>
+    <h2 class="font-bold text-black text-3xl mb-5">Registros</h2>
+
+    <section class="flex flex-row items-center gap-6 justify-between flex-wrap">
+        {% load static %}
+        <div
+            class="border-light-gray border-[1px] border-solid bg-white rounded-lg flex flex-row items-center gap-2 pl-6 flex-1 min-w-[200px]">
+            <img class="w-5" src="{% static 'icon/carbon_search.svg' %}" />
+            <input autocomplete="off" id="registerSearchBar" name="keyword"
+                class="outline-none border-none bg-transparent w-full placeholder:text-gray" type="search"
+                placeholder="Pesquise pelo nome do item" />
+        </div>
+
+        <select id="orderId" class="border-light-gray rounded-lg pl-6 pr-16 text-gray ">
+            <option value="" disabled selected>Ordenar por</option>
+            <option value="desc">Mais recentes</option>
+            <option value="asc">Mais antigos</option>
+        </select>
+    </section>
+</section>
+
+<div class="table mt-4">
+    <a class="table-row text-gray text-start font-bold text-sm">
+        <div class="table-cell align-middle pb-2">Status</div>
+        <div class="table-cell">Quem encontrou</div>
+        <div class="table-cell">Quando foi encontrado</div>
+        <div class="table-cell">Nome do item</div>
+        <div class="table-cell max-2xl:hidden">Local</div>
+        <div class="table-cell max-2xl:hidden">COADES</div>
+    </a>
+
+    <span id="itemsContainer" data-page="register" class="itemsContainer table-footer-group">
+        {% include 'item_register.html' %}
+    </span>
+
+</div>
+<div id="paginationContainer" class="flex flex-row gap-2 mt-6 self-end">
+    {% if page_obj.paginator.num_pages > 1 %}
+
+    {% if page_obj.has_previous %}
+    <div>
+        <a href="?page={{ page_obj.previous_page_number }}" class="flex flex-row flex-nowrap text-black">
+            <img src="{% static 'icon/carbon_chevron-left-black.svg' %}">
+            Anterior
+        </a>
+    </div>
+    {% endif %}
+
+    <div>
+        {% if page_obj.number == page_obj.paginator.num_pages %}
+        <a href="?page=1"
+            class="hover:bg-primary-hover py-1 px-2 rounded-full transition-all font-bold text-black">1</a>
+        <span class="font-bold text-black">...</span>
+        {% endif %}
+        <span class="bg-primary py-1 px-2 rounded-t-full rounded-r-full rounded-b-full text-black font-bold">
+            {{ page_obj.number }}</span>
+    </div>
+
+    {% if page_obj.has_next %}
+
+    <div class="text-black font-bold">
+        {% if page_obj.next_page_number != page_obj.paginator.num_pages %}
+        <a href="?page={{ page_obj.next_page_number }}"
+            class="hover:bg-primary-hover py-1 px-2 rounded-full transition-all">{{ page_obj.next_page_number }}</a>
+        {% endif %}
+        ...
+        <a href="?page={{ page_obj.paginator.num_pages }}"
+            class="hover:bg-primary-hover py-1 px-2 rounded-full transition-all">{{ page_obj.paginator.num_pages }}</a>
+    </div>
+
+    <div>
+
+        <a href="?page={{ page_obj.next_page_number }}" class="flex flex-row flex-nowrap text-black">
+            Próxima
+            <img src="{% static 'icon/carbon_chevron-right-black.svg' %}">
+        </a>
+    </div>
+
+    {% endif %}
+    {% endif %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="{% static 'scripts/searchRegisters.js' %}"></script>
+</div>
+{% endblock %}

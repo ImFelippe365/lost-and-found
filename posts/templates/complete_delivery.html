@@ -12,56 +12,61 @@
 
 <section class="w-full mt-6">
     <h3 class="font-bold text-black text-xl">Dados do objeto</h3>
-    <div class="bg-primary rounded-2xl flex justify-center p-8 mt-3 flex-wrap md:flex-nowrap">
-        <div>
-            <div class="my-6 ml-6 w-[90%]">
-                <img class="rounded-full" src="{% static 'image/jarra-de-vo.jpg' %}">
-            </div>
+    <div class="bg-primary rounded-2xl flex items-center p-6 mt-3 flex-wrap md:flex-nowrap">
+        {% if item.image %}
+        <img class="rounded-full object-cover w-[260px]" src="{{item.image.url}}">
+        {% else %}
+        <div class="w-[260px] h-[260px]">
+            {% include 'without_image.html' with class='rounded-full' %}
         </div>
+        {% endif %}
 
-        <div class="flex flex-wrap justify-self-center content-evenly mx-9 my-7 w-[80%]">
+        <div class="flex flex-wrap justify-self-center content-evenly mx-9 my-7 w-[85%] gap-3">
             <div class="flex flex-row items-center">
                 <img src="{% static 'icon/carbon_apple.svg' %}">
-                <p class="text-black ml-3"><b>Jarra de vidro.</b> É uma jarra de vidro que foi de minha vó</p>
+                <p class="text-black ml-3"><b>{{item.name}}.</b>
+                    {% if item.description %} {{item.description}}. {% endif %}</p>
             </div>
 
             <div class="flex flex-row items-center">
                 <img src="{% static 'icon/carbon_location-hazard_larger.svg' %}">
-                <p class="text-black ml-3">Local que foi achado: <b>Ginásio</b>. Foi encontrado pela <b>tarde</b> no dia
-                    <b>22/10/2022</b> por <b>José Manoel.</b></p>
+                <p class="text-black ml-3">Local que foi achado: <b>{{item.local_found}}</b>. Foi encontrado pela
+                    <b>{{item.shift}}</b> no dia
+                    <b>{{item.when_was_found}}</b> por <b>{{item.who_found}}.</b>
+                </p>
             </div>
 
             <div class="flex flex-row items-center">
                 <img src="{% static 'icon/carbon_tool-box_larger.svg' %}">
-                <p class="text-black ml-4">Se encontra na <b>COADES</b> do <b>Bloco Principal</b></p>
+                <p class="text-black ml-4">Se encontra na <b>COADES</b> do <b>{{item.pickup_location}}</b></p>
             </div>
         </div>
     </div>
 
     <div>
         <h3 class="font-bold text-black text-xl mt-3">Dados de quem retirou o item</h3>
-        <form action="" method="post">
+        <form action="" method="post" autocomplete="off">
+            {% csrf_token %}
             <fieldset class="flex flex-wrap md:flex-nowrap justify-between gap-y-3 mt-3 mb-5">
                 <div class="flex flex-col w-full sm:w-[45%]">
-                    <label class="text-gray font-semibold" for="name-person-delevery">Nome *</label>
-                    <input type="text" name="name-person-delevery" placeholder="Ex: Jorge Silva"
-                        class="text-gray border-light-gray rounded-lg px-4" required>
+                    <label class="text-gray font-semibold" for="{{form.name.id_for_label}}">{{form.name.label}}</label>
+                    {{form.name}}
                 </div>
 
                 <div class="flex flex-col w-full sm:w-[45%]">
-                    <label class="text-gray font-semibold" for="registration">Matrícula</label>
-                    <input type="text" name="registration" placeholder="Número da matrícula"
-                        class="text-gray border-light-gray rounded-lg px-4">
+                    <label class="text-gray font-semibold" for="{{form.cpf.id_for_label}}">{{form.cpf.label}}</label>
+                    {{form.cpf}}
                 </div>
             </fieldset>
+
+            <div class="flex flex-wrap justify-center sm:justify-end mt-12 gap-3">
+                <a href="{% url 'items' %}" type="reset"
+                    class="text-black font-bold border-gray border-2 rounded-lg px-12 py-2">Cancelar</a>
+                <button class=" text-black font-bold bg-primary rounded-lg px-12 py-2 hover:bg-primary-contrast"
+                    type="submit">Confirmar</button>
+            </div>
         </form>
     </div>
-
-    <div class="flex flex-wrap justify-center sm:justify-end mt-12 gap-3">
-        <a href="{% url 'items' %}" type="reset"
-            class="text-black font-bold border-gray border-2 rounded-lg px-12 py-2">Cancelar</a>
-        <button class=" text-black font-bold bg-primary rounded-lg px-12 py-2 hover:bg-primary-contrast"
-            type="submit">Confirmar</button>
-    </div>
 </section>
+<script src="{% static 'scripts/mask.js'%}"></script>
 {% endblock %}

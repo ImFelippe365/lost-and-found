@@ -3,7 +3,7 @@
 
 {% block main %}
 <section>
-    <h2 class="font-bold text-black text-3xl mb-2">Criar nova postagem</h2>
+    <h2 class="font-bold text-black text-3xl mb-2">{{actionTitle}}</h2>
     <div>
         <p class="text-black">Preencha os campos para criar uma nova postagem. O <b>“*”</b> indica que o <b>campo é
                 obrigatório</b></p>
@@ -12,87 +12,97 @@
 
 <section class="w-full mt-6">
     <section>
-        <form action="" method="post">
+        <form action="" method="post" enctype="multipart/form-data" autocomplete="off">
             {% csrf_token %}
             <h3 class="font-bold text-black text-xl">Dados de encontro do item</h3>
             <fieldset class="flex flex-wrap justify-between gap-y-3 mt-2 mb-5">
                 <div class="flex flex-col w-full sm:w-[45%]">
-                    <label class="text-gray font-semibold" for="{{ form.who_found.id_for_label }}">{{form.who_found.label}}</label>
+                    <label class="text-gray font-semibold"
+                        for="{{ form.who_found.id_for_label }}">{{form.who_found.label}}</label>
                     {{ form.who_found }}
                 </div>
 
                 <div class="flex flex-col w-full sm:w-[45%]">
-                    <label class="text-gray font-semibold" for="{{ form.when_was_found.id_for_label }}."> {{ form.when_was_found.label }}</label>
-                    <input type="date" name="when_was_found" id="{{ form.when_was_found.id_for_label }}" 
-                            class="text-gray border-light-gray rounded-lg px-4" placeholder="__/__/__" required>
+                    <label class="text-gray font-semibold" for="{{ form.when_was_found.id_for_label }}.">
+                        {{ form.when_was_found.label }}</label>
+                    {{form.when_was_found}}
+                    {% for error in form.errors.as_data.when_was_found %}
+                    <p class="text-error-color text-sm mt-1">>> {{error.message}}</p>
+                    {% endfor %}
                 </div>
 
                 <div class="flex flex-col w-full sm:w-[45%]">
-                    <label class="text-gray font-semibold" for="{{ form.local_found.id_for_label }}">{{ form.local_found.label }}</label>
+                    <label class="text-gray font-semibold"
+                        for="{{ form.local_found.id_for_label }}">{{ form.local_found.label }}</label>
                     {{ form.local_found }}
                 </div>
 
                 <div class="flex flex-col w-full sm:w-[45%]">
-                    <label class="text-gray font-semibold" for="hour">Turno que foi encontrado *</label>
-                    <select aria-placeholder="Selecione o turno" class="text-gray border-light-gray rounded-lg px-4">
-                        <option value="morning">Manhã</option>
-                        <option value="afternoon">Tarde</option>
-                        <option value="night">Noite</option>
-                    </select>
+                    <label class="text-gray font-semibold" for="{{form.shift.id_for_label}}">Turno que foi encontrado
+                        *</label>
+                    {{form.shift}}
                 </div>
                 </div>
             </fieldset>
 
             <h3 class="font-bold text-black text-xl">Dados do item</h3>
-            <fieldset class="flex flex-wrap justify-between gap-y-3 mt-2 mb-5">
-                <div class="flex flex-col w-full sm:w-[45%]">
-                    <label class="text-gray font-semibold" for="{{ form.name.id_for_label }}">{{ form.name.label }}</label>
-                    {{ form.name }}
-                </div>
+            <fieldset class="flex flex-wrap justify-between mt-2 mb-5">
+                <div class="flex flex-col w-full sm:w-[45%] gap-y-3">
+                    <div class="flex flex-col">
+                        <label class="text-gray font-semibold"
+                            for="{{ form.name.id_for_label }}">{{ form.name.label }}</label>
+                        {{ form.name }}
+                    </div>
 
-                <div class="flex flex-col w-full sm:w-[45%]">
-                    <label class="text-gray font-semibold" for="{{ form.description.id_for_label }}">{{ form.description.label }}</label>
+
+                    <div class="flex flex-col">
+                        <label class="text-gray font-semibold"
+                            for="{{ form.image.id_for_label }}">{{ form.image.label }}</label>
+                        <label for="{{ form.image.id_for_label }}"
+                            class="flex flex-row items-center justify-center gap-3 bg-primary text-black text-lg py-2 rounded-lg font-bold text-center cursor-pointer hover:bg-primary-contrast">
+                            <img src="{% static 'icon/carbon_upload.svg' %}" class="w-5" />
+                            Clique para fazer o upload
+                        </label>
+                        {{ form.image }}
+                        <span id="image_name" class="text-gray text-sm mt-1"></span>
+                    </div>
+                </div>
+                
+                <div class="flex flex-col w-full sm:w-[45%] h-[9.1rem]">
+                    <label class="text-gray font-semibold"
+                        for="{{ form.description.id_for_label }}">{{ form.description.label }}</label>
                     {{ form.description }}
                 </div>
-
-                <div class="flex flex-col w-full sm:w-[45%]">
-                    <label class="text-gray font-semibold" for="{{ form.image.id_for_label }}">{{ form.image.label }}</label>
-                    <label for="{{ form.image.id_for_label }}"
-                        class="flex flex-row items-center justify-center gap-3 bg-primary text-black text-lg py-2 rounded-lg font-bold text-center cursor-pointer hover:bg-primary-contrast">
-                        <img src="{% static 'icon/carbon_upload.svg' %}" class="w-5" />
-                        Clique para fazer o upload
-                    </label>
-                    {{ form.image }}
-                    <!-- <input id="" type="file" name="image" accept="image/*" class="hidden"> -->
-                </div>
-
-
             </fieldset>
 
             <h3 class="font-bold text-black text-xl">Dados para retirada do item</h3>
             <fieldset class="flex flex-wrap justify-between gap-y-3 mt-2 mb-5">
                 <div class="flex flex-col w-full sm:w-[45%]">
-                    <label for="coades" class="text-gray font-semibold"></label>
-                    <select aria-placeholder="Selecione o local" class="border-light-gray rounded-lg text-gray px-4"
-                        required>
-                        <option value="main-block">Bloco Principal</option>
-                        <option value="annex-block">Bloco anexo</option>
-                    </select>
+                    <label for="{{form.pickup_location.id_for_label}}"
+                        class="text-gray font-semibold">{{form.pickup_location.label}}</label>
+                    {{form.pickup_location}}
                 </div>
 
                 <div class="flex flex-col w-full sm:w-[45%]">
-                    <label for="{{ form.withdrawal_deadline.id_for_label }}" class="text-gray font-semibold">{{ form.withdrawal_deadline.label }}</label>
-                    <input type="date" name="withdrawal_deadline" id="{{ form.withdrawal_deadline.id_for_label }}" 
-                            class="text-gray border-light-gray rounded-lg px-4" placeholder="__/__/__" required>
+                    <label for="{{ form.withdrawal_deadline.id_for_label }}"
+                        class="text-gray font-semibold">{{ form.withdrawal_deadline.label }}</label>
+                    {{form.withdrawal_deadline}}
+                    {% for error in form.errors.as_data.withdrawal_deadline %}
+                    <p class="text-error-color text-sm mt-1">>> {{error.message}}</p>
+                    {% endfor %}
                 </div>
             </fieldset>
 
             <div class="flex flex-wrap justify-center sm:justify-end mt-12 gap-3">
                 <a href="{% url 'items' %}" type="reset"
                     class="text-black font-bold border-gray border-2 rounded-lg px-12 py-2">Cancelar</a>
-                <button class=" text-black font-bold bg-primary rounded-lg px-12 py-2 hover:bg-primary-contrast" type="submit">Finalizar</button>
+                <button class=" text-black font-bold bg-primary rounded-lg px-12 py-2 hover:bg-primary-contrast"
+                    type="submit">Finalizar</button>
             </div>
         </form>
     </section>
 </section>
+
+<script src="{% static 'scripts/imageInput.js'%}"></script>
+
 {% endblock %}

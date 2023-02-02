@@ -5,7 +5,7 @@
 
 {% block main %}
 <section>
-    <a href="{% url 'all-registers' %}">
+    <a href="{% url 'registers' %}">
         <div class="flex items-center mb-6">
             <img class="w-6" src="{% static 'icon/carbon_arrow-left.svg' %}">
             <p class="ml-4 font-bold text-black">Voltar</p>
@@ -21,27 +21,33 @@
 
 <section class="w-full mt-6">
     <div class="flex items-center flex-wrap md:flex-nowrap">
-        <div>
-            <div class="mx-auto w-[75%]">
-                <img class="rounded-full" src="{% static 'image/jarra-de-vo.jpg' %}">
-            </div>
+        {% if object.image %}
+        <div class="mx-auto">
+            <img class="rounded-full object-cover w-[320px] h-[320px] mx-auto" src="{{ object.image.url }}">
         </div>
+        {% else %}
+        <div class="w-[260px] h-[260px] mx-auto">
+            {% include 'without_image.html' with class='rounded-full' %}
+        </div>
+        {% endif %}
 
         <div class="flex flex-col flex-wrap gap-3 mx-9 my-7 w-[80%]">
             <div>
-                <div class="rounded-3xl inline font-bold text-xs text-white px-4 py-1 {% if item.status == 'Entregue' %} bg-success-color
-                        {% elif item.status == 'Perdido' %}  
+                <div class="rounded-3xl inline font-bold text-xs text-white px-4 py-1 {% if object.status == 'Entregue' %} bg-success-color
+                        {% elif object.status == 'Perdido' %}  
                         bg-error-color
                         {% else %}
                         bg-black
                     {% endif %}">
-                    Expirado
+                    {{ object.status }}
                 </div>
             </div>
-            <h2 class="text-black font-bold text-3xl">Jarra de vidro</h2>
-            <p class="text-gray">É uma jarra de vidro que foi de minha vó, muito antiga e amarelada, acredito que ainda
-                deve ter algo
-                dentro</p>
+            <h2 class="text-black font-bold text-3xl">{{ object.name }}</h2>
+            {% if object.description %}
+            <p class="text-gray">
+                {{ object.description }}
+            </p>
+            {% endif %}
         </div>
     </div>
 
@@ -50,22 +56,37 @@
             <h3 class="text-black font-bold text-lg">Dados de encontro do item</h3>
             <div class="flex justify-between gap-x-4">
                 <p class="text-gray font-bold">Nome (de quem encontrou): </p>
-                <p class="text-gray">José Manoel</p>
+                <p class="text-gray">{{ object.who_found }}</p>
             </div>
 
             <div class="flex justify-between gap-x-4">
                 <p class="text-gray font-bold">Data: </p>
-                <p class="text-gray">22/10/2022</p>
+                <p class="text-gray">{{ object.when_was_found }}</p>
             </div>
 
             <div class="flex justify-between gap-x-4">
                 <p class="text-gray font-bold">Local: </p>
-                <p class="text-gray">Ginásio</p>
+                <p class="text-gray">{{ object.local_found }}</p>
             </div>
 
             <div class="flex justify-between gap-x-4">
                 <p class="text-gray font-bold">Turno: </p>
-                <p class="text-gray">Tarde</p>
+                <p class="text-gray">{{ object.shift }}</p>
+            </div>
+
+            <div class="flex justify-between gap-x-4">
+                <p class="text-gray font-bold">Criado por: </p>
+                <p class="text-gray">{{ object.created_by.name }}</p>
+            </div>
+
+            <div class="flex justify-between gap-x-4">
+                <p class="text-gray font-bold">Matrícula do criador: </p>
+                <p class="text-gray">{{ object.created_by.registration }}</p>
+            </div>
+
+            <div class="flex justify-between gap-x-4">
+                <p class="text-gray font-bold">Data de criação: </p>
+                <p class="text-gray">{{ object.created_at }}</p>
             </div>
         </div>
 
@@ -73,23 +94,40 @@
             <h3 class="text-black font-bold text-lg">Dados da retirada do objeto</h3>
             <div class="flex justify-between gap-x-4">
                 <p class="text-gray font-bold">COADES: </p>
-                <p class="text-gray">Bloco Principal</p>
+                <p class="text-gray">{{ object.pickup_location }}</p>
             </div>
 
             <div class="flex justify-between gap-x-4">
                 <p class="text-gray font-bold">Data limite para retirada: </p>
-                <p class="text-gray">22/12/2022</p>
+                <p class="text-gray">{{ object.withdrawal_deadline }}</p>
+            </div>
+
+            {% if object.withdrawal_data %}
+            <div class="flex justify-between gap-x-4">
+                <p class="text-gray font-bold">Reinvindicador: </p>
+                <p class="text-gray">{{ object.withdrawal_data.claimant.name }}</p>
             </div>
 
             <div class="flex justify-between gap-x-4">
-                <p class="text-gray font-bold">Nome: </p>
-                <p class="text-gray">Cauã da Cruz</p>
+                <p class="text-gray font-bold">CPF do reinvindicador: </p>
+                <p class="text-gray">{{ object.withdrawal_data.claimant.cpf }}</p>
             </div>
 
             <div class="flex justify-between gap-x-4">
-                <p class="text-gray font-bold">Matrícula: </p>
-                <p class="text-gray">201811094040099</p>
+                <p class="text-gray font-bold">Entregue por: </p>
+                <p class="text-gray">{{ object.withdrawal_data.user.name }}</p>
             </div>
+
+            <div class="flex justify-between gap-x-4">
+                <p class="text-gray font-bold">Matrícula de quem entregou: </p>
+                <p class="text-gray">{{ object.withdrawal_data.user.registration }}</p>
+            </div>
+
+            <div class="flex justify-between gap-x-4">
+                <p class="text-gray font-bold">Data de entrega: </p>
+                <p class="text-gray">{{ object.withdrawal_data.created_at }}</p>
+            </div>
+            {% endif %}
         </div>
     </div>
 </section>

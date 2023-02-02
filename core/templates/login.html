@@ -2,11 +2,13 @@
 <html lang="pt-br">
 
 {% load tailwind_tags %}
+{% load static %}
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg" href="{% static 'svg/favicon.svg' %}">
 
     <!-- Lottie Files -->
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
@@ -17,7 +19,6 @@
     {% tailwind_css %}
 </head>
 
-{% load static %}
 
 <body class="flex flex-row items-center h-[100vh]">
     <aside
@@ -25,18 +26,26 @@
 
         <lottie-player src="https://assets1.lottiefiles.com/packages/lf20_fzqg1yye.json" background="transparent"
             speed="1" class="h-auto w-auto" loop autoplay></lottie-player>
-
+        {% if not is_authenticated %}
         <h3 class="text-[1.6rem] text-black font-bold">Apenas funcionários precisam se autenticar</h3>
         <p class="text-lg text-black text-center mt-1 w-[60%] mb-24">
-            A autenticação é destinada ao pessoal autorizado, tal como os funcionários e bolsistas da instituição.
+            A autenticação é destinada ao pessoal autorizado, tal como os funcionários da COAPAC e COADES da instituição.
             Qualquer autenticação
             via SUAP por mais que válida, não será reconhecida pelo sistema se for um aluno.
         </p>
+        {% else %}
+        <h3 class="text-[1.6rem] text-black font-bold">Você está autenticado!</h3>
+        <p class="text-lg text-black text-center mt-1 w-[60%] mb-24">
+            Já é possível utilizar todas as funcionalidades do sistema.
+        </p>
+        {% endif %}
     </aside>
 
+    {% if not is_authenticated %}
+        
     <main class="bg-white flex-0 w-[40%] mx-auto max-xl:w-[80%]">
 
-        <form action="" method="post" class="max-w-[400px] mx-auto">
+        <form action="" method="post" class="max-w-[400px] mx-auto" autocomplete="off">
             <h2 class="text-black font-bold text-4xl mb-1">Entrar</h2>
             <p class="text-gray text-lg mb-4">Bem vindo de volta. Estávamos ansiosos por sua volta!</p>
 
@@ -44,22 +53,13 @@
             {% for field in form %}
             <label class="font-bold text-gray" for="{{ field.auto_id }}">{{ field.label }}</label>
             {{ field }}
-            {{ field.error }}
             {% endfor %}
-            <!-- <fieldset name="user" class="text-gray flex flex-col mb-3">
-                <label for="user" class="font-bold">Usuário</label>
-                <input class="border-light-gray rounded-lg px-4 placeholder:text-gray" type="number" id="user"
-                    placeholder="Insira sua matrícula" />
-            </fieldset>
-
-            <fieldset name="password" class="text-gray flex flex-col mb-2">
-                <label for="password" class="font-bold">Senha</label>
-                <input class="border-light-gray rounded-lg px-4 placeholder:text-gray" type="password" id="password"
-                    placeholder="Insira sua senha" />
-            </fieldset> -->
-
+            <p class="text-error-color text-xs mb-4">
+                {{ error }}
+            </p>
             <p class="text-gray">
-                <span class="font-bold">Importante:</span> O usuário e senha são os mesmos utilizados pelo SUAP
+                <span class="font-bold">Importante:</span> O usuário e senha são os mesmos utilizados pelo SUAP. Nós não
+                o armazenamos em nosso sistema.
             </p>
 
             <button
@@ -67,6 +67,7 @@
                 type="submit">Continuar</button>
         </form>
     </main>
+    {% endif %}
 </body>
 
 </html>

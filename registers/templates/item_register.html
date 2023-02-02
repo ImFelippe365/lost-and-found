@@ -1,0 +1,24 @@
+{% for item in object_list %}
+<a data-page="register" data-name="{{ item.name }}" data-date="{{ item.updated_at }}"
+    class="table-row {% cycle 'bg-primary-hover' 'bg-background-color' %}"
+    href="{% url 'details' item.id %}">
+    <div class="h-full p-4 rounded-l-lg table-cell align-middle">
+        <div class="rounded-3xl inline font-bold text-xs text-white px-4 py-1 
+                    {% if item.status == 'Entregue' %} 
+                    bg-success-color
+                    {% elif item.status == 'Perdido' %}  
+                    bg-error-color
+                    {% else %}
+                    bg-black
+                    {% endif %}">
+            {{ item.status }}
+        </div>
+    </div>
+    <div class="text-black table-cell align-middle">{{ item.who_found }}</div>
+    <div class="text-black table-cell align-middle">{{ item.when_was_found }}</div>
+    <div class="text-black table-cell align-middle max-2xl:rounded-r-lg ">{{ item.name }}</div>
+    <div class="text-black table-cell align-middle max-2xl:hidden">{{ item.local_found }}</div>
+    <div class="text-black rounded-r-lg table-cell align-middle max-2xl:hidden">{{ item.pickup_location }}
+    </div>
+</a>
+{% endfor %}

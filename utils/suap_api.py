@@ -2,9 +2,7 @@ import requests
 
 class Suap:
     def __init__(self,token=False, refresh_token = False):
-        print("ASSIM QUE ENTRO NA CLASSE O TOKEN É ", token)
         if token:
-            print('SETEI O TOKEN')
             self.token = token
         if refresh_token:
             self.refresh_token = refresh_token
@@ -15,25 +13,31 @@ class Suap:
     def authenticate(self, username, password):
         url = self.endpoint+'autenticacao/token/'
         params = {
-            'username':username,
-            'password':password,
+            'username': username,
+            'password': password,
         }
 
         response = requests.post(url, data=params)
-        data = False
+        data = {
+            'success': False,
+            'message': "Usuário e/ou senha incorreto(s). Tente novamente"
+        }
 
-        print("RESPOSTA AO AUTENTICAR -> ",response.json())
         if response.status_code == 200:
             data = response.json()
-            print("TRISTEZA", data, data['access'])
+            data['success'] = True
             self.setToken(data['access']) 
             self.setRefreshToken(data['refresh'])
+            data = self.getUserData(data['access'])
+            print("DEPOIS DE SE LOGAR ->" , data)
         else:
+            data['message'] = response.json()['detail']
+            print("->>>>>>",data)
             print('(!) Não foi possível logar, erro: ', response)
+
         return data
     
     def setToken(self, token):
-        print("vou inserir o token aqui no settoken",token)
         self.token = token
 
     def setRefreshToken(self, refresh_token):
@@ -55,19 +59,27 @@ class Suap:
     def getUserData(self, token):
         url = self.endpoint+'minhas-informacoes/meus-dados/'
         response = self.doGETRequest(url, token)
-        print("ESSA BUCETA DOS DADOS", response)
+        print("INFORMAÇÕES DO USUÁRIO -> ",response)
         data = {
             'name': response['nome_usual'],
             'picture': response['url_foto_75x100'],
             'department': response['tipo_vinculo'],
             'registration': response['matricula'],
+            'success': True
         }
 
-        return data
+        error = {
+            'message': 'Você não tem permissão para acessar o sistema.',
+            'success': False
+        }
+        
+        if 'setor_suap' in response['vinculo'] and (response['vinculo']['setor_suap'] == 'COAPAC/PF' or response['vinculo']['setor_suap'] == 'COADES/PF'):
+            return data
+        
+        return error
 
     def doGETRequest(self, url, token):
         response = requests.get(url, headers={'Authorization': f'Bearer {token}'})
-        print('TO PRECISANDO USAR O TOKEN AKI',self.token)
         data = False
         if response.status_code == 200:
             data = response.json()

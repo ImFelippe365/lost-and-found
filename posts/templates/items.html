@@ -1,21 +1,18 @@
 {% extends 'base.html' %}
 {% load static %}
 {%block main%}
+
 <header>
     <h2 class="font-bold text-black text-3xl mb-5 inline-block max-xl:hidden">Postagens</h2>
 
     <section class="flex flex-row items-center gap-6 justify-between flex-wrap">
-        <div
-            class="border-light-gray border-[1px] border-solid bg-white rounded-lg flex flex-row items-center gap-2 pl-6 flex-1 min-w-[300px] max-2xl:w-full">
-            <img class="w-5" src="{% static 'icon/carbon_search.svg' %}" />
-            <input class="outline-none border-none bg-transparent w-full placeholder:text-gray" type="search"
-                placeholder="Pesquise pelo nome do item" />
-        </div>
+        {% include 'search.html' %}
 
         <div class="flex justify-between flex-row gap-4">
-            <select aria-placeholder="Ordenar por" class="border-light-gray rounded-lg pl-6 pr-16 text-gray ">
-                <option value="recents">Mais recentes</option>
-                <option value="older">Mais antigos</option>
+            <select id="orderId" class="border-light-gray rounded-lg pl-6 pr-16 text-gray ">
+                <option value="" disabled selected>Ordenar por</option>
+                <option value="desc">Mais recentes</option>
+                <option value="asc">Mais antigos</option>
             </select>
 
             {% if is_authenticated %}
@@ -30,10 +27,22 @@
     </section>
 </header>
 
-<section>
-    {% for item in items %}
+{% include 'messages.html' %}
+{% include 'delete_post.html' %}
+
+<section data-platform="desktop" class="itemsContainer desktopItemsList" id="desktopItemsList">
+    {% for item in object_list %}
     {% include 'card.html' %}
     {% endfor %}
 </section>
+
+<section class="itemsContainer mobileItemsList" id="mobileItemsList">
+    {% for item in object_list %}
+    {% include 'card_mobile.html' %}
+    {% endfor %}
+</section>
+
+<script src="{% static 'scripts/modal.js' %}"></script>
+<script src="{% static 'scripts/modalMessage.js' %}"></script>
 
 {% endblock %}
