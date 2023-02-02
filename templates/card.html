@@ -102,7 +102,7 @@
             {% endif %}">
                         {% if item.status == 'Expirado' %}
                         <img class="w-8" src="{% static 'icon/carbon_close-outline-colorful.svg' %}" />
-                        {% elif item.status == 'Perdido' and num_days > difference_date|get_item:item.id %}
+                        {% elif item.status == 'Perdido' and item.warning %}
                         <img src="{% static 'icon/carbon_warning-alt.svg' %}">
                         {% else %}
                         <img class="w-8" src="{% static 'icon/carbon_checkmark-outline-colorful.svg' %}" />
@@ -110,7 +110,7 @@
 
                         <div class="leading-none">
                             <strong class="m-0 text-sm {% if item.status == 'Expirado' %} text-error-color 
-                            {% elif item.status == 'Perdido' and num_days > difference_date|get_item:item.id %} text-warning-color
+                            {% elif item.status == 'Perdido' and item.warning %} text-warning-color
                         {% else %}
                         text-success-color
                     {% endif %}">Data limite para retirada:</strong>
