@@ -896,6 +896,10 @@ select{
   margin-bottom: 1.5rem;
 }
 
+.mr-auto{
+  margin-right: auto;
+}
+
 .block{
   display: block;
 }
@@ -1168,6 +1172,26 @@ select{
   max-width: 200px;
 }
 
+.max-w-\[100\%\]{
+  max-width: 100%;
+}
+
+.max-w-\[50\%\]{
+  max-width: 50%;
+}
+
+.max-w-\[24rem\]{
+  max-width: 24rem;
+}
+
+.max-w-\[32rem\]{
+  max-width: 32rem;
+}
+
+.max-w-\[rem\]{
+  max-width: rem;
+}
+
 .flex-1{
   flex: 1 1 0%;
 }
@@ -1277,6 +1301,14 @@ select{
   gap: 4rem;
 }
 
+.gap-8{
+  gap: 2rem;
+}
+
+.gap-12{
+  gap: 3rem;
+}
+
 .gap-y-4{
   row-gap: 1rem;
 }
@@ -1300,6 +1332,10 @@ select{
 
 .justify-self-center{
   justify-self: center;
+}
+
+.overflow-hidden{
+  overflow: hidden;
 }
 
 .overflow-x-hidden{
@@ -1505,6 +1541,11 @@ select{
 .object-cover{
   -o-object-fit: cover;
      object-fit: cover;
+}
+
+.object-left{
+  -o-object-position: left;
+     object-position: left;
 }
 
 .p-2{
@@ -1948,6 +1989,31 @@ select{
 }
 
 @media not all and (min-width: 1024px){
+  .max-lg\:mx-auto{
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .max-lg\:-ml-6{
+    margin-left: -1.5rem;
+  }
+
+  .max-lg\:-ml-4{
+    margin-left: -1rem;
+  }
+
+  .max-lg\:-ml-8{
+    margin-left: -2rem;
+  }
+
+  .max-lg\:mt-2{
+    margin-top: 0.5rem;
+  }
+
+  .max-lg\:mt-4{
+    margin-top: 1rem;
+  }
+
   .max-lg\:h-auto{
     height: auto;
   }
@@ -1958,6 +2024,10 @@ select{
 
   .max-lg\:w-16{
     width: 4rem;
+  }
+
+  .max-lg\:flex-1{
+    flex: 1 1 0%;
   }
 
   .max-lg\:flex-col-reverse{
@@ -1994,6 +2064,11 @@ select{
     left: 0px;
   }
 
+  .max-md\:my-8{
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+
   .max-md\:mb-8{
     margin-bottom: 2rem;
   }
@@ -2002,8 +2077,28 @@ select{
     margin-top: 0px;
   }
 
+  .max-md\:mb-10{
+    margin-bottom: 2.5rem;
+  }
+
+  .max-md\:mb-16{
+    margin-bottom: 4rem;
+  }
+
+  .max-md\:mt-10{
+    margin-top: 2.5rem;
+  }
+
+  .max-md\:mt-12{
+    margin-top: 3rem;
+  }
+
   .max-md\:hidden{
     display: none;
+  }
+
+  .max-md\:\!hidden{
+    display: none !important;
   }
 
   .max-md\:w-\[85\%\]{
@@ -2012,6 +2107,10 @@ select{
 
   .max-md\:min-w-0{
     min-width: 0px;
+  }
+
+  .max-md\:flex-1{
+    flex: 1 1 0%;
   }
 
   .max-md\:flex-col{

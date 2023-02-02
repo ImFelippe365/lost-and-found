@@ -52,9 +52,9 @@
 
     <main>
         <section
-            class="flex flex-row items-center justify-between w-[60%] h-[70vh] mx-auto max-xl:w-[90%] max-lg:flex-col-reverse max-md:mb-8">
-            <div class="min-w-[400px] mx-auto max-md:min-w-0">
-                <h1 class="text-black font-bold text-5xl max-lg:text-3xl">
+            class="flex flex-row items-center justify-between w-[60%] h-[70vh] mx-auto max-xl:w-[90%] max-lg:flex-col-reverse max-md:mb-10">
+            <div class="min-w-[400px] flex-1 mx-auto max-md:min-w-0">
+                <h1 class="text-black font-bold text-5xl max-lg:text-3xl max-lg:mt-4">
                     Perdeu algo?<br>
                     Nós encontramos<br> para você
                 </h1>
@@ -73,8 +73,11 @@
                 </a>
             </div>
 
-            <lottie-player src="https://assets10.lottiefiles.com/packages/lf20_hpdv2lor.json" background="transparent"
-                speed="0.5" class="w-auto max-lg:w-[26rem]" loop autoplay></lottie-player>
+            <div class="max-w-[100%] mx-auto object-cover overflow-hidden">
+                <lottie-player src="https://assets10.lottiefiles.com/packages/lf20_hpdv2lor.json"
+                    background="transparent" speed="0.5" class="w-auto mx-auto max-lg:w-[26rem] max-lg:-ml-8 mr-auto"
+                    loop autoplay></lottie-player>
+            </div>
         </section>
 
         <img class="w-full" src="{% static 'svg/waves.svg' %}" />
@@ -151,7 +154,7 @@
                 </article>
 
                 <lottie-player src="{% static 'lottie-files/team.json' %}" background="transparent" speed="1"
-                    class="h-auto w-auto max-w-[500px] max-md:hidden" loop autoplay></lottie-player>
+                    class="h-auto w-auto max-w-[500px] max-md:!hidden" loop autoplay></lottie-player>
             </div>
 
             <section
@@ -225,10 +228,10 @@
     <footer class="bg-black py-8">
         <div
             class="flex flex-row items-center justify-between w-[50%] h-[35vh] m-auto max-xl:w-[70%] max-md:w-[85%] max-md:flex-col">
-            <img class="w-56" src="{% static 'svg/logo-colorful.svg' %}" width="200" />
+            <img class="w-56 max-md:flex-1" src="{% static 'svg/logo-colorful.svg' %}" width="200" />
 
             <article class="text-white flex flex-col gap-3">
-                <h3 class="font-bold text-light-gray text-3xl max-md:text-center">Contatos</h3>
+                <h3 class="font-bold text-light-gray text-3xl max-md:text-center max-md:hidden">Contatos</h3>
 
                 <ul class="flex flex-col gap-1">
                     <li>
@@ -259,7 +262,8 @@
 
             </article>
         </div>
-        <h4 class="text-center text-light-gray w-full mt-6">Copyright &copy; Todos os direitos reservados</h4>
+        <h4 class="text-center text-light-gray w-full mt-6 max-md:mt-12">Copyright &copy; Todos os direitos reservados
+        </h4>
     </footer>
 </body>
 

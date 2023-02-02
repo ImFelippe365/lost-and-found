@@ -5,19 +5,14 @@ $(() => {
 
     $(searchBar).keyup(() => {
         const searchText = searchBar.val();
+        const pagination = document.getElementById('paginationContainer');
         if (searchText.length === 0) {
             $('#itemsContainer').replaceWith(headerTagOpen + table + headerTagClose)
+            pagination.style.display = 'flex'
         } else {
             $.get(`search/${searchText}`, (response) => {
-                // for (let index = 0; index < response.length; index++) {
-                //     const element = array[index];
-                //     if (index % 2 == 0){
-                //         element.className = element.className.replace('bg-background-color', 'bg-primary-hover')
-                //     } else {
-                //         element.className = element.className.replace('bg-primary-hover', 'bg-background-color')
-                //     }
-                // }
                 $('#itemsContainer').replaceWith(headerTagOpen + response + headerTagClose)
+                pagination.style.display = 'none'
             })
         }
     })
