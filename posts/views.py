@@ -9,9 +9,14 @@ from django.db.models import Q
 from django.contrib import messages
 import datetime
 from django.forms import ValidationError
+from django.template.defaulttags import register
 import re
 
+@register.filter
+def get_item(dictionary, key):
+    return dictionary.get(key)
 
+    
 def isAuthenticated(request):
     token = request.session.get('user')
     if (token is None):
@@ -39,8 +44,11 @@ class ItemsView(ListView):
     def get_context_data(self, **kwargs):
         context = super(ItemsView, self).get_context_data(**kwargs)
         context_list = context['object_list']
-
+        difference_date = {}
         for item in context_list:
+            difference_days = item.withdrawal_deadline - datetime.date.today()
+            difference_date.update({item.id: difference_days.days})
+             
             item.updated_at = item.updated_at.strftime("%Y/%m/%d")
             item.when_was_found = item.when_was_found.strftime("%d/%m/%Y")
             item.withdrawal_deadline = item.withdrawal_deadline.strftime(
@@ -50,7 +58,7 @@ class ItemsView(ListView):
 
         context['object_list'] = context_list
         context.update(
-            {'activeTab': 'items', 'order': self.request.GET.get('order')})
+            {'activeTab': 'items', 'difference_date': difference_date, 'num_days': 5, 'order': self.request.GET.get('order')})
         return context
 
 class DeliveredItemsView(ListView):

@@ -58,7 +58,6 @@
                     <img class="w-5" src="{% static 'icon/carbon_chevron-right.svg' %}" />
                 </a>
 
-
                 <button onclick="showDialog(`{{ item.id }}`, `{{ item.name }}`)"
                     class="flex flex-row items-center justify-between w-full text-error-color py-3 px-5 hover:bg-light-gray-hover transition-all">
                     Excluir
@@ -103,12 +102,15 @@
             {% endif %}">
                         {% if item.status == 'Expirado' %}
                         <img class="w-8" src="{% static 'icon/carbon_close-outline-colorful.svg' %}" />
+                        {% elif item.status == 'Perdido' and num_days > difference_date|get_item:item.id %}
+                        <img src="{% static 'icon/carbon_warning-alt.svg' %}">
                         {% else %}
                         <img class="w-8" src="{% static 'icon/carbon_checkmark-outline-colorful.svg' %}" />
                         {% endif %}
 
                         <div class="leading-none">
-                            <strong class="m-0 text-sm {% if item.status == 'Expirado' %} text-error-color
+                            <strong class="m-0 text-sm {% if item.status == 'Expirado' %} text-error-color 
+                            {% elif item.status == 'Perdido' and num_days > difference_date|get_item:item.id %} text-warning-color
                         {% else %}
                         text-success-color
                     {% endif %}">Data limite para retirada:</strong>
