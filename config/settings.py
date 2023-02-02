@@ -35,7 +35,7 @@ NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
 # Tailwind
 
 TAILWIND_APP_NAME = 'theme'
-TAILWIND_DEV_MODE=DEBUG
+TAILWIND_DEV_MODE=True
 
 # Application definition
 
