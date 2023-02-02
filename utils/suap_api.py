@@ -29,11 +29,8 @@ class Suap:
             self.setToken(data['access']) 
             self.setRefreshToken(data['refresh'])
             data = self.getUserData(data['access'])
-            print("DEPOIS DE SE LOGAR ->" , data)
         else:
             data['message'] = response.json()['detail']
-            print("->>>>>>",data)
-            print('(!) Não foi possível logar, erro: ', response)
 
         return data
     
@@ -52,14 +49,12 @@ class Suap:
         if response.status_code == 200:
             data = response.json()
             self.setToken(data)
-            print("REFRESH TOKEN",data)
         else:
             print("(!) Não foi possível atualizar o token", response.status_code)
 
     def getUserData(self, token):
         url = self.endpoint+'minhas-informacoes/meus-dados/'
         response = self.doGETRequest(url, token)
-        print("INFORMAÇÕES DO USUÁRIO -> ",response)
         data = {
             'name': response['nome_usual'],
             'picture': response['url_foto_75x100'],

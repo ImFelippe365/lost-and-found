@@ -1024,6 +1024,18 @@ select{
   height: 320px;
 }
 
+.h-\[24rem\]{
+  height: 24rem;
+}
+
+.h-\[16rem\]{
+  height: 16rem;
+}
+
+.h-\[12rem\]{
+  height: 12rem;
+}
+
 .w-\[320px\]{
   width: 320px;
 }
@@ -1660,6 +1672,14 @@ select{
   padding-bottom: 0.5rem;
 }
 
+.pb-4{
+  padding-bottom: 1rem;
+}
+
+.pb-6{
+  padding-bottom: 1.5rem;
+}
+
 .text-center{
   text-align: center;
 }
@@ -1957,6 +1977,16 @@ select{
   .max-xl\:grid-cols-none{
     grid-template-columns: none;
   }
+
+  .max-xl\:bg-pink-400{
+    --tw-bg-opacity: 1;
+    background-color: rgb(244 114 182 / var(--tw-bg-opacity));
+  }
+
+  .max-xl\:py-4{
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
 }
 
 @media not all and (min-width: 1024px){
@@ -1968,8 +1998,28 @@ select{
     margin-left: -2rem;
   }
 
+  .max-lg\:mb-10{
+    margin-bottom: 2.5rem;
+  }
+
   .max-lg\:h-auto{
     height: auto;
+  }
+
+  .max-lg\:h-\[40vh\]{
+    height: 40vh;
+  }
+
+  .max-lg\:h-\[20vh\]{
+    height: 20vh;
+  }
+
+  .max-lg\:h-\[30vh\]{
+    height: 30vh;
+  }
+
+  .max-lg\:h-\[\]{
+    height: ;
   }
 
   .max-lg\:w-\[26rem\]{
@@ -1987,6 +2037,11 @@ select{
   .max-lg\:py-6{
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
+  }
+
+  .max-lg\:py-4{
+    padding-top: 1rem;
+    padding-bottom: 1rem;
   }
 
   .max-lg\:text-3xl{
@@ -2076,5 +2131,53 @@ select{
 
   .md\:flex-nowrap{
     flex-wrap: nowrap;
+  }
+}
+
+@media (min-width: 1024px){
+  .lg\:py-4{
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+}
+
+@media (min-width: 1280px){
+  .xl\:py-4{
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+}
+
+@media not all and (min-width: 1024px){
+  @media (min-width: 1280px){
+    .max-lg\:xl\:py-4{
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+    }
+  }
+}
+
+@media (min-width: 1536px){
+  .\32xl\:py-4{
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+}
+
+@media not all and (min-width: 1024px){
+  @media (min-width: 1536px){
+    .max-lg\:2xl\:py-4{
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+    }
+  }
+}
+
+@media (min-width: 1536px){
+  @media not all and (min-width: 1024px){
+    .\32xl\:max-lg\:py-4{
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+    }
   }
 }

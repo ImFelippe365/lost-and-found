@@ -99,7 +99,6 @@ class RegistersSearchResultsView(ListView):
         return context
 
 def searchRegister(request, text):
-    print("TEXTO RECEBIDO -> ", text)
     registers = Item.objects.filter(name__icontains=text)
 
     STATUS_CHOICES = {
@@ -116,6 +115,5 @@ def searchRegister(request, text):
             item.shift = item.shift
             item.status = STATUS_CHOICES[item.status]
             
-    print(registers)
     return render(request, 'item_register.html', { 'object_list': registers  })
 
