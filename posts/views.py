@@ -39,7 +39,7 @@ class ItemsView(ListView):
     def get_context_data(self, **kwargs):
         context = super(ItemsView, self).get_context_data(**kwargs)
         context_list = context['object_list']
-        difference_date = {}
+        
         for item in context_list:
             difference_days = item.withdrawal_deadline - datetime.date.today()
             item.warning = False
@@ -136,7 +136,7 @@ class CreateItemView(CreateView):
         if (isAuthenticated(request)):
             return redirect(reverse_lazy('login'))
 
-        return render(request, 'create_post.html', {'form': self.get_form(), 'activeTab': 'items', 'actionTitle': 'Criar nova postagem'})
+        return render(request, 'create_post.html', {'form': self.get_form(), 'activeTab': 'items', 'actionTitle': 'Criar nova postagem', 'actionSubtitle': 'criar uma nova postagem'})
 
     def form_valid(self, form):
         today = datetime.date.today()
@@ -183,7 +183,7 @@ class UpdateItemView(UpdateView):
 
         form = ItemModelForm(instance=item)
 
-        return render(request, 'create_post.html', {'form': form, 'item': item, 'activeTab': 'items', 'actionTitle': 'Editar postagem'})
+        return render(request, 'create_post.html', {'form': form, 'item': item, 'activeTab': 'items', 'actionTitle': 'Editar postagem', 'actionSubtitle': 'editar a postagem'})
 
     def form_valid(self, form):
         today = datetime.date.today()
