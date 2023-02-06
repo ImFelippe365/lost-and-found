@@ -1,13 +1,13 @@
 {% load static %}
 
 <div data-name="{{ item.name }}" data-date="{{ item.updated_at }}" id="card_{{ item.id }}"
-    class="itemCard flex flex-row items-center gap-6 border-2 border-light-gray rounded-2xl mt-12 flex-1">
+    class="card_{{ item.id }} itemCard flex flex-row items-center gap-6 border-2 border-light-gray rounded-lg mt-12 flex-1">
     {% if item.image %}
     <img class="object-cover w-[260px] !h-[260px] rounded-tl-2xl rounded-bl-2xl" src="{{ item.image.url }}"
         alt="Foto do item" />
     {% else %}
     <div class="w-[260px] h-[260px]">
-        {% include 'without_image.html' with class='rounded-bl-2xl rounded-tl-2xl' %}
+        {% include 'without_image.html' with class='rounded-bl-lg rounded-tl-lg' %}
     </div>
     {% endif %}
 

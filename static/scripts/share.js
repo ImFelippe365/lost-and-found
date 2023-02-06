@@ -3,10 +3,14 @@ const fullUrl = window.location.href
 
 if (fullUrl.includes('#')) {
     const [path, cardId] = fullUrl.split('#')
-    const cardContainer = document.getElementById(cardId);
+    const cardContainer = document.getElementsByClassName(cardId);
 
-    cardContainer.style.border = '2px solid lightblue'
-    cardContainer.style.boxShadow = '-2px 0px 24px 0px rgba(30,129,176,0.34)'
+    for (let index = 0; index < cardContainer.length; index++) {
+        const element = cardContainer[index];
+        element.style.border = '2px solid lightblue'
+        element.style.borderRadius = '0.5rem'
+        element.style.boxShadow = '-2px 0px 24px 0px rgba(30,129,176,0.34)'
+    }
 }
 buttons.forEach(element => {
     element.addEventListener('click', () => {
