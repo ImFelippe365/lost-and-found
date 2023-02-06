@@ -12,6 +12,7 @@ aguardo pela reivindicação de seu respectivo dono.
 
 ## ⚠️ Importante
 
+Equipe: Felippe Rian & [Bruna Maria](https://github.com/brunamariap)
 Projeto desenvolvido na disciplina de Desenvolvimento de Projetos I, utilizando os conhecimentos adquiridos nas demais, como Banco de Dados,
 A.P.O.O (Análise de Projeto Orientado a Objeto) e Desenvolvimento de Sistemas Web. 
 
